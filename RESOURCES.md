@@ -46,6 +46,7 @@
 
 ## <span id="tools">Tools</span>
 
+- [`kafka-junit`](https://github.com/salesforce/kafka-junit) &ndash; easily create and run tests against one or more "real" [kafka] brokers.
 - [Klaw](https://www.klaw-project.io/) &ndash; an open source data governance tool for Apache Kafka.
 - [Strimzi](https://strimzi.io/) &ndash; [Kafka] on Kubernetes in a few minutes.
 
@@ -63,7 +64,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/January 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/February 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

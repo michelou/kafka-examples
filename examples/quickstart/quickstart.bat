@@ -318,7 +318,7 @@ goto :eof
 :create_topic
 call :is_running "kafka.Kafka" Kafka
 if %_IS_RUNNING%==0 (
-    echo %_ERROR_LABEL% Kafka service must be started to create topic 1>&2
+    echo %_ERROR_LABEL% Kafka service must be started to create topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -376,7 +376,7 @@ set "__BATCH_FILE=%TEMP%\%_BASENAME%_producer.bat"
 (
     echo @echo off
     echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_PRODUCER_CMD%" %__PRODUCER_OPTS% "%__PRODUCER_PROPS_FILE%" ^< "%__DATA_FILE%" 1^>^&2
-    echo call "%_PRODUCER_CMD%" %__PRODUCER_OPTS% "%__PRODUCER_PROPS_FILE%" < "%__DATA_FILE%"
+    echo call "%_PRODUCER_CMD%" %__PRODUCER_OPTS% "%__PRODUCER_PROPS_FILE%" ^< "%__DATA_FILE%"
 ) > "%__BATCH_FILE%"
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "kafka.producer" "%__BATCH_FILE%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Produce some messages to topic "%_TOPIC_NAME%" 1>&2
@@ -416,18 +416,13 @@ if not %_EXITCODE%==0 goto :eof
 goto :eof
 
 :stop_zookeeper
-set __NAME=zookeeper.server
-set __RUNNING=
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l^|findstr %__NAME% 1>&2
-) else if %_VERBOSE%==1 ( echo Check if Zookeeper server is still up and running 1>&2
-)
-for /f "usebackq" %%i in (`"%_JPS_CMD%" -l^|findstr %__NAME%`) do set __RUNNING=1
-if not defined __RUNNING goto :eof
+call :is_running "zookeeper.server" Zookeeper
+if %_IS_RUNNING%==0 goto :eof
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_ZOOKEEPER_STOP_CMD%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Stop Zookeeper server process "%__NAME%" 1>&2
 )
-call "%_ZOOKEEPER_STOP_CMD%"
+call "%_ZOOKEEPER_STOP_CMD%" %_STDERR_REDIRECT%
 if not %ERRORLEVEL%==0 (
     echo %_ERROR_LABEL% Failed to stop Zookeeper server process "%__NAME%" 1>&2
     set _EXITCODE=1
@@ -436,13 +431,8 @@ if not %ERRORLEVEL%==0 (
 goto :eof
 
 :stop_kafka
-set __NAME=kafka.Kafka
-set __RUNNING=
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l^|findstr %__NAME% 1>&2
-) else if %_VERBOSE%==1 ( echo Check if Kafka server is still up and running 1>&2
-)
-for /f "usebackq" %%i in (`"%_JPS_CMD%" -l^|findstr %__NAME%`) do set __RUNNING=1
-if not defined __RUNNING goto :eof
+call :is_running "kafka.Kafka" Kafka
+if %_IS_RUNNING%==0 goto :eof
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_STOP_CMD%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Stop Kafka server process "%__NAME%" 1>&2

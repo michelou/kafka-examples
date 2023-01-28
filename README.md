@@ -2,8 +2,8 @@
 
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
-  <td style="border:0;padding:0 10px 0 0;min-width:60px;max-width:100px;">
-    <a href="https://kafka.apache.org/" rel="external"><img style="border:0;" src="./docs/images/apache-kafka.png" alt="Kafka project"/></a>
+  <td style="border:0;padding:0 10px 0 0;min-width:120px;">
+    <a href="https://kafka.apache.org/" rel="external"><img style="border:0;width:120px;" src="./docs/images/apache-kafka.png" alt="Kafka project"/></a>
   </td>
   <td style="border:0;padding:0;vertical-align:text-top;">
     This repository gathers <a href="https://kafka.apache.org/" rel="external">Kafka</a> code examples coming from various websites or written by myself.<br/>
@@ -26,13 +26,13 @@ This project depends on the following external software for the **Microsoft Wind
 
 Optionally one may also install the following software:
 
-- [Offset Explorer 2.3][kafkatool_downloads] ([*change history*][kafkatool_changes])
+- [Offset Explorer 2.3][kafkatool_downloads] <sup id="anchor_02">[2](#footnote_02)</sup> ([*change history*][kafkatool_changes])
 - [Temurin OpenJDK 11 LTS][temurin_opendjk11] ([*release notes*][temurin_opendjk11_relnotes], [*bug fixes*][temurin_opendjk11_bugfixes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*January 2023*) <sup id="anchor_02">[2](#footnote_02)</sup>:
+For instance our development environment looks as follows (*February 2023*) <sup id="anchor_03">[3](#footnote_03)</sup>:
 
 <pre style="font-size:80%;">
 C:\opt\apache-maven-3.8.7\         <i>( 10 MB)</i>
@@ -126,7 +126,19 @@ We distinguish different sets of batch commands:
 <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=181308223" rel="external"><b>KIP-750</b></a>: Java 8 support is deprecating in Apache Kafka 3.0 and will be dropped in Apache Kafka 4.0.
 </dd></dl>
 
-<span id="footnote_021">[2]</span> ***Downloads*** [↩](#anchor_02)
+<span id="footnote_02">[2]</span> ***Offset Explorer*** [↩](#anchor_02)
+
+<dl><dd>
+<a href="https://www.kafkatool.com/features.html" rel="external"><b>Offset Explorer</b></a> (formerly named <b>Kalfa Tool</b>) provides the following features :
+<ul>
+  <li>The browser tree allows us to easily view and navigate the objects (brokers, topices, particitions, consumers) in our Apache Kafka cluster.</li>
+  <li>The explorer allows us to view messages (and their keys) in the partitions of the topics we are interested in.</li>
+  <li>If the string-based data is either in JSON or XML format, we can view it in a pretty-printed manner.</li>
+  <li>The browser tree also allows us to quickly view all offsets of our Kafka consumers.</li>
+</ul>
+</dd></dl>
+
+<span id="footnote_03">[3]</span> ***Downloads*** [↩](#anchor_03)
 
 <dl><dd>
 In our case we downloaded the following installation files (<a href="#proj_deps">see section 1</a>):
@@ -146,7 +158,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/January 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/February 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

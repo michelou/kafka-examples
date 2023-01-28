@@ -15,14 +15,15 @@
 
 This first example presents the mininal scenario found in the official [Kafka] documentation and in many introductory articles.
 
-In this case most of the work focuses on the configuration of the [Kafka] commands; our example is set up as follows :
+In this scenario most of the work focuses on the configuration of the [Kafka] commands; our example is set up as follows :
 - directory [`config\`](./config/) contains properties files (e.g. `zookeeper.properties` for the Zookeeper service). We slightly modified those files (e.g. Windows paths) after copying them from the [Kafka] installation directory (i.e. `%KAFKA_HOME%\config\*.properties`).
 - command [`quickstart.bat`](./quickstart/quickstart.bat) features several subcommands such as `start`, `stop` and `test` to facilitate the user experience in a Windows environment.
+
   <a href="../docs/images/quickstart_help.png"><img src="../docs/images/quickstart_help.png" width="50%" /></a>
 
-In resume, the two subcommands `start` and `stop` manage the Zookeeper and Kafka services and subcommand `test` creates a topic and starts both a producer (prompting for the user input, including `Ctrl-C` to stop it) and a consumer.
+In resume, the two subcommands `start` and `stop` manage the Zookeeper and Kafka services and subcommand `test` creates a topic and starts both a producer (*which gets its input from a text file*) and a consumer (press `Ctrl-C` to stop it).
 
-Command [`quickstart.bat`](./quickstart/quickstart.bat)` start` launches both servers after performing several checks (e.g. don't start service if already up and running) :
+Command [`quickstart.bat`](./quickstart/quickstart.bat)` start` launches the two services after performing several checks (e.g. don't start service if already up and running) :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./quickstart/quickstart.bat">quickstart</a> start -verbose</b>
@@ -99,22 +100,13 @@ List available topics
 quickstart-events
 Produce some messages to topic "quickstart-events"
 Consume the messages from topic "quickstart-events"
-aaa
-bbb
-ccc
-ddd
+Hello world
+Apache Kafka
 &lt;Ctrl-C&gt;
-Processed a total of 4 messages
+Processed a total of 2 messages
 </pre>
 
-The producer runs in a separate windows and prompts the user to enter some text :
-<pre style="font-size:80%;">
-&gt;aaa
-&gt;bbb
-&gt;ccc
-&gt;ddd
-&lt;Ctrl-C&gt;
-</pre>
+The producer is started in a separate windows (using the Windows command [`start`][windows_start]) and reads its input from a text file; this frees the user from typing text in the console (and pressing `Ctrl-C` to stop it).
 
 ## <span id="footnotes">Footnotes</span> [**&#x25B4;**](#top)
 
@@ -261,7 +253,7 @@ Here is a more detailed extract of the Kafka startup <code>INFO</code> logging :
 </pre>
 </dd></dl>
 
-<span id="footnote_03">[3]</span> ***Processes*** [↩](#anchor_03)
+<span id="footnote_03">[3]</span> ***Java Processes*** [↩](#anchor_03)
 
 <dl><dd>
 tbd
@@ -295,11 +287,14 @@ Here is how one can find which running process is listening on the local port <b
 java.exe                      3208 Console                    1     98,552 K
 </pre>
 <a href="../docs/images/Oracle_Services.png"><img src="../docs/images/Oracle_Services.png" width="80%" /></a>
+</dd>
+<dd>
+For instance, the StackOverflow post <a href="https://stackoverflow.com/questions/56747959/zookepper-unable-to-start-adminserver-exiting-abnormally">"ZooKepper Unable to start AdminServer, exiting abnormally"</a> gives a concrete case of the issue.
 </dd></dl>
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/January 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/February 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 [kafka]: https://kafka.apache.org
