@@ -577,6 +577,11 @@ if %ERRORLEVEL%==0 (
     for /f "tokens=1,*" %%i in ('"%GRADLE_HOME%\bin\gradle.bat" -version ^| findstr Gradle') do set "__VERSIONS_LINE2=%__VERSIONS_LINE2% gradle %%j,"
     set __WHERE_ARGS=%__WHERE_ARGS% "%GRADLE_HOME%\bin:gradle.bat"
 )
+where /q "%KAFKA_HOME%\bin\windows:kafka-configs.bat"
+if %ERRORLEVEL%==0 (
+    for /f "tokens=1,*" %%i in ('"%KAFKA_HOME%\bin\windows\kafka-configs.bat" -version') do set "__VERSIONS_LINE2=%__VERSIONS_LINE2% kafka-configs %%i,"
+    set __WHERE_ARGS=%__WHERE_ARGS% "%KAFKA_HOME%\bin\windows:kafka-configs.bat"
+)
 where /q "%MAVEN_HOME%\bin:mvn.cmd"
 if %ERRORLEVEL%==0 (
     for /f "tokens=1,2,3,*" %%i in ('"%MAVEN_HOME%\bin\mvn.cmd" -version ^| findstr Apache') do set "__VERSIONS_LINE2=%__VERSIONS_LINE2% mvn %%k,"

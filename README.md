@@ -7,7 +7,7 @@
   </td>
   <td style="border:0;padding:0;vertical-align:text-top;">
     This repository gathers <a href="https://kafka.apache.org/" rel="external">Kafka</a> code examples coming from various websites or written by myself.<br/>
-    In particular it includes several <a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting" rel="external">batch files</a>/<a href="https://www.gnu.org/software/bash/manual/bash.html" rel="external">bash scripts</a> for experimenting with the <a href="https://kafka.apache.org" rel="external">Kafka</a> system on a Windows machine.
+    In particular it includes several build scripts (<a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting" rel="external">batch files</a>, <a href="https://www.gnu.org/software/bash/manual/bash.html" rel="external">bash scripts</a>) for experimenting with the <a href="https://kafka.apache.org" rel="external">Kafka</a> system on a Windows machine.
   </td>
   </tr>
 </table>
@@ -21,7 +21,7 @@
 This project depends on the following external software for the **Microsoft Windows** platform:
 
 - [Git 2.39][git_releases] ([*release notes*][git_relnotes])
-- [Kafka 3.3][kafka_downloads] ([*release notes*][kafka_relnotes])
+- [Kafka 3.4][kafka_downloads] ([*release notes*][kafka_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_opendjk17] <sup id="anchor_01">[1](#footnote_01)</sup> ([*release notes*][temurin_opendjk17_relnotes], [*bug fixes*][temurin_opendjk17_bugfixes])
 
 Optionally one may also install the following software:
@@ -39,7 +39,7 @@ C:\opt\apache-maven-3.8.7\         <i>( 10 MB)</i>
 C:\opt\Git-2.39.1\                 <i>(304 MB)</i>
 C:\opt\jdk-temurin-11.0.18_10\     <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.6_10\      <i>(299 MB)</i>
-C:\opt\kafka_2.13-3.3.2\           <i>(105 MB)</i>
+C:\opt\kafka_2.13-3.4.0\           <i>(105 MB)</i>
 C:\opt\scala-2.13.10\              <i>( 23 MB)</i>
 C:\Program Files\OffsetExplorer2\  <i>(112 MB)</i>
 </pre>
@@ -91,13 +91,14 @@ We distinguish different sets of batch commands:
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
       java 17.0.6, javac 17.0.6, scalac 2.13.10,
-      gradle 7.6, mvn 3.8.7,
+      gradle 7.6, kafka-configs 3.4.0, mvn 3.8.7,
       git 2.39.1.windows.1, diff 3.8, bash 5.2.12(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.6_10\bin\java.exe
       C:\opt\jdk-temurin-17.0.6_10\bin\javac.exe
       C:\opt\scala-2.13.10\bin\scalac.bat
       C:\opt\gradle-7.6\bin\gradle.bat
+      C:\opt\kafka_2.13-3.4.0\bin\windows\kafka-configs.bat
       C:\opt\apache-maven-3.8.7\bin\mvn.cmd
       C:\opt\Git-2.39.1\bin\git.exe
       C:\opt\Git-2.39.1\usr\bin\diff.exe
@@ -106,7 +107,7 @@ We distinguish different sets of batch commands:
       "GIT_HOME=C:\opt\Git-2.39.1"
       "GRADLE_HOME=C:\opt\gradle-7.6"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.6_10"
-      "KAFKA_HOME=C:\opt\kafka_2.13-3.3.2"
+      "KAFKA_HOME=C:\opt\kafka_2.13-3.4.0"
       "MAVEN_HOME=C:\opt\apache-maven-3.8.7"
       "SCALA_HOME=C:\opt\scala-2.13.10"
    &nbsp;
@@ -146,7 +147,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <dd>
 <pre style="font-size:80%;">
 <a href="https://maven.apache.org/download.cgi">apache-maven-3.8.7-bin.zip</a>                         <i>(10 MB)</i>
-<a href="https://kafka.apache.org/downloads">kafka_2.13-3.3.2.tgz</a>                               <i>(82 MB)</i>
+<a href="https://kafka.apache.org/downloads">kafka_2.13-3.4.0.tgz</a>                               <i>(82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>(37 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.18_10.zip</a>  <i>(99 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.6_10.zip</a>   <i>(99 MB)</i>
@@ -181,7 +182,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [haskell_examples]: https://github.com/michelou/haskell-examples
 [kafka]: https://kafka.apache.org
 [kafka_downloads]: https://kafka.apache.org/downloads
-[kafka_relnotes]: https://downloads.apache.org/kafka/3.3.2/RELEASE_NOTES.html
+[kafka_relnotes]: https://downloads.apache.org/kafka/3.4.0/RELEASE_NOTES.html
 [kafkatool_changes]: https://www.kafkatool.com/changes.html
 [kafkatool_downloads]: https://www.kafkatool.com/download.html
 [kotlin_examples]: https://github.com/michelou/kotlin-examples
