@@ -26,6 +26,7 @@ This project depends on the following external software for the **Microsoft Wind
 
 Optionally one may also install the following software:
 
+- [Apache Maven 3.9][apache_maven] ([requires Java 8 or newer][apache_maven_history])  ([*release notes*][apache_maven_relnotes])
 - [Offset Explorer 2.3][kafkatool_downloads] <sup id="anchor_02">[2](#footnote_02)</sup> ([*change history*][kafkatool_changes])
 - [Temurin OpenJDK 11 LTS][temurin_opendjk11] ([*release notes*][temurin_opendjk11_relnotes], [*bug fixes*][temurin_opendjk11_bugfixes])
 
@@ -35,7 +36,7 @@ Optionally one may also install the following software:
 For instance our development environment looks as follows (*February 2023*) <sup id="anchor_03">[3](#footnote_03)</sup>:
 
 <pre style="font-size:80%;">
-C:\opt\apache-maven-3.8.7\         <i>( 10 MB)</i>
+C:\opt\apache-maven-3.9.0\         <i>( 10 MB)</i>
 C:\opt\Git-2.39.1\                 <i>(304 MB)</i>
 C:\opt\jdk-temurin-11.0.18_10\     <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.6_10\      <i>(299 MB)</i>
@@ -91,7 +92,7 @@ We distinguish different sets of batch commands:
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
       java 17.0.6, javac 17.0.6, scalac 2.13.10,
-      gradle 7.6, kafka-configs 3.4.0, mvn 3.8.7,
+      gradle 7.6, kafka-configs 3.4.0, mvn 3.9.0,
       git 2.39.1.windows.1, diff 3.8, bash 5.2.12(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.6_10\bin\java.exe
@@ -99,7 +100,7 @@ We distinguish different sets of batch commands:
       C:\opt\scala-2.13.10\bin\scalac.bat
       C:\opt\gradle-7.6\bin\gradle.bat
       C:\opt\kafka_2.13-3.4.0\bin\windows\kafka-configs.bat
-      C:\opt\apache-maven-3.8.7\bin\mvn.cmd
+      C:\opt\apache-maven-3.9.0\bin\mvn.cmd
       C:\opt\Git-2.39.1\bin\git.exe
       C:\opt\Git-2.39.1\usr\bin\diff.exe
       C:\opt\Git-2.39.1\bin\bash.exe
@@ -108,7 +109,7 @@ We distinguish different sets of batch commands:
       "GRADLE_HOME=C:\opt\gradle-7.6"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.6_10"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.4.0"
-      "MAVEN_HOME=C:\opt\apache-maven-3.8.7"
+      "MAVEN_HOME=C:\opt\apache-maven-3.9.0"
       "SCALA_HOME=C:\opt\scala-2.13.10"
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
@@ -146,7 +147,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 </dd>
 <dd>
 <pre style="font-size:80%;">
-<a href="https://maven.apache.org/download.cgi">apache-maven-3.8.7-bin.zip</a>                         <i>(10 MB)</i>
+<a href="https://maven.apache.org/download.cgi">apache-maven-3.9.0-bin.zip</a>                         <i>(10 MB)</i>
 <a href="https://kafka.apache.org/downloads">kafka_2.13-3.4.0.tgz</a>                               <i>(82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>(37 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.18_10.zip</a>  <i>(99 MB)</i>
@@ -166,6 +167,9 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 
 [ada_examples]: https://github.com/michelou/ada-examples
 [akka_examples]: https://github.com/michelou/akka-examples
+[apache_maven]: https://maven.apache.org/download.cgi
+[apache_maven_history]: https://maven.apache.org/docs/history.html
+[apache_maven_relnotes]: https://maven.apache.org/docs/3.9.0/release-notes.html
 [dart_examples]: https://github.com/michelou/dart-examples
 [deno_examples]: https://github.com/michelou/deno-examples
 [flix_examples]: https://github.com/michelou/flix-examples
