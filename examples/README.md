@@ -81,7 +81,7 @@ And the [Kafka] server <sup id="anchor_02">[2](#footnote_02)</sup> starts in ano
        [...]
  (kafka.server.KafkaConfig)
 [...]
-[2023-01-25 19:03:47,022] INFO Kafka version: <b>3.3.2</b>
+[2023-01-25 19:03:47,022] INFO Kafka version: <b>3.4.0</b>
 [2023-01-25 19:03:47,023] INFO Kafka commitId: b66af662e61082cb
 [2023-01-25 19:03:47,023] INFO Kafka startTimeMs: 1674669827014
 [2023-01-25 19:03:47,028] INFO [KafkaServer id=0] started
@@ -126,7 +126,7 @@ Here is a more detailed extract of the Zookeeper startup <code>INFO</code> loggi
 [2023-01-25 19:03:39,804] INFO Purge task is not scheduled. (o.a.z.s.DatadirCleanupManager)
 [2023-01-25 19:03:39,804] WARN Either no config or no quorum defined in config, running in standalone mode (o.a.z.s.quorum.QuorumPeerMain)
 [2023-01-25 19:03:39,804] INFO Log4j 1.2 jmx support not found; jmx disabled. (org.apache.zookeeper.jmx.ManagedUtil)
-[2023-01-25 19:03:39,804] INFO Reading configuration from: C:\opt\kafka_2.13-3.3.2\config\zookeeper.properties (o.a.z.s.quorum.QuorumPeerConfig)
+[2023-01-25 19:03:39,804] INFO Reading configuration from: C:\opt\kafka_2.13-3.4.0\config\zookeeper.properties (o.a.z.s.quorum.QuorumPeerConfig)
 [2023-01-25 19:03:39,804] INFO clientPortAddress is 0.0.0.0:2181 (o.a.z.s.quorum.QuorumPeerConfig)
 [2023-01-25 19:03:39,804] INFO secureClientPort is not set (o.a.z.s.quorum.QuorumPeerConfig)
 [2023-01-25 19:03:39,804] INFO observerMasterPort is not set (o.a.z.s.quorum.QuorumPeerConfig)
@@ -149,7 +149,7 @@ Here is a more detailed extract of the Zookeeper startup <code>INFO</code> loggi
 [2023-01-25 19:03:39,866] INFO Server environment:java.version=17.0.6 (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,866] INFO Server environment:java.vendor=Eclipse Adoptium (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,866] INFO Server environment:java.home=C:\opt\jdk-temurin-17.0.6_10 (o.a.z.s.ZooKeeperServer)
-[2023-01-25 19:03:39,866] INFO Server environment:java.class.path=C:\opt\kafka_2.13-3.3.2\libs\activation-1.1.1.jar;[...];C:\opt\kafka_2.13-3.3.2\libs\zstd-jni-1.5.2-1.jar (o.a.z.s.ZooKeeperServer)
+[2023-01-25 19:03:39,866] INFO Server environment:java.class.path=C:\opt\kafka_2.13-3.4.0\libs\activation-1.1.1.jar;[...];C:\opt\kafka_2.13-3.4.0\libs\zstd-jni-1.5.2-1.jar (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,882] INFO Server environment:java.library.path=C:\opt\jdk-temurin-17.0.6_10\bin;[...];. (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,898] INFO Server environment:java.io.tmpdir=%LOCALAPPDATA%\Temp\ (o.a.z.s.ZooKeeperServer)
 [...]
@@ -184,7 +184,7 @@ Here is a more detailed extract of the Kafka startup <code>INFO</code> logging :
 [2023-01-25 19:03:45,329] INFO Client environment:java.version=17.0.6 (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,330] INFO Client environment:java.vendor=Eclipse Adoptium (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,331] INFO Client environment:java.home=C:\opt\jdk-temurin-17.0.6_10 (org.apache.zookeeper.ZooKeeper)
-[2023-01-25 19:03:45,332] INFO Client environment:java.class.path=C:\opt\kafka_2.13-3.3.2\libs\activation-1.1.1.jar;[...];. (org.apache.zookeeper.ZooKeeper)
+[2023-01-25 19:03:45,332] INFO Client environment:java.class.path=C:\opt\kafka_2.13-3.4.0\libs\activation-1.1.1.jar;[...];. (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,353] INFO Client environment:java.io.tmpdir=C:\Users\michelou\AppData\Local\Temp\ (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,353] INFO Client environment:java.compiler=<NA> (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,354] INFO Client environment:os.name=Windows 11 (org.apache.zookeeper.ZooKeeper)
@@ -246,7 +246,7 @@ Here is a more detailed extract of the Kafka startup <code>INFO</code> logging :
         zookeeper.ssl.truststore.type = null
  (kafka.server.KafkaConfig)
 [...]
-[2023-01-25 19:03:47,022] INFO Kafka version: 3.3.2 (org.apache.kafka.common.utils.AppInfoParser)
+[2023-01-25 19:03:47,022] INFO Kafka version: 3.4.0 (org.apache.kafka.common.utils.AppInfoParser)
 [2023-01-25 19:03:47,023] INFO Kafka commitId: b66af662e61082cb (org.apache.kafka.common.utils.AppInfoParser)
 [2023-01-25 19:03:47,023] INFO Kafka startTimeMs: 1674669827014 (org.apache.kafka.common.utils.AppInfoParser)
 [2023-01-25 19:03:47,028] INFO [KafkaServer id=0] started (kafka.server.KafkaServer)
@@ -277,7 +277,7 @@ C:\opt\jdk-temurin-17.0.6_10
 <span id="footnote_04">[4]</span> ***Port already bound*** [↩](#anchor_04)
 
 <dl><dd>
-Here is how one can find which running process is listening on the local port <b>3208</b> :
+Here is how one can find which running process is listening on the local port <b>8080</b> :
 <pre style="font-size:80%;">
 <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat" rel="external">netstat</a> -aon | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> 8080</b>
   TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       3208
@@ -287,6 +287,15 @@ Here is how one can find which running process is listening on the local port <b
 java.exe                      3208 Console                    1     98,552 K
 </pre>
 <a href="../docs/images/Oracle_Services.png"><img src="../docs/images/Oracle_Services.png" width="80%" /></a>
+<pre style="font-size:80%;">
+<b>&gt; <a href="./quickstart/quickstart.bat">quickstart</a> -verbose start</b>
+Check if Zookeeper service is already up and running
+Start the Zookeeper service
+Check if Kafka service is already up and running
+Check if local port 8080 is free (needed for Jetty AdminServer)
+Process 6000 already uses port 8080
+TNSLSNR.EXE                   6000 Services                   0     15,456 K
+</pre>
 </dd>
 <dd>
 For instance, the StackOverflow post <a href="https://stackoverflow.com/questions/56747959/zookepper-unable-to-start-adminserver-exiting-abnormally">"ZooKepper Unable to start AdminServer, exiting abnormally"</a> gives a concrete case of the issue.

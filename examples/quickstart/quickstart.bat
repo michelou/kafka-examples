@@ -86,6 +86,9 @@ set _SERVER_HOST=localhost
 set _SERVER_PORT=9092
 set _BOOTSTRAP_SERVER=%_SERVER_HOST%:%_SERVER_PORT%
 
+set _KAFKA_PROC_NAME=kafka.Kafka
+set _ZOOKEEPER_PROC_NAME=zookeeper.server
+
 set _TOPIC_NAME=quickstart-events
 goto :eof
 
@@ -229,14 +232,14 @@ set _IS_RUNNING=0
 set __PROC_NAME=%~1
 set __SERVICE_NAME=%~2
 
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l^|findstr %__NAME% 1>&2
-) else if %_VERBOSE%==1 ( echo Check if %__SERVICE_NAME% service is already up and running 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l^|findstr "%__PROC_NAME%" 1>&2
+) else if %_VERBOSE%==1 ( echo Check if %__SERVICE_NAME% service is up and running 1>&2
 )
-for /f "usebackq" %%i in (`"%_JPS_CMD%" -l^|findstr %__PROC_NAME%`) do set _IS_RUNNING=1
+for /f "usebackq" %%i in (`"%_JPS_CMD%" -l^|findstr "%__PROC_NAME%" 2^>NUL`) do set _IS_RUNNING=1
 goto :eof
 
 :start_zookeeper
-call :is_running "zookeeper.server" Zookeeper
+call :is_running "%_ZOOKEEPER_PROC_NAME%" Zookeeper
 if %_IS_RUNNING%==1 (
     if %_VERBOSE%==1 echo Zookeeper service is up and running 1>&2
     goto :eof
@@ -252,10 +255,10 @@ set "__BATCH_FILE=%TEMP%\%_BASENAME%_zookeeper.bat"
     echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_ZOOKEEPER_START_CMD%" %__ZOOKEEPER_PROPS_FILE% 1^>^&2
     echo call "%_ZOOKEEPER_START_CMD%" %__ZOOKEEPER_PROPS_FILE%
 ) > "%__BATCH_FILE%"
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%__NAME%" "%__BATCH_FILE%" 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_ZOOKEEPER_PROC_NAME%" "%__BATCH_FILE%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Start the Zookeeper service 1>&2
 )
-start "%__NAME%" "%__BATCH_FILE%"
+start "%_ZOOKEEPER_PROC_NAME%" "%__BATCH_FILE%"
 if not %ERRORLEVEL%==0 (
     echo %_ERROR_LABEL% Failed to start the Zookeeper service 1>&2
     set _EXITCODE=1
@@ -281,11 +284,12 @@ if defined __PID (
     )
     @rem TODO : test output and (possibly) set _EXITCODE
     tasklist | findstr %__PID%
+    set _EXITCODE=1
 )
 goto :eof
 
 :start_kafka
-call :is_running "kafka.Kafka" Kafka
+call :is_running "%_KAFKA_PROC_NAME%" Kafka
 if %_IS_RUNNING%==1 (
     if %_VERBOSE%==1 echo Kafka service is up and running 1>&2
     goto :eof
@@ -304,19 +308,19 @@ set "__BATCH_FILE=%TEMP%\%_BASENAME%_kafka.bat"
     echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_KAFKA_START_CMD%" %__KAFKA_PROPS_FILE% 1^>^&2
     echo call "%_KAFKA_START_CMD%" %__KAFKA_PROPS_FILE%
 ) > "%__BATCH_FILE%"
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%__NAME%" "%__BATCH_FILE%" 1>&2
-) else if %_VERBOSE%==1 ( echo Start the Kafka server process 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_KAFKA_PROC_NAME%" "%__BATCH_FILE%" 1>&2
+) else if %_VERBOSE%==1 ( echo Start the Kafka service 1>&2
 )
-start "%__NAME%" "%__BATCH_FILE%"
+start "%_KAFKA_PROC_NAME%" "%__BATCH_FILE%"
 if not %ERRORLEVEL%==0 (
-    echo %_ERROR_LABEL% Failed to start the Kafka server process 1>&2
+    echo %_ERROR_LABEL% Failed to start the Kafka service 1>&2
     set _EXITCODE=1
     goto :eof
 )
 goto :eof
 
 :create_topic
-call :is_running "kafka.Kafka" Kafka
+call :is_running "%_KAFKA_PROC_NAME%" Kafka
 if %_IS_RUNNING%==0 (
     echo %_ERROR_LABEL% Kafka service must be started to create topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
@@ -416,7 +420,7 @@ if not %_EXITCODE%==0 goto :eof
 goto :eof
 
 :stop_zookeeper
-call :is_running "zookeeper.server" Zookeeper
+call :is_running "%_ZOOKEEPER_PROC_NAME%" Zookeeper
 if %_IS_RUNNING%==0 goto :eof
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_ZOOKEEPER_STOP_CMD%" 1>&2
@@ -431,7 +435,7 @@ if not %ERRORLEVEL%==0 (
 goto :eof
 
 :stop_kafka
-call :is_running "kafka.Kafka" Kafka
+call :is_running "%_KAFKA_PROC_NAME%" Kafka
 if %_IS_RUNNING%==0 goto :eof
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_STOP_CMD%" 1>&2
