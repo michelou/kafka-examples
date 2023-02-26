@@ -1,6 +1,6 @@
 # <span id="top">Kafka Resources</span> <span style="size:30%;"><a href="README.md">↩</a></span>
 
-<table style="font-family:Helvetica,Arial;font-size:12px;line-height:1.6;">
+<table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
   <td style="border:0;padding:0 10px 0 0;min-width:120px;"><a href="https://kafka.apache.org/"><img src="./docs/images/apache-kafka.png" width="100" alt="Kafka project"/></a></td>
   <td style="border:0;padding:0;vertical-align:text-top;">This document gathers <a href="https://kafka.apache.org/" rel="external">Kafka</a> related resources we have collected so far.
@@ -38,6 +38,7 @@
 ## <span id="news">News</span>
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
+  - [Kafka Monthly Digest: January 2023](https://developers.redhat.com/blog/2023/02/01/kafka-monthly-digest-january-2023).
   - [Kafka Monthly Digest: December 2022](https://developers.redhat.com/blog/2023/01/03/kafka-monthly-digest-december-2022).
   - [Kafka Monthly Digest: November 2022](https://developers.redhat.com/blog/2022/12/05/kafka-monthly-digest-november-2022).
   - [Kafka Monthy Digest: September 2022](https://developers.redhat.com/blog/2022/10/05/kafka-monthly-digest-september-2022).
@@ -47,7 +48,9 @@
 ## <span id="tools">Tools</span>
 
 - [`kafka-junit`](https://github.com/salesforce/kafka-junit) &ndash; easily create and run tests against one or more "real" [kafka] brokers.
-- [Klaw](https://www.klaw-project.io/) &ndash; an open source data governance tool for Apache Kafka.
+- [Klaw](https://www.klaw-project.io/) &ndash; an open source data governance tool for [Apache Kafka][kafka].
+- [librdkakfa](https://github.com/confluentinc/librdkafka) &ndash; an Apache Kafka C/C++ library.
+- [Sarama](https://github.com/Shopify/sarama) &ndash; a Go library for Apache Kafka.
 - [Strimzi](https://strimzi.io/) &ndash; [Kafka] on Kubernetes in a few minutes.
 
 ## <span id="tutorials">Tutorials</span> [**&#x25B4;**](#top)
