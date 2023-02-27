@@ -7,6 +7,7 @@
 .settings/
 .vscode/
 *_LOCAL/
+kafka/
 target/
 *.crt
 *_LOCAL

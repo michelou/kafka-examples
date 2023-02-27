@@ -14,6 +14,9 @@
 
 ## <span id="blogs">Blogs</span>
 
+- [Medium](https://medium.com/search?q=Elasticsearch)
+  - [Advance Optimization Techniques for Elasticsearch][blog_chye] by Lee Chye, September 2022.
+  - [Apache Kafka Best Practices][blog_chintalapani] by Sriharsha Chintalapani, May 2018.
 - [Best practices for right-sizing your Apache Kafka clusters to optimize performance and cost][blog_hausmann] by Steffen Hausmann, March 2022.
 - [What's New in Apache Kafka 3.0.0][blog_kafka3] by Konstantine Karantasis, September 2021.
 - [Connect Node.js applications to Red Hat OpenShift Streams for Apache Kafka with Service Binding][blog_shortiss] by Evan Shortiss, July 2021.
@@ -22,8 +25,8 @@
   - [Optimizing Kafka broker configuration][blog_mellor] by Paul Mellor, June 2021.
 - [Compression of messages in Kafka][blog_pardi] by Fabio Pardi, June 2021.
 - [Part 1: Apache Kafka for beginners - What is Apache Kafka?][blog_johansson] by Lovisa Johansson, March 2020.
+- [Getting Started with Elasticsearch](https://medium.com/expedia-group-tech/getting-started-with-elastic-search-6af62d7df8dd) by Arjun Rajpal, January 2020.
 - [A Practical Introduction to Kafka Storage Internals][blog_perla] by Durga Swaroop Perla, August 2018.
-- [Apache Kafka Best Practices][blog_chintalapani] by Sriharsha Chintalapani, May 2018.
 - [Large data packets and Kafka][blog_bockhorn] by Anchou Bockhorn.
 - [Apache Kafka - How to Load Test with JMeter][blog_aladev] by Roman Aladev, December 2017.
 
@@ -41,7 +44,7 @@
   - [Kafka Monthly Digest: January 2023](https://developers.redhat.com/blog/2023/02/01/kafka-monthly-digest-january-2023).
   - [Kafka Monthly Digest: December 2022](https://developers.redhat.com/blog/2023/01/03/kafka-monthly-digest-december-2022).
   - [Kafka Monthly Digest: November 2022](https://developers.redhat.com/blog/2022/12/05/kafka-monthly-digest-november-2022).
-  - [Kafka Monthy Digest: September 2022](https://developers.redhat.com/blog/2022/10/05/kafka-monthly-digest-september-2022).
+  - [Kafka Monthly Digest: September 2022](https://developers.redhat.com/blog/2022/10/05/kafka-monthly-digest-september-2022).
   - [Kafka Monthly Digest: August 2022](https://developers.redhat.com/articles/2022/09/13/kafka-monthly-digest-august-2022).
   - [Kafka Monthly Digest: July 2022](https://developers.redhat.com/articles/2022/08/04/kafka-monthly-digest-july-2022).
 
@@ -76,6 +79,7 @@
 [blog_aladev]: https://www.blazemeter.com/blog/apache-kafka-how-to-load-test-with-jmeter
 [blog_bockhorn]: https://ipt.ch/en/impuls/large-data-packets-and-kafka
 [blog_chintalapani]: https://medium.com/real-time-streaming/apache-kafka-best-practices-d9fac5c483c0
+[blog_chye]: https://medium.com/csit-tech-blog/advance-optimization-techniques-for-elasticsearch-b728f59b70cc
 [blog_hausmann]: https://aws.amazon.com/fr/blogs/big-data/best-practices-for-right-sizing-your-apache-kafka-clusters-to-optimize-performance-and-cost/
 [blog_johansson]: https://www.cloudkarafka.com/blog/part1-kafka-for-beginners-what-is-apache-kafka.html
 [blog_kafka3]: https://blogs.apache.org/kafka/entry/what-s-new-in-apache6
