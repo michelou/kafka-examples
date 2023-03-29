@@ -14,6 +14,7 @@
 
 ## <span id="blogs">Blogs</span>
 
+- [Remote code execution flaw patched in Apache Kafka](https://portswigger.net/daily-swig/remote-code-execution-flaw-patched-in-apache-kafka) by Charlie Osborne, February 2023.
 - [Medium](https://medium.com/search?q=Elasticsearch)
   - [Advance Optimization Techniques for Elasticsearch][blog_chye] by Lee Chye, September 2022.
   - [Apache Kafka Best Practices][blog_chintalapani] by Sriharsha Chintalapani, May 2018.
@@ -25,7 +26,7 @@
   - [Optimizing Kafka broker configuration][blog_mellor] by Paul Mellor, June 2021.
 - [Compression of messages in Kafka][blog_pardi] by Fabio Pardi, June 2021.
 - [Part 1: Apache Kafka for beginners - What is Apache Kafka?][blog_johansson] by Lovisa Johansson, March 2020.
-- [Getting Started with Elasticsearch](https://medium.com/expedia-group-tech/getting-started-with-elastic-search-6af62d7df8dd) by Arjun Rajpal, January 2020.
+- [7 mistakes when using Apache Kafka][blog_matloka] by Michal Matloka, January 2020.
 - [A Practical Introduction to Kafka Storage Internals][blog_perla] by Durga Swaroop Perla, August 2018.
 - [Large data packets and Kafka][blog_bockhorn] by Anchou Bockhorn.
 - [Apache Kafka - How to Load Test with JMeter][blog_aladev] by Roman Aladev, December 2017.
@@ -33,14 +34,17 @@
 ## <span id="books">Books</span> [**&#x25B4;**](#top)
 
 - [Event Streaming with Kafka Streams and ksqlDB][book_bejeck2] by William P. Bejeck, *early* 2022.<br/><span style="font-size:80%;">(Manning, ISBN 978-1-6172-9868-4, 325 pages)</span>
+- [Kafka in Action][book_scott] by Dylan Scott et al., February 2022.<br/><span style="font-size:80%;">(Manning, ISBN 978-1-6172-9523-2, 272 pages)</span>
 - [Kafka - The Definitive Guide][book_palino] by Todd Palino et al., 2021.<br/><span style="font-size:80%;">(O'Reilly, IsBN 978-1-4920-4307-2, pages)</span>
 - [Effective Kafka][book_koutanov] by Emil Koutanov, March 2021.<br/><span style="font-size:80%;">(Leanpub, ISBN 979-8-6285-5851-5, 348 pages)</span>
+- [Mastering Kafka Streams and ksqlDB][book_seymour] by Mitch Seymour, February 2021.<br/><span style="font-size:80%;">(O'Reilly, ISBN 978-1-4920-6249-3, 432 pages)</span>
 - [Kafka Streams - Real-time Stream Processing][book_pandey] by Prashant Kumar Pandey, March 2019.<br/><span style="font-size:80%;">(Manning, ISBN 978-9-3535-1802-8, 348 pages)</span>
 - [Kafka Streams in Action][book_bejeck] by William P. Bejeck, August 2018.<br/><span style="font-size:80%;">(Manning, ISBN 978-1-6172-9447-1, 280 pages)</span>
 
-## <span id="news">News</span>
+## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
+  - [Kafka Monthly Digest: February 2023](https://developers.redhat.com/blog/2023/03/01/kafka-monthly-digest-february-2023).
   - [Kafka Monthly Digest: January 2023](https://developers.redhat.com/blog/2023/02/01/kafka-monthly-digest-january-2023).
   - [Kafka Monthly Digest: December 2022](https://developers.redhat.com/blog/2023/01/03/kafka-monthly-digest-december-2022).
   - [Kafka Monthly Digest: November 2022](https://developers.redhat.com/blog/2022/12/05/kafka-monthly-digest-november-2022).
@@ -70,7 +74,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/February 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/April 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -83,6 +87,7 @@
 [blog_hausmann]: https://aws.amazon.com/fr/blogs/big-data/best-practices-for-right-sizing-your-apache-kafka-clusters-to-optimize-performance-and-cost/
 [blog_johansson]: https://www.cloudkarafka.com/blog/part1-kafka-for-beginners-what-is-apache-kafka.html
 [blog_kafka3]: https://blogs.apache.org/kafka/entry/what-s-new-in-apache6
+[blog_matloka]: https://blog.softwaremill.com/7-mistakes-when-using-apache-kafka-44358cd9cd6
 [blog_mellor]: https://strimzi.io/blog/2021/06/08/broker-tuning/
 [blog_musyoka]: https://www.section.io/engineering-education/what-is-kafka-how-to-build-and-dockerize-a-kafka-cluster/
 [blog_pardi]: https://www.cloudkarafka.com/blog/compression-of-messages-in-kafka.html
@@ -94,6 +99,8 @@
 [book_koutanov]: aa
 [book_palino]: https://www.oreilly.com/library/view/kafka-the-definitive/9781492043072/
 [book_pandey]: https://www.amazon.com/Kafka-Streams-Real-time-Stream-Processing-ebook/dp/B07NNBTYS3
+[book_scott]: https://www.manning.com/books/kafka-in-action
+[book_seymour]: https://www.oreilly.com/library/view/mastering-kafka-streams/9781492062486/
 [cloudera_docs]: https://docs.cloudera.com/
 [kafka]: https://kafka.apache.org/
 [tutorial_hashemian]: https://developer.ibm.com/tutorials/kafka-authn-authz/

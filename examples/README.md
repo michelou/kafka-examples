@@ -1,6 +1,6 @@
 # <span id="top">Kafka examples</span> <span style="size:30%;"><a href="../README.md">⬆</a></span>
 
-<table style="font-family:Helvetica,Arial;font-size:14px;line-height:1.6;">
+<table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
   <td style="border:0;padding:0 10px 0 0;min-width:120px;">
     <a href="https://kafka.apache.org/" rel="external"><img style="border:0;width:120px;" src="../docs/images/apache-kafka.png" alt="Kafka project" /></a>
@@ -303,7 +303,7 @@ For instance, the StackOverflow post <a href="https://stackoverflow.com/question
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/February 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/April 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 [kafka]: https://kafka.apache.org
