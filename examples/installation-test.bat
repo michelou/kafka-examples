@@ -204,7 +204,7 @@ if %_VERBOSE%==1 (
 echo Usage: %__BEG_O%%_BASENAME% { ^<option^> ^| ^<subcommand^> }%__END%
 echo.
 echo   %__BEG_P%Options:%__END%
-echo     %__BEG_O%-debug%__END%      show commands executed by this script
+echo     %__BEG_O%-debug%__END%      display commands executed by this script
 echo     %__BEG_O%-timer%__END%      display total execution time
 echo     %__BEG_O%-verbose%__END%    display progress messages
 echo.
@@ -236,7 +236,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%__NAME%" "%_ZOOKEEPER_START_CMD%" %
 ) else if %_VERBOSE%==1 ( echo Start the Zookeeper server process 1>&2
 )
 start "%__NAME%" "%_ZOOKEEPER_START_CMD%" %_ZOOKEEPER_PROPS_FILE%
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     echo %_ERROR_LABEL% Failed to start the Zookeeper server process 1>&2
     set _EXITCODE=1
     goto :eof
@@ -259,7 +259,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%__NAME%" "%_KAFKA_START_CMD%" %_KAF
 ) else if %_VERBOSE%==1 ( echo Start Kafka server process 1>&2
 )
 start "%__NAME%" "%_KAFKA_START_CMD%" %_KAFKA_PROPS_FILE%
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     echo %_ERROR_LABEL% Failed to start the Kafka server process 1>&2
     set _EXITCODE=1
     goto :eof
@@ -270,11 +270,11 @@ goto :eof
 set __TOPICS_OPTS=--create --bootstrap-server %_BOOTSTRAP_SERVER% --replication-factor 1 --partitions 1 --topic %_TOPIC_NAME%
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS% 1>&2
-) else if %_VERBOSE%==1 ( echo Create topic 1>&2
+) else if %_VERBOSE%==1 ( echo Create topic "%_TOPIC_NAME%" 1>&2
 )
 call "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS%
-if not %ERRORLEVEL%==0 (
-    echo %_ERROR_LABEL% Failed to create topic 1>&2
+if not errorlevel 0 (
+    echo %_ERROR_LABEL% Failed to create topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -284,11 +284,11 @@ goto :eof
 set __TOPICS_OPTS=--list --bootstrap-server %_BOOTSTRAP_SERVER%
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS% 1>&2
-) else if %_VERBOSE%==1 ( echo List topic 1>&2
+) else if %_VERBOSE%==1 ( echo List topic "%_TOPIC_NAME%" 1>&2
 )
 call "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS%
-if not %ERRORLEVEL%==0 (
-    echo %_ERROR_LABEL% Failed to list topic 1>&2
+if not errorlevel 0 (
+    echo %_ERROR_LABEL% Failed to list topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -298,11 +298,11 @@ goto :eof
 set __PRODUCER_OPTS=--bootstrap-server %_BOOTSTRAP_SERVER% --topic %_TOPIC_NAME%
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_PRODUCER_CMD%" %__PRODUCER_OPTS% 1>&2
-) else if %_VERBOSE%==1 ( echo Produce some messages 1>&2
+) else if %_VERBOSE%==1 ( echo Produce messages to topic "%_TOPIC_NAME%" 1>&2
 )
 call "%_PRODUCER_CMD%" %__PRODUCER_OPTS%
-if not %ERRORLEVEL%==0 (
-    echo %_ERROR_LABEL% Failed to produce messages 1>&2
+if not errorlevel 0 (
+    echo %_ERROR_LABEL% Failed to produce messages to topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -312,11 +312,11 @@ goto :eof
 set __CONSUMER_OPTS=--bootstrap-server %_BOOTSTRAP_SERVER% --topic %_TOPIC_NAME% --from-beginning
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_CONSUMER_CMD%" %__CONSUMER_OPTS% 1>&2
-) else if %_VERBOSE%==1 ( echo Consume the messages 1>&2
+) else if %_VERBOSE%==1 ( echo Consume messages from topic "%_TOPIC_NAME%" 1>&2
 )
 call "%_CONSUMER_CMD%" %__CONSUMER_OPTS%
-if not %ERRORLEVEL%==0 (
-    echo %_ERROR_LABEL% Failed to consume messages 1>&2
+if not errorlevel 0 (
+    echo %_ERROR_LABEL% Failed to consume messages from topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -342,7 +342,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_ZOOKEEPER_STOP_CMD%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Stop Zookeeper server process "%__NAME%" 1>&2
 )
 call "%_ZOOKEEPER_STOP_CMD%"
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     set _EXITCODE=1
     goto :eof
 )
@@ -361,7 +361,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_STOP_CMD%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Stop Kafka server process "%__NAME%" 1>&2
 )
 call "%_KAFKA_STOP_CMD%"
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     set _EXITCODE=1
     goto :eof
 )

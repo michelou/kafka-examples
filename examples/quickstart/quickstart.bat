@@ -259,7 +259,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_ZOOKEEPER_PROC_NAME%" "%__BATCH_FI
 ) else if %_VERBOSE%==1 ( echo Start the Zookeeper service 1>&2
 )
 start "%_ZOOKEEPER_PROC_NAME%" "%__BATCH_FILE%"
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     echo %_ERROR_LABEL% Failed to start the Zookeeper service 1>&2
     set _EXITCODE=1
     goto :eof
@@ -312,7 +312,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_KAFKA_PROC_NAME%" "%__BATCH_FILE%"
 ) else if %_VERBOSE%==1 ( echo Start the Kafka service 1>&2
 )
 start "%_KAFKA_PROC_NAME%" "%__BATCH_FILE%"
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     echo %_ERROR_LABEL% Failed to start the Kafka service 1>&2
     set _EXITCODE=1
     goto :eof
@@ -332,7 +332,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS% 1>&2
 ) else if %_VERBOSE%==1 ( echo Create topic "%_TOPIC_NAME%" 1>&2
 )
 call "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS%
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     echo %_ERROR_LABEL% Failed to create topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
@@ -343,7 +343,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS% 1>&2
 ) else if %_VERBOSE%==1 ( echo Describe topic "%_TOPIC_NAME%" 1>&2
 )
 call "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS%
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     echo %_ERROR_LABEL% Failed to describe topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
@@ -357,7 +357,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS% 1>&2
 ) else if %_VERBOSE%==1 ( echo List available topics 1>&2
 )
 call "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS%
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     echo %_ERROR_LABEL% Failed to list available topics 1>&2
     set _EXITCODE=1
     goto :eof
@@ -386,7 +386,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "kafka.producer" "%__BATCH_FILE%" 1>&
 ) else if %_VERBOSE%==1 ( echo Produce some messages to topic "%_TOPIC_NAME%" 1>&2
 )
 start "kafka.producer" "%__BATCH_FILE%"
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     echo %_ERROR_LABEL% Failed to produce messages to topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
@@ -405,7 +405,7 @@ if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_CONSUMER_CMD%" %__CONSUMER_OPTS% "%__CON
 ) else if %_VERBOSE%==1 ( echo Consume the messages from topic "%_TOPIC_NAME%" 1>&2
 )
 call "%_CONSUMER_CMD%" %__CONSUMER_OPTS% "%__CONSUMER_PROPS_FILE%"
-if not %ERRORLEVEL%==0 (
+if not errorlevel 0 (
     echo %_ERROR_LABEL% Failed to consume messages from topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
@@ -424,11 +424,11 @@ call :is_running "%_ZOOKEEPER_PROC_NAME%" Zookeeper
 if %_IS_RUNNING%==0 goto :eof
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_ZOOKEEPER_STOP_CMD%" 1>&2
-) else if %_VERBOSE%==1 ( echo Stop Zookeeper server process "%__NAME%" 1>&2
+) else if %_VERBOSE%==1 ( echo Stop Zookeeper server process "%_ZOOKEEPER_PROC_NAME%" 1>&2
 )
 call "%_ZOOKEEPER_STOP_CMD%" %_STDERR_REDIRECT%
-if not %ERRORLEVEL%==0 (
-    echo %_ERROR_LABEL% Failed to stop Zookeeper server process "%__NAME%" 1>&2
+if not errorlevel 0 (
+    echo %_ERROR_LABEL% Failed to stop Zookeeper server process "%_ZOOKEEPER_PROC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -439,11 +439,11 @@ call :is_running "%_KAFKA_PROC_NAME%" Kafka
 if %_IS_RUNNING%==0 goto :eof
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_STOP_CMD%" 1>&2
-) else if %_VERBOSE%==1 ( echo Stop Kafka server process "%__NAME%" 1>&2
+) else if %_VERBOSE%==1 ( echo Stop Kafka server process "%_KAFKA_PROC_NAME%" 1>&2
 )
 call "%_KAFKA_STOP_CMD%" %_STDERR_REDIRECT%
-if not %ERRORLEVEL%==0 (
-    echo %_ERROR_LABEL% Failed to stop Kafka server process "%__NAME%" 1>&2
+if not errorlevel 0 (
+    echo %_ERROR_LABEL% Failed to stop Kafka server process "%_KAFKA_PROC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
 )
