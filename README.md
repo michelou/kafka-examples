@@ -27,7 +27,7 @@ This project depends on the following external software for the **Microsoft Wind
 Optionally one may also install the following software:
 
 - [Apache Maven 3.9][apache_maven] ([requires Java 8 or newer][apache_maven_history])  ([*release notes*][apache_maven_relnotes])
-- [Gradle 8.0][gradle_install] ([requires Java 8 or newer][gradle_compatibility]) ([*release notes*][gradle_relnotes])
+- [Gradle 8.1][gradle_install] ([requires Java 8 or newer][gradle_compatibility]) ([*release notes*][gradle_relnotes])
 - [Offset Explorer 2.3][kafkatool_downloads] <sup id="anchor_02">[2](#footnote_02)</sup> ([*change history*][kafkatool_changes])
 - [Temurin OpenJDK 11 LTS][temurin_opendjk11] ([*release notes*][temurin_opendjk11_relnotes], [*bug fixes*][temurin_opendjk11_bugfixes])
 
@@ -39,7 +39,7 @@ For instance our development environment looks as follows (*April 2023*) <sup id
 <pre style="font-size:80%;">
 C:\opt\apache-maven-3.9.1\         <i>( 10 MB)</i>
 C:\opt\Git-2.40.0\                 <i>(304 MB)</i>
-C:\opt\gradle-8.0.2\               <i>(129 MB)</i>
+C:\opt\gradle-8.1\                 <i>(129 MB)</i>
 C:\opt\jdk-temurin-11.0.18_10\     <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.6_10\      <i>(299 MB)</i>
 C:\opt\kafka_2.13-3.4.0\           <i>(105 MB)</i>
@@ -94,13 +94,13 @@ We distinguish different sets of batch commands:
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
       java 17.0.6, javac 17.0.6, scalac 2.13.10,
-      gradle 8.0.2, kafka-configs 3.4.0, mvn 3.9.1,
+      gradle 8.1, kafka-configs 3.4.0, mvn 3.9.1,
       git 2.40.0.windows.1, diff 3.8, bash 5.2.12(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.6_10\bin\java.exe
       C:\opt\jdk-temurin-17.0.6_10\bin\javac.exe
       C:\opt\scala-2.13.10\bin\scalac.bat
-      C:\opt\gradle-8.0.2\bin\gradle.bat
+      C:\opt\gradle-8.1\bin\gradle.bat
       C:\opt\kafka_2.13-3.4.0\bin\windows\kafka-configs.bat
       C:\opt\apache-maven-3.9.1\bin\mvn.cmd
       C:\opt\Git-2.40.0\bin\git.exe
@@ -108,7 +108,7 @@ We distinguish different sets of batch commands:
       C:\opt\Git-2.40.0\bin\bash.exe
     Environment variables:
       "GIT_HOME=C:\opt\Git-2.40.0"
-      "GRADLE_HOME=C:\opt\gradle-8.0.2"
+      "GRADLE_HOME=C:\opt\gradle-8.1"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.6_10"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.4.0"
       "MAVEN_HOME=C:\opt\apache-maven-3.9.1"
@@ -117,8 +117,8 @@ We distinguish different sets of batch commands:
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
     C:\opt\Git-2.40.0\bin\git.exe
     C:\opt\Git-2.40.0\mingw64\bin\git.exe
-    C:\opt\gradle-8.0.2\bin\gradle
-    C:\opt\gradle-8.0.2\bin\gradle.bat
+    C:\opt\gradle-8.1\bin\gradle
+    C:\opt\gradle-8.1\bin\gradle.bat
    </pre>
 
 
@@ -155,7 +155,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.18_10.zip</a>  <i>(99 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.6_10.zip</a>   <i>(99 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.40.0-64-bit.7z.exe</a>                   <i>(41 MB)</i>
-<a href="https://github.com/sbt/sbt/releases">sbt-1.6.1.zip</a>                                      <i>(17 MB)</i>
+<a href="https://github.com/sbt/sbt/releases">sbt-1.8.2.zip</a>                                      <i>(17 MB)</i>
 <a href="https://www.scala-lang.org/files/archive/">scala-2.13.10.zip</a>                                  <i>(21 MB)</i>
 </pre>
 </dd></dl>
@@ -187,7 +187,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [gradle_cli]: https://docs.gradle.org/current/userguide/command_line_interface.html
 [gradle_compatibility]: https://docs.gradle.org/current/release-notes.html#upgrade-instructions
 [gradle_install]: https://gradle.org/install/
-[gradle_relnotes]: https://docs.gradle.org/8.0.2/release-notes.html
+[gradle_relnotes]: https://docs.gradle.org/8.1/release-notes.html
 [haskell_examples]: https://github.com/michelou/haskell-examples
 [kafka]: https://kafka.apache.org
 [kafka_downloads]: https://kafka.apache.org/downloads
