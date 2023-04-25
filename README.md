@@ -39,9 +39,9 @@ For instance our development environment looks as follows (*April 2023*) <sup id
 <pre style="font-size:80%;">
 C:\opt\apache-maven-3.9.1\         <i>( 10 MB)</i>
 C:\opt\Git-2.40.0\                 <i>(304 MB)</i>
-C:\opt\gradle-8.1\                 <i>(129 MB)</i>
-C:\opt\jdk-temurin-11.0.18_10\     <i>(302 MB)</i>
-C:\opt\jdk-temurin-17.0.6_10\      <i>(299 MB)</i>
+C:\opt\gradle-8.1.1\               <i>(129 MB)</i>
+C:\opt\jdk-temurin-11.0.19_7\      <i>(302 MB)</i>
+C:\opt\jdk-temurin-17.0.7_7\       <i>(299 MB)</i>
 C:\opt\kafka_2.13-3.4.0\           <i>(105 MB)</i>
 C:\opt\scala-2.13.10\              <i>( 23 MB)</i>
 C:\Program Files\OffsetExplorer2\  <i>(112 MB)</i>
@@ -93,14 +93,14 @@ We distinguish different sets of batch commands:
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
-      java 17.0.6, javac 17.0.6, scalac 2.13.10,
-      gradle 8.1, kafka-configs 3.4.0, mvn 3.9.1,
-      git 2.40.0.windows.1, diff 3.8, bash 5.2.12(1)-release
+      java 17.0.7, javac 17.0.7, scalac 2.13.10,
+      gradle 8.1.1, kafka-configs 3.4.0, mvn 3.9.1,
+      git 2.40.0.windows.1, diff 3.9, bash 5.2.12(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.6_10\bin\java.exe
       C:\opt\jdk-temurin-17.0.6_10\bin\javac.exe
       C:\opt\scala-2.13.10\bin\scalac.bat
-      C:\opt\gradle-8.1\bin\gradle.bat
+      C:\opt\gradle-8.1.1\bin\gradle.bat
       C:\opt\kafka_2.13-3.4.0\bin\windows\kafka-configs.bat
       C:\opt\apache-maven-3.9.1\bin\mvn.cmd
       C:\opt\Git-2.40.0\bin\git.exe
@@ -108,8 +108,8 @@ We distinguish different sets of batch commands:
       C:\opt\Git-2.40.0\bin\bash.exe
     Environment variables:
       "GIT_HOME=C:\opt\Git-2.40.0"
-      "GRADLE_HOME=C:\opt\gradle-8.1"
-      "JAVA_HOME=C:\opt\jdk-temurin-17.0.6_10"
+      "GRADLE_HOME=C:\opt\gradle-8.1.1"
+      "JAVA_HOME=C:\opt\jdk-temurin-17.0.7_7"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.4.0"
       "MAVEN_HOME=C:\opt\apache-maven-3.9.1"
       "SCALA_HOME=C:\opt\scala-2.13.10"
@@ -117,8 +117,8 @@ We distinguish different sets of batch commands:
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
     C:\opt\Git-2.40.0\bin\git.exe
     C:\opt\Git-2.40.0\mingw64\bin\git.exe
-    C:\opt\gradle-8.1\bin\gradle
-    C:\opt\gradle-8.1\bin\gradle.bat
+    C:\opt\gradle-8.1.1\bin\gradle
+    C:\opt\gradle-8.1.1\bin\gradle.bat
    </pre>
 
 
@@ -138,7 +138,7 @@ We distinguish different sets of batch commands:
   <li>The browser tree allows us to easily view and navigate the objects (brokers, topices, particitions, consumers) in our Apache Kafka cluster.</li>
   <li>The explorer allows us to view messages (and their keys) in the partitions of the topics we are interested in.</li>
   <li>If the string-based data is either in JSON or XML format, we can view it in a pretty-printed manner.</li>
-  <li>The browser tree also allows us to quickly view all offsets of our Kafka consumers.</li>
+  <li>The browser tree also allows us to quickly view all offsets of our <a href="https://kafka.apache.org">Kafka</a> consumers.</li>
 </ul>
 </dd></dl>
 
@@ -149,14 +149,15 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 </dd>
 <dd>
 <pre style="font-size:80%;">
-<a href="https://maven.apache.org/download.cgi">apache-maven-3.9.1-bin.zip</a>                         <i>(10 MB)</i>
-<a href="https://kafka.apache.org/downloads">kafka_2.13-3.4.0.tgz</a>                               <i>(82 MB)</i>
-<a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>(37 MB)</i>
-<a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.18_10.zip</a>  <i>(99 MB)</i>
-<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.6_10.zip</a>   <i>(99 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.40.0-64-bit.7z.exe</a>                   <i>(41 MB)</i>
-<a href="https://github.com/sbt/sbt/releases">sbt-1.8.2.zip</a>                                      <i>(17 MB)</i>
-<a href="https://www.scala-lang.org/files/archive/">scala-2.13.10.zip</a>                                  <i>(21 MB)</i>
+<a href="https://maven.apache.org/download.cgi">apache-maven-3.9.1-bin.zip</a>                         <i>( 10 MB)</i>
+<a href="https://gradle.org/install/">gradle-8.1.1-bin.zip</a>                               <i>(118 MB)</i>
+<a href="https://kafka.apache.org/downloads">kafka_2.13-3.4.0.tgz</a>                               <i>( 82 MB)</i>
+<a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
+<a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.19_7.zip</a>   <i>( 99 MB)</i>
+<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.zip</a>    <i>( 99 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.40.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
+<a href="https://github.com/sbt/sbt/releases">sbt-1.8.2.zip</a>                                      <i>( 17 MB)</i>
+<a href="https://www.scala-lang.org/files/archive/">scala-2.13.10.zip</a>                                  <i>( 21 MB)</i>
 </pre>
 </dd></dl>
 
