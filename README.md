@@ -34,11 +34,11 @@ Optionally one may also install the following software:
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*April 2023*) <sup id="anchor_03">[3](#footnote_03)</sup>:
+For instance our development environment looks as follows (*May 2023*) <sup id="anchor_03">[3](#footnote_03)</sup>:
 
 <pre style="font-size:80%;">
 C:\opt\apache-maven-3.9.1\         <i>( 10 MB)</i>
-C:\opt\Git-2.40.0\                 <i>(304 MB)</i>
+C:\opt\Git-2.40.1\                 <i>(315 MB)</i>
 C:\opt\gradle-8.1.1\               <i>(129 MB)</i>
 C:\opt\jdk-temurin-11.0.19_7\      <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.7_7\       <i>(299 MB)</i>
@@ -95,7 +95,7 @@ We distinguish different sets of batch commands:
     Tool versions:
       java 17.0.7, javac 17.0.7, scalac 2.13.10,
       gradle 8.1.1, kafka-configs 3.4.0, mvn 3.9.1,
-      git 2.40.0.windows.1, diff 3.9, bash 5.2.12(1)-release
+      git 2.40.1.windows.1, diff 3.9, bash 5.2.12(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.6_10\bin\java.exe
       C:\opt\jdk-temurin-17.0.6_10\bin\javac.exe
@@ -103,11 +103,11 @@ We distinguish different sets of batch commands:
       C:\opt\gradle-8.1.1\bin\gradle.bat
       C:\opt\kafka_2.13-3.4.0\bin\windows\kafka-configs.bat
       C:\opt\apache-maven-3.9.1\bin\mvn.cmd
-      C:\opt\Git-2.40.0\bin\git.exe
-      C:\opt\Git-2.40.0\usr\bin\diff.exe
-      C:\opt\Git-2.40.0\bin\bash.exe
+      C:\opt\Git-2.40.1\bin\git.exe
+      C:\opt\Git-2.40.1\usr\bin\diff.exe
+      C:\opt\Git-2.40.1\bin\bash.exe
     Environment variables:
-      "GIT_HOME=C:\opt\Git-2.40.0"
+      "GIT_HOME=C:\opt\Git-2.40.1"
       "GRADLE_HOME=C:\opt\gradle-8.1.1"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.7_7"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.4.0"
@@ -115,8 +115,8 @@ We distinguish different sets of batch commands:
       "SCALA_HOME=C:\opt\scala-2.13.10"
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
-    C:\opt\Git-2.40.0\bin\git.exe
-    C:\opt\Git-2.40.0\mingw64\bin\git.exe
+    C:\opt\Git-2.40.1\bin\git.exe
+    C:\opt\Git-2.40.1\mingw64\bin\git.exe
     C:\opt\gradle-8.1.1\bin\gradle
     C:\opt\gradle-8.1.1\bin\gradle.bat
    </pre>
@@ -155,7 +155,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.19_7.zip</a>   <i>( 99 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.zip</a>    <i>( 99 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.40.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.40.1-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 <a href="https://github.com/sbt/sbt/releases">sbt-1.8.2.zip</a>                                      <i>( 17 MB)</i>
 <a href="https://www.scala-lang.org/files/archive/">scala-2.13.10.zip</a>                                  <i>( 21 MB)</i>
 </pre>
@@ -163,7 +163,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/April 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/May 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -180,7 +180,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [git_cli]: https://git-scm.com/docs/git
 [git_downloads]: https://git-scm.com/download/win
 [git_releases]: https://git-scm.com/download/win
-[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.40.0.txt
+[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.40.1.txt
 [git_userguide]: https://git-scm.com/docs/git
 [github_markdown]: https://github.github.com/gfm/
 [golang_examples]: https://github.com/michelou/golang-examples
