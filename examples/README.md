@@ -259,9 +259,9 @@ Here is a more detailed extract of the Kafka startup <code>INFO</code> logging :
 tbd
 </dd>
 <dd>
-<pre style="font-size=80%;">
+<pre style="font-size:80%;">
 <b>&gt; echo %JAVA_HOME%</b>
-C:\opt\jdk-temurin-17.0.7_10
+C:\opt\jdk-temurin-17.0.7_7
 &nbsp;
 <b>&gt; %JAVA_HOME%\bin\<a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html">jps</a> -l</b>
 12452 kafka.Kafka
@@ -303,7 +303,7 @@ For instance, the StackOverflow post <a href="https://stackoverflow.com/question
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/May 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/June 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 [kafka]: https://kafka.apache.org

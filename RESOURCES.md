@@ -11,6 +11,11 @@
 ## <span id="articles">Articles</span>
 
 - [Apache Kafka Architecture: A Complete Guide][article_carter] by Michael Carter, June 2020.
+- [IBM Developer](https://developer.ibm.com/) - [Apache Kafka Articles](https://developer.ibm.com/components/kafka/articles/) :
+  - [Monitoring Apache Kafka applications](https://developer.ibm.com/articles/monitoring-apache-kafka-apps/) by Tina Selenge, July 2021.
+  - [Message compression in Apache Kafka](https://developer.ibm.com/articles/benefits-compression-kafka-messaging/) by Shantanu Deshmukh, July 2021.
+  - [Apache Kafka fundamentals](https://developer.ibm.com/articles/event-streams-kafka-fundamentals/) by Mickael Maison &amp; al., December 2020.
+  - [How persistence works in an Apache Kafka deployment](https://developer.ibm.com/articles/how-persistence-works-in-apache-kafka/) by Geoffrey Judd, June 2020.
 
 ## <span id="blogs">Blogs</span>
 
@@ -74,7 +79,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/May 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/June 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
