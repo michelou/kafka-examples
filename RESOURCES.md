@@ -10,6 +10,7 @@
 
 ## <span id="articles">Articles</span>
 
+- [Stream processing with Apache Kafka and Azure Databricks](https://learn.microsoft.com/en-us/azure/databricks/structured-streaming/kafka), January 2023.
 - [Apache Kafka Architecture: A Complete Guide][article_carter] by Michael Carter, June 2020.
 - [IBM Developer](https://developer.ibm.com/) - [Apache Kafka Articles](https://developer.ibm.com/components/kafka/articles/) :
   - [Monitoring Apache Kafka applications](https://developer.ibm.com/articles/monitoring-apache-kafka-apps/) by Tina Selenge, July 2021.
@@ -49,6 +50,9 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
+  - [Kafka Monthly Digest: May 2023](https://developers.redhat.com/blog/2023/05/31/kafka-monthly-digest-may-2023).
+  - [Kafka Monthly Digest: April 2023](https://developers.redhat.com/blog/2023/05/01/kafka-monthly-digest-april-2023).
+  - [Kafka Monthly Digest: March 2023](https://developers.redhat.com/blog/2023/04/03/kafka-monthly-digest-march-2023).
   - [Kafka Monthly Digest: February 2023](https://developers.redhat.com/blog/2023/03/01/kafka-monthly-digest-february-2023).
   - [Kafka Monthly Digest: January 2023](https://developers.redhat.com/blog/2023/02/01/kafka-monthly-digest-january-2023).
   - [Kafka Monthly Digest: December 2022](https://developers.redhat.com/blog/2023/01/03/kafka-monthly-digest-december-2022).
@@ -68,6 +72,7 @@
 ## <span id="tutorials">Tutorials</span> [**&#x25B4;**](#top)
 
 - [Cloudera Products Docs][cloudera_docs] (online) - [Streaming](https://docs.cloudera.com/runtime/7.2.10/howto-streaming.html).
+- [Data Flair](https://data-flair.training/) &ndash; [Kafka Tutorials](https://data-flair.training/blogs/kafka-tutorials-home/).
 - [HowToDoInJava](https://howtodoinjava.com/) - Kafka tutorials:
   - [Spring Boot Kafka Multiple Consumers Example](https://howtodoinjava.com/kafka/multiple-consumers-example/) by Lokesh Gupta, June 2020.
   - [Spring Boot Kafka JsonSerializer Example](https://howtodoinjava.com/kafka/spring-boot-jsonserializer-example/) by Lokesh Gupta, June 2020.

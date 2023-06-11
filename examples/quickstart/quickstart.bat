@@ -294,7 +294,7 @@ if %_IS_RUNNING%==1 (
     if %_VERBOSE%==1 echo Kafka service is up and running 1>&2
     goto :eof
 )
-call :check_local_port 8080
+call :check_local_port 8081
 if not %_EXITCODE%==0 goto :eof
 
 set "__KAFKA_PROPS_FILE=%_CONFIG_DIR%\server.properties"
@@ -367,16 +367,15 @@ goto :eof
 :produce_message
 set "__PRODUCER_PROPS_FILE=%_CONFIG_DIR%\producer.properties"
 
-set __PRODUCER_OPTS=--bootstrap-server %_BOOTSTRAP_SERVER% --topic "%_TOPIC_NAME%"
+set __PRODUCER_OPTS=--bootstrap-server "%_BOOTSTRAP_SERVER%" --topic "%_TOPIC_NAME%"
 
 @rem see https://www.conduktor.io/kafka/kafka-producer-cli-tutorial
-set "__DATA_FILE=%TEMP%\%_BASENAME%_data.txt"
+set "__DATA_FILE=C:\temp\%_BASENAME%_data.txt"
 (
     echo Hello world
     echo Apache Kafka
 ) > "%__DATA_FILE%"
-
-set "__BATCH_FILE=%TEMP%\%_BASENAME%_producer.bat"
+set "__BATCH_FILE=C:\temp\%_BASENAME%_producer.bat"
 (
     echo @echo off
     echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_PRODUCER_CMD%" %__PRODUCER_OPTS% "%__PRODUCER_PROPS_FILE%" ^< "%__DATA_FILE%" 1^>^&2
@@ -385,6 +384,7 @@ set "__BATCH_FILE=%TEMP%\%_BASENAME%_producer.bat"
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "kafka.producer" "%__BATCH_FILE%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Produce some messages to topic "%_TOPIC_NAME%" 1>&2
 )
+pause
 start "kafka.producer" "%__BATCH_FILE%"
 if not %ERRORLEVEL%==0 (
     echo %_ERROR_LABEL% Failed to produce messages to topic "%_TOPIC_NAME%" 1>&2
