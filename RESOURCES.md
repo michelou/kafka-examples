@@ -17,6 +17,7 @@
   - [Message compression in Apache Kafka](https://developer.ibm.com/articles/benefits-compression-kafka-messaging/) by Shantanu Deshmukh, July 2021.
   - [Apache Kafka fundamentals](https://developer.ibm.com/articles/event-streams-kafka-fundamentals/) by Mickael Maison &amp; al., December 2020.
   - [How persistence works in an Apache Kafka deployment](https://developer.ibm.com/articles/how-persistence-works-in-apache-kafka/) by Geoffrey Judd, June 2020.
+  - [What is Apache Kafka?](https://developer.ibm.com/articles/an-introduction-to-apache-kafka/) by Gabor Tangelmayer &amp; al., April 2020.
 
 ## <span id="blogs">Blogs</span>
 
@@ -84,7 +85,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/June 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/July 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

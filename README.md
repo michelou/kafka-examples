@@ -12,7 +12,7 @@
   </tr>
 </table>
 
-> **:mag_right:** [Kafka] is a distributed system consisting of servers and clients that communicate via a high-performance TCP network protocol. It can be deployed on bare-metal hardware, virtual machines, and containers in on-premise as well as cloud environments. 
+> **&#9755;** Read the document <a href="https://kafka.apache.org/documentation/#gettingStarted">"Getting Started"</a> from the <a href="https://kafka.apache.org/" rel="external">Kafka</a> documentation to know more about the <a href="https://kafka.apache.org/" rel="external">Kafka</a> ecosystem. 
 
 [Ada][ada_examples], [Akka][akka_examples], [Dart][dart_examples], [Deno][deno_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other trending topics we are continuously monitoring.
 
@@ -21,29 +21,29 @@
 This project depends on the following external software for the **Microsoft Windows** platform:
 
 - [Git 2.41][git_releases] ([*release notes*][git_relnotes])
-- [Kafka 3.4][kafka_downloads] ([*release notes*][kafka_relnotes])
-- [Temurin OpenJDK 17 LTS][temurin_opendjk17] <sup id="anchor_01">[1](#footnote_01)</sup> ([*release notes*][temurin_opendjk17_relnotes], [*bug fixes*][temurin_opendjk17_bugfixes])
+- [Kafka 3.5][kafka_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*release notes*][kafka_relnotes])
+- [Temurin OpenJDK 17 LTS][temurin_opendjk17] <sup id="anchor_02">[2](#footnote_02)</sup> ([*release notes*][temurin_opendjk17_relnotes], [*bug fixes*][temurin_opendjk17_bugfixes])
 
 Optionally one may also install the following software:
 
 - [Apache Maven 3.9][apache_maven] ([requires Java 8 or newer][apache_maven_history])  ([*release notes*][apache_maven_relnotes])
 - [Gradle 8.1][gradle_install] ([requires Java 8 or newer][gradle_compatibility]) ([*release notes*][gradle_relnotes])
-- [Offset Explorer 2.3][kafkatool_downloads] <sup id="anchor_02">[2](#footnote_02)</sup> ([*change history*][kafkatool_changes])
+- [Offset Explorer 2.3][kafkatool_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*change history*][kafkatool_changes])
 - [Temurin OpenJDK 11 LTS][temurin_opendjk11] ([*release notes*][temurin_opendjk11_relnotes], [*bug fixes*][temurin_opendjk11_bugfixes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*June 2023*) <sup id="anchor_03">[3](#footnote_03)</sup>:
+For instance our development environment looks as follows (*July 2023*) <sup id="anchor_04">[4](#footnote_04)</sup>:
 
 <pre style="font-size:80%;">
-C:\opt\apache-maven-3.9.2\         <i>( 10 MB)</i>
+C:\opt\apache-maven-3.9.3\         <i>( 10 MB)</i>
 C:\opt\Git-2.41.0\                 <i>(315 MB)</i>
-C:\opt\gradle-8.1.1\               <i>(129 MB)</i>
+C:\opt\gradle-8.2\                 <i>(129 MB)</i>
 C:\opt\jdk-temurin-11.0.19_7\      <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.7_7\       <i>(299 MB)</i>
-C:\opt\kafka_2.13-3.4.0\           <i>(105 MB)</i>
-C:\opt\scala-2.13.10\              <i>( 23 MB)</i>
+C:\opt\kafka_2.13-3.5.0\           <i>(105 MB)</i>
+C:\opt\scala-2.13.11\              <i>( 23 MB)</i>
 C:\Program Files\OffsetExplorer2\  <i>(112 MB)</i>
 </pre>
 
@@ -93,44 +93,62 @@ We distinguish different sets of batch commands:
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
-      java 17.0.7, javac 17.0.7, scalac 2.13.10,
-      gradle 8.1.1, kafka-configs 3.4.0, mvn 3.9.2,
+      java 17.0.7, javac 17.0.7, scalac 2.13.11,
+      gradle 8.2, kafka-configs 3.5.0, mvn 3.9.3,
       git 2.41.0.windows.1, diff 3.9, bash 5.2.12(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.6_10\bin\java.exe
       C:\opt\jdk-temurin-17.0.6_10\bin\javac.exe
-      C:\opt\scala-2.13.10\bin\scalac.bat
-      C:\opt\gradle-8.1.1\bin\gradle.bat
-      C:\opt\kafka_2.13-3.4.0\bin\windows\kafka-configs.bat
-      C:\opt\apache-maven-3.9.2\bin\mvn.cmd
+      C:\opt\scala-2.13.11\bin\scalac.bat
+      C:\opt\gradle-8.2\bin\gradle.bat
+      C:\opt\kafka_2.13-3.5.0\bin\windows\kafka-configs.bat
+      C:\opt\apache-maven-3.9.3\bin\mvn.cmd
       C:\opt\Git-2.41.0\bin\git.exe
       C:\opt\Git-2.41.0\usr\bin\diff.exe
       C:\opt\Git-2.41.0\bin\bash.exe
     Environment variables:
       "GIT_HOME=C:\opt\Git-2.41.0"
-      "GRADLE_HOME=C:\opt\gradle-8.1.1"
+      "GRADLE_HOME=C:\opt\gradle-8.2"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.7_7"
-      "KAFKA_HOME=C:\opt\kafka_2.13-3.4.0"
-      "MAVEN_HOME=C:\opt\apache-maven-3.9.2"
-      "SCALA_HOME=C:\opt\scala-2.13.10"
+      "KAFKA_HOME=C:\opt\kafka_2.13-3.5.0"
+      "MAVEN_HOME=C:\opt\apache-maven-3.9.3"
+      "SCALA_HOME=C:\opt\scala-2.13.11"
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
     C:\opt\Git-2.41.0\bin\git.exe
     C:\opt\Git-2.41.0\mingw64\bin\git.exe
-    C:\opt\gradle-8.1.1\bin\gradle
-    C:\opt\gradle-8.1.1\bin\gradle.bat
+    C:\opt\gradle-8.2\bin\gradle
+    C:\opt\gradle-8.2\bin\gradle.bat
    </pre>
 
 
 ## <span id="footnotes">Footnotes</span> [**&#x25B4;**](#top)
 
-<span id="footnote_01">[1]</span> ***Java compatibility*** [↩](#anchor_01)
+
+<span id="footnote_01">[1]</span> ***Kafka components*** [↩](#anchor_01)
+
+<dl><dd>
+<table>
+<tr><th><a href="https://kafka.apache.org/">Kakfa</a></th><th>ZooKeeper</th><th><a href="https://www.eclipse.org/jetty/">Jetty</a></th></tr>
+<tr><td><a href="https://downloads.apache.org/kafka/3.5.0/RELEASE_NOTES.html">3.5.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td></tr>
+<tr><td><a href="https://archive.apache.org/dist/kafka/3.4.1/RELEASE_NOTES.html">3.4.1</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td></tr>
+<tr><td><a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html">3.4.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.48.v20220622">9.4.48</a> <sup><b>c)</b></sup></td></tr>
+<tr><td><a href="https://archive.apache.org/dist/kafka/3.3.0/RELEASE_NOTES.html">3.3.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td></tr>
+<tr><td><a href="https://archive.apache.org/dist/kafka/3.2.0/RELEASE_NOTES.html">3.2.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td></tr>
+</table>
+<span><sup><b>a)</b></sup> ZooKeeper current version is <a href="https://zookeeper.apache.org/doc/r3.8.1/"><b>3.8.1</b></a> as of January 30, 2023 (<a href="https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper">MVN Repository</a>).<br/>
+<sup><b>b)</b></sup> Jetty current version is <a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-11.0.15"><b>11.0.15</b></a> as of April 13, 2023 (<a href="https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server">MVN Repository</a>).<br/>
+<sup><b>c)</b></sup> Jetty 9.4.x is at End of Community Support as of June 1, 2023 (<a href="https://github.com/eclipse/jetty.project/issues/7958">#7958</a>).
+</span>
+</dd></dl>
+
+<span id="footnote_02">[2]</span> ***Java compatibility*** [↩](#anchor_02)
 
 <dl><dd>
 <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=181308223" rel="external"><b>KIP-750</b></a>: Java 8 support is deprecating in Apache Kafka 3.0 and will be dropped in Apache Kafka 4.0.
 </dd></dl>
 
-<span id="footnote_02">[2]</span> ***Offset Explorer*** [↩](#anchor_02)
+<span id="footnote_03">[3]</span> ***Offset Explorer*** [↩](#anchor_03)
 
 <dl><dd>
 <a href="https://www.kafkatool.com/features.html" rel="external"><b>Offset Explorer</b></a> (formerly named <b>Kalfa Tool</b>) provides the following features :
@@ -142,16 +160,16 @@ We distinguish different sets of batch commands:
 </ul>
 </dd></dl>
 
-<span id="footnote_03">[3]</span> ***Downloads*** [↩](#anchor_03)
+<span id="footnote_04">[4]</span> ***Downloads*** [↩](#anchor_04)
 
 <dl><dd>
 In our case we downloaded the following installation files (<a href="#proj_deps">see section 1</a>):
 </dd>
 <dd>
 <pre style="font-size:80%;">
-<a href="https://maven.apache.org/download.cgi">apache-maven-3.9.2-bin.zip</a>                         <i>( 10 MB)</i>
-<a href="https://gradle.org/install/">gradle-8.1.1-bin.zip</a>                               <i>(118 MB)</i>
-<a href="https://kafka.apache.org/downloads">kafka_2.13-3.4.0.tgz</a>                               <i>( 82 MB)</i>
+<a href="https://maven.apache.org/download.cgi">apache-maven-3.9.3-bin.zip</a>                         <i>( 10 MB)</i>
+<a href="https://gradle.org/install/">gradle-8.2-bin.zip</a>                                 <i>(118 MB)</i>
+<a href="https://kafka.apache.org/downloads">kafka_2.13-3.5.0.tgz</a>                               <i>( 82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.19_7.zip</a>   <i>( 99 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.zip</a>    <i>( 99 MB)</i>
@@ -160,12 +178,12 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 </dd></dl>
 <!--
 <a href="https://github.com/sbt/sbt/releases">sbt-1.9.0.zip</a>                                      <i>( 17 MB)</i>
-<a href="https://www.scala-lang.org/files/archive/">scala-2.13.10.zip</a>                                  <i>( 21 MB)</i>
+<a href="https://www.scala-lang.org/files/archive/">scala-2.13.11.zip</a>                                  <i>( 21 MB)</i>
 -->
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/June 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/July 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -174,7 +192,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [akka_examples]: https://github.com/michelou/akka-examples
 [apache_maven]: https://maven.apache.org/download.cgi
 [apache_maven_history]: https://maven.apache.org/docs/history.html
-[apache_maven_relnotes]: https://maven.apache.org/docs/3.9.2/release-notes.html
+[apache_maven_relnotes]: https://maven.apache.org/docs/3.9.3/release-notes.html
 [dart_examples]: https://github.com/michelou/dart-examples
 [deno_examples]: https://github.com/michelou/deno-examples
 [flix_examples]: https://github.com/michelou/flix-examples
@@ -194,7 +212,12 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [haskell_examples]: https://github.com/michelou/haskell-examples
 [kafka]: https://kafka.apache.org
 [kafka_downloads]: https://kafka.apache.org/downloads
-[kafka_relnotes]: https://downloads.apache.org/kafka/3.4.0/RELEASE_NOTES.html
+<!--
+3.4.0 -> https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html
+3.4.1 -> https://archive.apache.org/dist/kafka/3.4.1/RELEASE_NOTES.html
+3.5.0 -> https://archive.apache.org/dist/kafka/3.5.0/RELEASE_NOTES.html
+-->
+[kafka_relnotes]: https://archive.apache.org/dist/kafka/3.5.0/RELEASE_NOTES.html
 [kafkatool_changes]: https://www.kafkatool.com/changes.html
 [kafkatool_downloads]: https://www.kafkatool.com/download.html
 [kotlin_examples]: https://github.com/michelou/kotlin-examples
