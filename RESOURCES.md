@@ -21,6 +21,7 @@
 
 ## <span id="blogs">Blogs</span>
 
+- [A Detailed Guide of Interview Questions on Apache Kafka](https://www.analyticsvidhya.com/blog/2023/04/a-detailed-guide-of-interview-questions-on-apache-kafka/) by Shikha Sharma, May 2023.
 - [Remote code execution flaw patched in Apache Kafka](https://portswigger.net/daily-swig/remote-code-execution-flaw-patched-in-apache-kafka) by Charlie Osborne, February 2023.
 - [Medium](https://medium.com/search?q=Elasticsearch)
   - [Advance Optimization Techniques for Elasticsearch][blog_chye] by Lee Chye, September 2022.
@@ -51,6 +52,7 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
+  - [Kafka Monthly Digest: June 2023](https://developers.redhat.com/blog/2023/07/03/kafka-monthly-digest-june-2023).
   - [Kafka Monthly Digest: May 2023](https://developers.redhat.com/blog/2023/05/31/kafka-monthly-digest-may-2023).
   - [Kafka Monthly Digest: April 2023](https://developers.redhat.com/blog/2023/05/01/kafka-monthly-digest-april-2023).
   - [Kafka Monthly Digest: March 2023](https://developers.redhat.com/blog/2023/04/03/kafka-monthly-digest-march-2023).

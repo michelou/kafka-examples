@@ -39,9 +39,9 @@ For instance our development environment looks as follows (*July 2023*) <sup id=
 <pre style="font-size:80%;">
 C:\opt\apache-maven-3.9.3\         <i>( 10 MB)</i>
 C:\opt\Git-2.41.0\                 <i>(315 MB)</i>
-C:\opt\gradle-8.2\                 <i>(129 MB)</i>
+C:\opt\gradle-8.2.1\               <i>(135 MB)</i>
 C:\opt\jdk-temurin-11.0.19_7\      <i>(302 MB)</i>
-C:\opt\jdk-temurin-17.0.7_7\       <i>(299 MB)</i>
+C:\opt\jdk-temurin-17.0.8_7\       <i>(299 MB)</i>
 C:\opt\kafka_2.13-3.5.0\           <i>(105 MB)</i>
 C:\opt\scala-2.13.11\              <i>( 23 MB)</i>
 C:\Program Files\OffsetExplorer2\  <i>(112 MB)</i>
@@ -93,14 +93,14 @@ We distinguish different sets of batch commands:
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
-      java 17.0.7, javac 17.0.7, scalac 2.13.11,
-      gradle 8.2, kafka-configs 3.5.0, mvn 3.9.3,
+      java 17.0.8, javac 17.0.8, scalac 2.13.11,
+      gradle 8.2.1, kafka-configs 3.5.0, mvn 3.9.3,
       git 2.41.0.windows.1, diff 3.9, bash 5.2.12(1)-release
     Tool paths:
-      C:\opt\jdk-temurin-17.0.6_10\bin\java.exe
-      C:\opt\jdk-temurin-17.0.6_10\bin\javac.exe
+      C:\opt\jdk-temurin-17.0.8_7\bin\java.exe
+      C:\opt\jdk-temurin-17.0.8_7\bin\javac.exe
       C:\opt\scala-2.13.11\bin\scalac.bat
-      C:\opt\gradle-8.2\bin\gradle.bat
+      C:\opt\gradle-8.2.1\bin\gradle.bat
       C:\opt\kafka_2.13-3.5.0\bin\windows\kafka-configs.bat
       C:\opt\apache-maven-3.9.3\bin\mvn.cmd
       C:\opt\Git-2.41.0\bin\git.exe
@@ -108,8 +108,8 @@ We distinguish different sets of batch commands:
       C:\opt\Git-2.41.0\bin\bash.exe
     Environment variables:
       "GIT_HOME=C:\opt\Git-2.41.0"
-      "GRADLE_HOME=C:\opt\gradle-8.2"
-      "JAVA_HOME=C:\opt\jdk-temurin-17.0.7_7"
+      "GRADLE_HOME=C:\opt\gradle-8.2.1"
+      "JAVA_HOME=C:\opt\jdk-temurin-17.0.8_7"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.5.0"
       "MAVEN_HOME=C:\opt\apache-maven-3.9.3"
       "SCALA_HOME=C:\opt\scala-2.13.11"
@@ -117,8 +117,8 @@ We distinguish different sets of batch commands:
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
     C:\opt\Git-2.41.0\bin\git.exe
     C:\opt\Git-2.41.0\mingw64\bin\git.exe
-    C:\opt\gradle-8.2\bin\gradle
-    C:\opt\gradle-8.2\bin\gradle.bat
+    C:\opt\gradle-8.2.1\bin\gradle
+    C:\opt\gradle-8.2.1\bin\gradle.bat
    </pre>
 
 
@@ -168,11 +168,11 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <dd>
 <pre style="font-size:80%;">
 <a href="https://maven.apache.org/download.cgi">apache-maven-3.9.3-bin.zip</a>                         <i>( 10 MB)</i>
-<a href="https://gradle.org/install/">gradle-8.2-bin.zip</a>                                 <i>(118 MB)</i>
+<a href="https://gradle.org/install/">gradle-8.2.1-bin.zip</a>                               <i>(118 MB)</i>
 <a href="https://kafka.apache.org/downloads">kafka_2.13-3.5.0.tgz</a>                               <i>( 82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.19_7.zip</a>   <i>( 99 MB)</i>
-<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.zip</a>    <i>( 99 MB)</i>
+<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.8_7.zip</a>    <i>( 99 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.41.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 </pre>
 </dd></dl>
@@ -241,7 +241,15 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [temurin_opendjk11]: https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot
 [temurin_opendjk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
 [temurin_opendjk17_bugfixes]: https://www.oracle.com/java/technologies/javase/17-0-2-bugfixes.html
+<!--
+17.0.2  -> https://www.oracle.com/java/technologies/javase/17-0-2-bugfixes.html
+17.0.3  -> https://www.oracle.com/java/technologies/javase/17-0-3-bugfixes.html
+-->
 [temurin_opendjk17_relnotes]: https://github.com/openjdk/jdk/compare/jdk-17%2B20...jdk-17%2B21
+<!--
+17.0.7  -> https://www.oracle.com/java/technologies/javase/17-0-7-relnotes.html
+17.0.8  -> https://www.oracle.com/java/technologies/javase/17-0-8-relnotes.html
+-->
 [trufflesqueak_examples]: https://github.com/michelou/trufflesqueak-examples
 [unix_bash_script]: https://www.gnu.org/software/bash/manual/bash.html
 [unix_opt]: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html
