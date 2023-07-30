@@ -26,6 +26,7 @@
 - [Medium](https://medium.com/search?q=Elasticsearch)
   - [Advance Optimization Techniques for Elasticsearch][blog_chye] by Lee Chye, September 2022.
   - [Apache Kafka Best Practices][blog_chintalapani] by Sriharsha Chintalapani, May 2018.
+  - [A Thorough Introduction to Apache Kafka][blog_kozlovski] by Stanislav Kozlovski, December 2017.
 - [Best practices for right-sizing your Apache Kafka clusters to optimize performance and cost][blog_hausmann] by Steffen Hausmann, March 2022.
 - [What's New in Apache Kafka 3.0.0][blog_kafka3] by Konstantine Karantasis, September 2021.
 - [Connect Node.js applications to Red Hat OpenShift Streams for Apache Kafka with Service Binding][blog_shortiss] by Evan Shortiss, July 2021.
@@ -87,7 +88,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/July 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/August 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -100,6 +101,7 @@
 [blog_hausmann]: https://aws.amazon.com/fr/blogs/big-data/best-practices-for-right-sizing-your-apache-kafka-clusters-to-optimize-performance-and-cost/
 [blog_johansson]: https://www.cloudkarafka.com/blog/part1-kafka-for-beginners-what-is-apache-kafka.html
 [blog_kafka3]: https://blogs.apache.org/kafka/entry/what-s-new-in-apache6
+[blog_kozlovski]: https://betterprogramming.pub/thorough-introduction-to-apache-kafka-6fbf2989bbc1
 [blog_matloka]: https://blog.softwaremill.com/7-mistakes-when-using-apache-kafka-44358cd9cd6
 [blog_mellor]: https://strimzi.io/blog/2021/06/08/broker-tuning/
 [blog_musyoka]: https://www.section.io/engineering-education/what-is-kafka-how-to-build-and-dockerize-a-kafka-cluster/
