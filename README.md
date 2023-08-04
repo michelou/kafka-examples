@@ -37,7 +37,7 @@ Optionally one may also install the following software:
 For instance our development environment looks as follows (*August 2023*) <sup id="anchor_04">[4](#footnote_04)</sup>:
 
 <pre style="font-size:80%;">
-C:\opt\apache-maven-3.9.3\         <i>( 10 MB)</i>
+C:\opt\apache-maven-3.9.4\         <i>( 10 MB)</i>
 C:\opt\Git-2.41.0\                 <i>(315 MB)</i>
 C:\opt\gradle-8.2.1\               <i>(135 MB)</i>
 C:\opt\jdk-temurin-11.0.20_8\      <i>(302 MB)</i>
@@ -94,7 +94,7 @@ We distinguish different sets of batch commands:
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
       java 17.0.8, javac 17.0.8, scalac 2.13.11,
-      gradle 8.2.1, kafka-configs 3.5.1, mvn 3.9.3,
+      gradle 8.2.1, kafka-configs 3.5.1, mvn 3.9.4,
       git 2.41.0.windows.1, diff 3.9, bash 5.2.12(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.8_7\bin\java.exe
@@ -102,7 +102,7 @@ We distinguish different sets of batch commands:
       C:\opt\scala-2.13.11\bin\scalac.bat
       C:\opt\gradle-8.2.1\bin\gradle.bat
       C:\opt\kafka_2.13-3.5.1\bin\windows\kafka-configs.bat
-      C:\opt\apache-maven-3.9.3\bin\mvn.cmd
+      C:\opt\apache-maven-3.9.4\bin\mvn.cmd
       C:\opt\Git-2.41.0\bin\git.exe
       C:\opt\Git-2.41.0\usr\bin\diff.exe
       C:\opt\Git-2.41.0\bin\bash.exe
@@ -111,7 +111,7 @@ We distinguish different sets of batch commands:
       "GRADLE_HOME=C:\opt\gradle-8.2.1"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.8_7"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.5.1"
-      "MAVEN_HOME=C:\opt\apache-maven-3.9.3"
+      "MAVEN_HOME=C:\opt\apache-maven-3.9.4"
       "SCALA_HOME=C:\opt\scala-2.13.11"
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
@@ -168,7 +168,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 </dd>
 <dd>
 <pre style="font-size:80%;">
-<a href="https://maven.apache.org/download.cgi">apache-maven-3.9.3-bin.zip</a>                         <i>( 10 MB)</i>
+<a href="https://maven.apache.org/download.cgi">apache-maven-3.9.4-bin.zip</a>                         <i>( 10 MB)</i>
 <a href="https://gradle.org/install/">gradle-8.2.1-bin.zip</a>                               <i>(118 MB)</i>
 <a href="https://kafka.apache.org/downloads">kafka_2.13-3.5.1.tgz</a>                               <i>( 82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
@@ -193,7 +193,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [akka_examples]: https://github.com/michelou/akka-examples
 [apache_maven]: https://maven.apache.org/download.cgi
 [apache_maven_history]: https://maven.apache.org/docs/history.html
-[apache_maven_relnotes]: https://maven.apache.org/docs/3.9.3/release-notes.html
+[apache_maven_relnotes]: https://maven.apache.org/docs/3.9.4/release-notes.html
 [dart_examples]: https://github.com/michelou/dart-examples
 [deno_examples]: https://github.com/michelou/deno-examples
 [docker_examples]: https://github.com/michelou/docker-examples
