@@ -27,6 +27,7 @@
   - [Advance Optimization Techniques for Elasticsearch][blog_chye] by Lee Chye, September 2022.
   - [Apache Kafka Best Practices][blog_chintalapani] by Sriharsha Chintalapani, May 2018.
   - [A Thorough Introduction to Apache Kafka][blog_kozlovski] by Stanislav Kozlovski, December 2017.
+- [Apache Kafka: 10 essential terms and concepts explained][blog_cozens] by Bill Cozens, March 2022.
 - [Best practices for right-sizing your Apache Kafka clusters to optimize performance and cost][blog_hausmann] by Steffen Hausmann, March 2022.
 - [What's New in Apache Kafka 3.0.0][blog_kafka3] by Konstantine Karantasis, September 2021.
 - [Connect Node.js applications to Red Hat OpenShift Streams for Apache Kafka with Service Binding][blog_shortiss] by Evan Shortiss, July 2021.
@@ -53,6 +54,7 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
+  - [Kafka Monthly Digest: July 2023](https://developers.redhat.com/blog/2023/07/31/kafka-monthly-digest-july-2023).
   - [Kafka Monthly Digest: June 2023](https://developers.redhat.com/blog/2023/07/03/kafka-monthly-digest-june-2023).
   - [Kafka Monthly Digest: May 2023](https://developers.redhat.com/blog/2023/05/31/kafka-monthly-digest-may-2023).
   - [Kafka Monthly Digest: April 2023](https://developers.redhat.com/blog/2023/05/01/kafka-monthly-digest-april-2023).
@@ -98,6 +100,7 @@
 [blog_bockhorn]: https://ipt.ch/en/impuls/large-data-packets-and-kafka
 [blog_chintalapani]: https://medium.com/real-time-streaming/apache-kafka-best-practices-d9fac5c483c0
 [blog_chye]: https://medium.com/csit-tech-blog/advance-optimization-techniques-for-elasticsearch-b728f59b70cc
+[blog_cozens]: https://www.redhat.com/en/blog/apache-kafka-10-essential-terms-and-concepts-explained
 [blog_hausmann]: https://aws.amazon.com/fr/blogs/big-data/best-practices-for-right-sizing-your-apache-kafka-clusters-to-optimize-performance-and-cost/
 [blog_johansson]: https://www.cloudkarafka.com/blog/part1-kafka-for-beginners-what-is-apache-kafka.html
 [blog_kafka3]: https://blogs.apache.org/kafka/entry/what-s-new-in-apache6
