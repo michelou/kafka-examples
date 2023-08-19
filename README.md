@@ -7,14 +7,14 @@
   </td>
   <td style="border:0;padding:0;vertical-align:text-top;">
     This repository gathers <a href="https://kafka.apache.org/" rel="external">Kafka</a> code examples coming from various websites or written by myself.<br/>
-    In particular it includes several build scripts (<a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting" rel="external">batch files</a>, <a href="https://www.gnu.org/software/bash/manual/bash.html" rel="external">bash scripts</a>) for experimenting with the <a href="https://kafka.apache.org" rel="external">Kafka</a> system on a Windows machine.
+    In particular it includes several build scripts (<a href="https://www.gnu.org/software/bash/manual/bash.html" rel="external">bash scripts</a>, <a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting" rel="external">batch files</a>) for experimenting with the <a href="https://kafka.apache.org" rel="external">Kafka</a> system on a Windows machine.
   </td>
   </tr>
 </table>
 
 > **&#9755;** Read the document <a href="https://kafka.apache.org/documentation/#gettingStarted">"Getting Started"</a> from the <a href="https://kafka.apache.org/" rel="external">Kafka</a> documentation to know more about the <a href="https://kafka.apache.org/" rel="external">Kafka</a> ecosystem. 
 
-[Ada][ada_examples], [Akka][akka_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other trending topics we are continuously monitoring.
+[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other trending topics we are continuously monitoring.
 
 ## <span id="proj_deps">Project dependencies</span>
 
@@ -29,7 +29,10 @@ Optionally one may also install the following software:
 - [Apache Maven 3.9][apache_maven] ([requires Java 8 or newer][apache_maven_history])  ([*release notes*][apache_maven_relnotes])
 - [Gradle 8.2][gradle_install] ([requires Java 8 or newer][gradle_compatibility]) ([*release notes*][gradle_relnotes])
 - [Offset Explorer 2.3][kafkatool_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*change history*][kafkatool_changes])
-- [Temurin OpenJDK 11 LTS][temurin_opendjk11] ([*release notes*][temurin_opendjk11_relnotes], [*bug fixes*][temurin_opendjk11_bugfixes])
+- [Oracle OpenJDK 21 LTS][oracle_openjdk21] ([*release notes*][oracle_openjdk21_relnotes], [*Java 21 API*][oracle_openjdk21_api])
+- [Temurin OpenJDK 11 LTS][temurin_opendjk11] ([*release notes*]
+- [Scala 2.13][scala_releases] (requires Java 8+) ([*release notes*][scala_relnotes], [*Scala API*][scala_api])
+- [temurin_opendjk11_relnotes], [*bug fixes*][temurin_opendjk11_bugfixes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
@@ -39,7 +42,8 @@ For instance our development environment looks as follows (*August 2023*) <sup i
 <pre style="font-size:80%;">
 C:\opt\apache-maven-3.9.4\         <i>( 10 MB)</i>
 C:\opt\Git-2.41.0\                 <i>(315 MB)</i>
-C:\opt\gradle-8.2.1\               <i>(135 MB)</i>
+C:\opt\gradle\                     <i>(135 MB)</i>
+C:\opt\jdk-oracle-21-ea-35\        <i>(320 MB)</i>
 C:\opt\jdk-temurin-11.0.20_8\      <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.8_7\       <i>(299 MB)</i>
 C:\opt\kafka_2.13-3.5.1\           <i>(105 MB)</i>
@@ -74,7 +78,7 @@ where
 > **:mag_right:** We use [VS Code][microsoft_vscode] with the extension [Markdown Preview Github Styling](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles) to edit our Markdown files (see article ["Mastering Markdown"](https://guides.github.com/features/mastering-markdown/) from [GitHub Guides][github_guides].
 -->
 
-We also define a virtual drive **`K:`** in our working environment in order to reduce/hide the real path of our project directory (see article ["Windows command prompt limitation"][windows_limitation] from Microsoft Support).
+We also define a virtual drive &ndash; e.g. drive **`K:`** &ndash; in our working environment in order to reduce/hide the real path of our project directory (see article ["Windows command prompt limitation"][windows_limitation] from Microsoft Support).
 > **:mag_right:** We use the Windows external command [**`subst`**][windows_subst] to create virtual drives; for instance:
 >
 > <pre style="font-size:80%;">
@@ -100,7 +104,7 @@ We distinguish different sets of batch commands:
       C:\opt\jdk-temurin-17.0.8_7\bin\java.exe
       C:\opt\jdk-temurin-17.0.8_7\bin\javac.exe
       C:\opt\scala-2.13.11\bin\scalac.bat
-      C:\opt\gradle-8.2.1\bin\gradle.bat
+      C:\opt\gradle\bin\gradle.bat
       C:\opt\kafka_2.13-3.5.1\bin\windows\kafka-configs.bat
       C:\opt\apache-maven-3.9.4\bin\mvn.cmd
       C:\opt\Git-2.41.0\bin\git.exe
@@ -108,7 +112,7 @@ We distinguish different sets of batch commands:
       C:\opt\Git-2.41.0\bin\bash.exe
     Environment variables:
       "GIT_HOME=C:\opt\Git-2.41.0"
-      "GRADLE_HOME=C:\opt\gradle-8.2.1"
+      "GRADLE_HOME=C:\opt\gradle"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.8_7"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.5.1"
       "MAVEN_HOME=C:\opt\apache-maven-3.9.4"
@@ -117,8 +121,8 @@ We distinguish different sets of batch commands:
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
     C:\opt\Git-2.41.0\bin\git.exe
     C:\opt\Git-2.41.0\mingw64\bin\git.exe
-    C:\opt\gradle-8.2.1\bin\gradle
-    C:\opt\gradle-8.2.1\bin\gradle.bat
+    C:\opt\gradle\bin\gradle
+    C:\opt\gradle\bin\gradle.bat
    </pre>
 
 
@@ -174,6 +178,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.20_8.zip</a>   <i>( 99 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.8_7.zip</a>    <i>( 99 MB)</i>
+<a href="https://jdk.java.net/21/">openjdk-21_windows-x64_bin_build_35.zip</a>            <i>(191 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.41.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 </pre>
 </dd></dl>
@@ -194,6 +199,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [apache_maven]: https://maven.apache.org/download.cgi
 [apache_maven_history]: https://maven.apache.org/docs/history.html
 [apache_maven_relnotes]: https://maven.apache.org/docs/3.9.4/release-notes.html
+[cpp_examples]: https://github.com/michelou/cpp-examples
 [dart_examples]: https://github.com/michelou/dart-examples
 [deno_examples]: https://github.com/michelou/deno-examples
 [docker_examples]: https://github.com/michelou/docker-examples
@@ -235,12 +241,16 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [man1_sed]: https://www.linux.org/docs/man1/sed.html
 [man1_wc]: https://www.linux.org/docs/man1/wc.html
 [nodejs_examples]: https://github.com/michelou/nodejs-examples
+[oracle_openjdk21]: https://jdk.java.net/21/
+[oracle_openjdk21_api]: https://download.java.net/java/early_access/jdk21/docs/api/
+[oracle_openjdk21_relnotes]: https://jdk.java.net/21/release-notes
 [rust_examples]: https://github.com/michelou/rust-examples
+[scala_api]: https://www.scala-lang.org/files/archive/api/current/
+[scala_releases]: https://www.scala-lang.org/files/archive/
+[scala_relnotes]: https://github.com/scala/scala/releases/tag/v2.13.11
 [scala3_examples]: https://github.com/michelou/dotty-examples
 [spark_examples]: https://github.com/michelou/spark-examples
 [spring_examples]: https://github.com/michelou/spring-examples
-[temurin_opendjk11_bugfixes]: https://www.oracle.com/java/technologies/javase/11-0-17-bugfixes.html
-[temurin_opendjk11_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-July/024064.html
 <!--
 #### Archives ### https://mail.openjdk.org/pipermail/jdk-updates-dev/
 11.0.9  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2020-July/003498.html
@@ -250,6 +260,12 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 11.0.20 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-July/024064.html
 -->
 [temurin_opendjk11]: https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot
+[temurin_opendjk11_bugfixes]: https://www.oracle.com/java/technologies/javase/11-0-17-bugfixes.html
+[temurin_opendjk11_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-July/024064.html
+<!--
+17.0.7  -> https://www.oracle.com/java/technologies/javase/17-0-7-relnotes.html
+17.0.8  -> https://www.oracle.com/java/technologies/javase/17-0-8-relnotes.html
+-->
 [temurin_opendjk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
 [temurin_opendjk17_bugfixes]: https://www.oracle.com/java/technologies/javase/17-0-2-bugfixes.html
 <!--
@@ -257,10 +273,6 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 17.0.3  -> https://www.oracle.com/java/technologies/javase/17-0-3-bugfixes.html
 -->
 [temurin_opendjk17_relnotes]: https://github.com/openjdk/jdk/compare/jdk-17%2B20...jdk-17%2B21
-<!--
-17.0.7  -> https://www.oracle.com/java/technologies/javase/17-0-7-relnotes.html
-17.0.8  -> https://www.oracle.com/java/technologies/javase/17-0-8-relnotes.html
--->
 [trufflesqueak_examples]: https://github.com/michelou/trufflesqueak-examples
 [unix_bash_script]: https://www.gnu.org/software/bash/manual/bash.html
 [unix_opt]: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html

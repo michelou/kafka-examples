@@ -109,7 +109,7 @@ set _STRONG_BG_BLUE=[104m
 goto :eof
 
 @rem input parameter: %*
-@rem output parameter: _HELP, _VERBOSE
+@rem output parameters: _BASH, _HELP, _MSYS, _VERBOSE
 :args
 set _BASH=0
 set _HELP=0
@@ -146,24 +146,27 @@ goto args_loop
 call :drive_name "%_ROOT_DIR%"
 if not %_EXITCODE%==0 goto :eof
 if %_DEBUG%==1 (
-    echo %_DEBUG_LABEL% Options  : _HELP=%_HELP% _VERBOSE=%_VERBOSE% 1>&2
-    echo %_DEBUG_LABEL% Variables: _DRIVE_NAME=%_DRIVE_NAME% 1>&2
+    echo %_DEBUG_LABEL% Options    : _BASH=%_BASH% _VERBOSE=%_VERBOSE% 1>&2
+    echo %_DEBUG_LABEL% Subcommands: _HELP=%_HELP% 1>&2
+    echo %_DEBUG_LABEL% Variables  : _DRIVE_NAME=%_DRIVE_NAME% 1>&2
 )
 goto :eof
 
 @rem input parameter: %1: path to be substituted
-@rem output parameter: _DRIVE_NAME
+@rem output parameter: _DRIVE_NAME (2 characters: letter + ':')
 :drive_name
 set "__GIVEN_PATH=%~1"
+@rem remove trailing path separator if present
+if "%__GIVEN_PATH:~-1,1%"=="\" set "__GIVEN_PATH=%__GIVEN_PATH:~0,-1%"
 
 @rem https://serverfault.com/questions/62578/how-to-get-a-list-of-drive-letters-on-a-system-through-a-windows-shell-bat-cmd
-set __LETTERS=F:G:H:I:J:K:L:M:N:O:P:Q:R:S:T:U:V:W:X:Y:Z:
+set __DRIVE_NAMES=F:G:H:I:J:K:L:M:N:O:P:Q:R:S:T:U:V:W:X:Y:Z:
 for /f %%i in ('wmic logicaldisk get deviceid ^| findstr :') do (
-    set "__LETTERS=!__LETTERS:%%i=!"
+    set "__DRIVE_NAMES=!__DRIVE_NAMES:%%i=!"
 )
-if %_DEBUG%==1 echo %_DEBUG_LABEL% __LETTERS=%__LETTERS% ^(WMIC^) 1>&2
-if not defined __LETTERS (
-    echo %_ERROR_LABEL% No more free drive letter 1>&2
+if %_DEBUG%==1 echo %_DEBUG_LABEL% __DRIVE_NAMES=%__DRIVE_NAMES% ^(WMIC^) 1>&2
+if not defined __DRIVE_NAMES (
+    echo %_ERROR_LABEL% No more free drive name 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -171,7 +174,7 @@ for /f "tokens=1,2,*" %%f in ('subst') do (
     set "__SUBST_DRIVE=%%f"
     set "__SUBST_DRIVE=!__SUBST_DRIVE:~0,2!"
     set "__SUBST_PATH=%%h"
-    if "!__SUBST_DRiVE!"=="!__GIVEN_PATH:~0,2!" (
+    if "!__SUBST_DRIVE!"=="!__GIVEN_PATH:~0,2!" (
         set _DRIVE_NAME=!__SUBST_DRIVE:~0,2!
         if %_DEBUG%==1 ( echo %_DEBUG_LABEL% Select drive !_DRIVE_NAME! for which a substitution already exists 1>&2
         ) else if %_VERBOSE%==1 ( echo Select drive !_DRIVE_NAME! for which a substitution already exists 1>&2
@@ -187,27 +190,29 @@ for /f "tokens=1,2,*" %%f in ('subst') do (
 )
 for /f "tokens=1,2,*" %%i in ('subst') do (
     set __USED=%%i
-    call :drive_name_update_letters "!__USED:~0,2!"
+    call :drive_names "!__USED:~0,2!"
 )
-if %_DEBUG%==1 echo %_DEBUG_LABEL% __LETTERS=%__LETTERS% ^(SUBST^) 1>&2
+if %_DEBUG%==1 echo %_DEBUG_LABEL% __DRIVE_NAMES=%__DRIVE_NAMES% ^(SUBST^) 1>&2
 
-set "_DRIVE_NAME=!__LETTERS:~0,2!"
+set "_DRIVE_NAME=!__DRIVE_NAMES:~0,2!"
 if /i "%_DRIVE_NAME%"=="%__GIVEN_PATH:~0,2%" goto :eof
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% subst "%_DRIVE_NAME%" "%__GIVEN_PATH%" 1>&2
-) else if %_VERBOSE%==1 ( echo Assign path "%__GIVEN_PATH%" to drive %_DRIVE_NAME% 1>&2
+) else if %_VERBOSE%==1 ( echo Assign drive %_DRIVE_NAME% to path "%__GIVEN_PATH%" 1>&2
 )
 subst "%_DRIVE_NAME%" "%__GIVEN_PATH%"
 if not %ERRORLEVEL%==0 (
-    echo %_ERROR_LABEL% Failed to assigned drive %_DRIVE_NAME% to path 1>&2
+    echo %_ERROR_LABEL% Failed to assign drive %_DRIVE_NAME% to path "%__GIVEN_PATH%" 1>&2
     set _EXITCODE=1
     goto :eof
 )
 goto :eof
 
-:drive_name_update_letters
-set "__USED=%~1"
-set "__LETTERS=!__LETTERS:%__USED%=!"
+@rem input parameter: %1=Used drive name
+@rem output parameter: __DRIVE_NAMES
+:drive_names
+set "__USED_NAME=%~1"
+set "__DRIVE_NAMES=!__DRIVE_NAMES:%__USED_NAME%=!"
 goto :eof
 
 :help
@@ -226,7 +231,7 @@ echo Usage: %__BEG_O%%_BASENAME% { ^<option^> ^| ^<subcommand^> }%__END%
 echo.
 echo   %__BEG_P%Options:%__END%
 echo     %__BEG_O%-bash%__END%       start Git bash shell instead of Windows command prompt
-echo     %__BEG_O%-debug%__END%      show commands executed by this script
+echo     %__BEG_O%-debug%__END%      display commands executed by this script
 echo     %__BEG_O%-msys%__END%       start MSYS2 bash shell instead of Windows command prompt
 echo     %__BEG_O%-verbose%__END%    display environment settings
 echo.
@@ -240,7 +245,7 @@ set _GRADLE_HOME=
 set _GRADLE_PATH=
 
 set __GRADLE_CMD=
-for /f %%f in ('where gradle.bat 2^>NUL') do set "__GRADLE_CMD=%%f"
+for /f "delims=" %%f in ('where gradle.bat 2^>NUL') do set "__GRADLE_CMD=%%f"
 if defined __GRADLE_CMD (
     for %%i in ("%__GRADLE_CMD%") do set "__GRADLE_BIN_DIR=%%~dpi"
     for %%f in ("!__GRADLE_BIN_DIR!\.") do set "_GRADLE_HOME=%%~dpf"
@@ -256,7 +261,7 @@ if defined __GRADLE_CMD (
         for /f %%f in ('dir /ad /b "!__PATH!\gradle-*" 2^>NUL') do set "_GRADLE_HOME=!__PATH!\%%f"
         if not defined _GRADLE_HOME (
             set "__PATH=%ProgramFiles%"
-            for /f %%f in ('dir /ad /b "!__PATH!\gradle-*" 2^>NUL') do set "_GRADLE_HOME=!__PATH!\%%f"
+            for /f "delims=" %%f in ('dir /ad /b "!__PATH!\gradle-*" 2^>NUL') do set "_GRADLE_HOME=!__PATH!\%%f"
         )
     )
     if defined _GRADLE_HOME (
@@ -282,7 +287,7 @@ if not defined __VENDOR ( set __JDK_NAME=jdk-%__VERSION%
 ) else ( set __JDK_NAME=jdk-%__VENDOR%-%__VERSION%
 )
 set __JAVAC_CMD=
-for /f %%f in ('where javac.exe 2^>NUL') do set "__JAVAC_CMD=%%f"
+for /f "delims=" %%f in ('where javac.exe 2^>NUL') do set "__JAVAC_CMD=%%f"
 if defined __JAVAC_CMD (
     call :jdk_version "%__JAVAC_CMD%"
     if !_JDK_VERSION!==%__VERSION% (
@@ -341,7 +346,7 @@ set _KAFKA_HOME=
 set _KAFKA_PATH=
 
 set __SERVER_START_CMD=
-for /f %%f in ('where kafka-server-start.bat 2^>NUL') do set "__SERVER_START_CMD=%%f"
+for /f "delims=" %%f in ('where kafka-server-start.bat 2^>NUL') do set "__SERVER_START_CMD=%%f"
 if defined __SERVER_START_CMD (
     for %%i in ("%__SERVER_START_CMD%\..") do set "__BIN_DIR=%%~dpi"
     for %%f in ("%__BIN_DIR%") do set "_KAFKA_HOME=%%~dpf"
@@ -357,7 +362,7 @@ if defined __SERVER_START_CMD (
         for /f %%f in ('dir /ad /b "!__PATH!\kafka*" 2^>NUL') do set "_KAFKA_HOME=!__PATH!\%%f"
         if not defined _KAFKA_HOME (
             set "__PATH=%ProgramFiles%"
-            for /f %%f in ('dir /ad /b "!__PATH!\kafka*" 2^>NUL') do set "_SBT_HOME=!__PATH!\%%f"
+            for /f "delims=" %%f in ('dir /ad /b "!__PATH!\kafka*" 2^>NUL') do set "_SBT_HOME=!__PATH!\%%f"
         )
     )
 )
@@ -374,7 +379,7 @@ goto :eof
 set _SCALA_HOME=
 
 set __SCALAC_CMD=
-for /f %%f in ('where scalac.bat 2^>NUL') do (
+for /f "delims=" %%f in ('where scalac.bat 2^>NUL') do (
     set __VERSION=
     for /f "tokens=1,2,3,4,*" %%i in ('scalac.bat -version') do set "__VERSION=%%l"
     if defined __VERSION if "!__VERSION:~0,1!"=="2" set "__SCALAC_CMD=%%f"
@@ -407,7 +412,7 @@ set _ANT_HOME=
 set _ANT_PATH=
 
 set __ANT_CMD=
-for /f %%f in ('where ant.bat 2^>NUL') do set "__ANT_CMD=%%f"
+for /f "delims=" %%f in ('where ant.bat 2^>NUL') do set "__ANT_CMD=%%f"
 if defined __ANT_CMD (
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Ant executable found in PATH 1>&2
     for %%i in ("%__ANT_CMD%") do set "__ANT_BIN_DIR=%%~dpi"
@@ -424,7 +429,7 @@ if defined __ANT_CMD (
         for /f %%f in ('dir /ad /b "!__PATH!\apache-ant-*" 2^>NUL') do set "_ANT_HOME=!__PATH!\%%f"
         if not defined _ANT_HOME (
             set "__PATH=%ProgramFiles%"
-            for /f %%f in ('dir /ad /b "!__PATH!\apache-ant-*" 2^>NUL') do set "_ANT_HOME=!__PATH!\%%f"
+            for /f "delims=" %%f in ('dir /ad /b "!__PATH!\apache-ant-*" 2^>NUL') do set "_ANT_HOME=!__PATH!\%%f"
         )
     )
     if defined _ANT_HOME (
@@ -445,7 +450,7 @@ set _GRADLE_HOME=
 set _GRADLE_PATH=
 
 set __GRADLE_CMD=
-for /f %%f in ('where gradle.bat 2^>NUL') do set "__GRADLE_CMD=%%f"
+for /f "delims=" %%f in ('where gradle.bat 2^>NUL') do set "__GRADLE_CMD=%%f"
 if defined __GRADLE_CMD (
     for %%i in ("%__GRADLE_CMD%") do set "__GRADLE_BIN_DIR=%%~dpi"
     for %%f in ("!__GRADLE_BIN_DIR!\.") do set "_GRADLE_HOME=%%~dpf"
@@ -461,7 +466,7 @@ if defined __GRADLE_CMD (
         for /f %%f in ('dir /ad /b "!__PATH!\gradle-*" 2^>NUL') do set "_GRADLE_HOME=!__PATH!\%%f"
         if not defined _GRADLE_HOME (
             set "__PATH=%ProgramFiles%"
-            for /f %%f in ('dir /ad /b "!__PATH!\gradle-*" 2^>NUL') do set "_GRADLE_HOME=!__PATH!\%%f"
+            for /f "delims=" %%f in ('dir /ad /b "!__PATH!\gradle-*" 2^>NUL') do set "_GRADLE_HOME=!__PATH!\%%f"
         )
     )
     if defined _GRADLE_HOME (
@@ -482,7 +487,7 @@ set _MAVEN_HOME=
 set _MAVEN_PATH=
 
 set __MVN_CMD=
-for /f %%f in ('where mvn.cmd 2^>NUL') do set "__MVN_CMD=%%f"
+for /f "delims=" %%f in ('where mvn.cmd 2^>NUL') do set "__MVN_CMD=%%f"
 if defined __MVN_CMD (
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Maven executable found in PATH 1>&2
     for %%i in ("%__MVN_CMD%") do set "__MAVEN_BIN_DIR=%%~dpi"
@@ -535,13 +540,13 @@ set _GIT_HOME=
 set _GIT_PATH=
 
 set __GIT_CMD=
-for /f %%f in ('where git.exe 2^>NUL') do set "__GIT_CMD=%%f"
+for /f "delims=" %%f in ('where git.exe 2^>NUL') do set "__GIT_CMD=%%f"
 if defined __GIT_CMD (
     for %%i in ("%__GIT_CMD%") do set "__GIT_BIN_DIR=%%~dpi"
     for %%f in ("!__GIT_BIN_DIR!\.") do set "_GIT_HOME=%%~dpf"
     @rem Executable git.exe is present both in bin\ and \mingw64\bin\
     if not "!_GIT_HOME:mingw=!"=="!_GIT_HOME!" (
-        for %%f in ("!_GIT_HOME!\..") do set "_GIT_HOME=%%f"
+        for %%f in ("!_GIT_HOME!\.") do set "_GIT_HOME=%%~dpf"
     )
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Git executable found in PATH 1>&2
     @rem keep _GIT_PATH undefined since executable already in path
@@ -556,7 +561,7 @@ if defined __GIT_CMD (
         for /f %%f in ('dir /ad /b "!__PATH!\Git*" 2^>NUL') do set "_GIT_HOME=!__PATH!\%%f"
         if not defined _GIT_HOME (
             set "__PATH=%ProgramFiles%"
-            for /f %%f in ('dir /ad /b "!__PATH!\Git*" 2^>NUL') do set "_GIT_HOME=!__PATH!\%%f"
+            for /f "delims=" %%f in ('dir /ad /b "!__PATH!\Git*" 2^>NUL') do set "_GIT_HOME=!__PATH!\%%f"
         )
     )
     if defined _GIT_HOME (
@@ -564,7 +569,7 @@ if defined __GIT_CMD (
     )
 )
 if not exist "%_GIT_HOME%\bin\git.exe" (
-    echo %_ERROR_LABEL% Git executable not found ^(%_GIT_HOME%^) 1>&2
+    echo %_ERROR_LABEL% Git executable not found ^("%_GIT_HOME%"^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -626,7 +631,7 @@ echo Tool versions:
 echo   %__VERSIONS_LINE1%
 echo   %__VERSIONS_LINE2%
 echo   %__VERSIONS_LINE3%
-if %__VERBOSE%==1 (
+if %__VERBOSE%==1 if defined __WHERE_ARGS (
     echo Tool paths: 1>&2
     for /f "tokens=*" %%p in ('where %__WHERE_ARGS%') do echo    %%p 1>&2
     echo Environment variables: 1>&2
