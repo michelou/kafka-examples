@@ -31,6 +31,9 @@ if not %_EXITCODE%==0 goto end
 
 @rem %1=vendor, %2=version
 @rem eg. openjdk, bellsoft, corretto, bellsoft, openj9, redhat, sapmachine, zulu
+call :java "oracle" 21
+if not %_EXITCODE%==0 goto end
+
 call :java "temurin" 17
 if not %_EXITCODE%==0 goto end
 
@@ -310,11 +313,11 @@ if defined JAVA_HOME (
         for /f %%f in ('dir /ad /b "!_PATH!\%__JDK_NAME%*" 2^>NUL') do set "_JAVA_HOME=!_PATH!\%%f"
     )
     if defined _JAVA_HOME (
-        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Java SDK installation directory !_JAVA_HOME! 1>&2
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Java SDK installation directory "!_JAVA_HOME!" 1>&2
     )
 )
 if not exist "%_JAVA_HOME%\bin\javac.exe" (
-    echo %_ERROR_LABEL% Executable javac.exe not found ^(%_JAVA_HOME%^) 1>&2
+    echo %_ERROR_LABEL% Executable javac.exe not found ^("%_JAVA_HOME%"^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -332,11 +335,11 @@ if not exist "%__JAVAC_CMD%" (
     goto :eof
 )
 set __JAVAC_VERSION=
-for /f "usebackq tokens=1,*" %%i in (`"%__JAVAC_CMD%" -version 2^>^&1`) do set __JAVAC_VERSION=%%j
+for /f "usebackq tokens=1,*" %%i in (`"%__JAVAC_CMD%" -version 2^>^&1`) do set "__JAVAC_VERSION=%%j"
 set "__PREFIX=%__JAVAC_VERSION:~0,2%"
 @rem either 1.7, 1.8 or 11..18
-if "%__PREFIX%"=="1." ( set _JDK_VERSION=%__JAVAC_VERSION:~2,1%
-) else ( set _JDK_VERSION=%__PREFIX%
+if "%__PREFIX%"=="1." ( set "_JDK_VERSION=%__JAVAC_VERSION:~2,1%"
+) else ( set "_JDK_VERSION=%__PREFIX%"
 )
 goto :eof
 
@@ -367,7 +370,7 @@ if defined __SERVER_START_CMD (
     )
 )
 if not exist "%_KAFKA_HOME%\bin\windows\kafka-server-start.bat" (
-    echo %_ERROR_LABEL% kafka-server-start executable not found ^(%_KAFKA_HOME%^) 1>&2
+    echo %_ERROR_LABEL% kafka-server-start executable not found ^("%_KAFKA_HOME%"^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -394,13 +397,13 @@ if defined __SCALAC_CMD (
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using environment variable SCALA_HOME 1>&2
 ) else (
     set _PATH=C:\opt
-    for /f %%f in ('dir /ad /b "!_PATH!\scala-2*" 2^>NUL') do set _SCALA_HOME=!_PATH!\%%f
+    for /f %%f in ('dir /ad /b "!_PATH!\scala-2*" 2^>NUL') do set "_SCALA_HOME=!_PATH!\%%f"
     if defined _SCALA_HOME (
-        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Scala 2 installation directory !_SCALA_HOME!
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Scala 2 installation directory "!_SCALA_HOME!" 1>&2
     )
 )
 if not exist "%_SCALA_HOME%\bin\scalac.bat" (
-    echo %_ERROR_LABEL% Scala executable not found ^(%_SCALA_HOME%^) 1>&2
+    echo %_ERROR_LABEL% Scala executable not found ^("%_SCALA_HOME%"^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -433,11 +436,11 @@ if defined __ANT_CMD (
         )
     )
     if defined _ANT_HOME (
-        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Ant installation directory !_ANT_HOME! 1>&2
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Ant installation directory "!_ANT_HOME!" 1>&2
     )
 )
 if not exist "%_ANT_HOME%\bin\ant.cmd" (
-    echo %_ERROR_LABEL% Ant executable not found ^(%_ANT_HOME%^) 1>&2
+    echo %_ERROR_LABEL% Ant executable not found ^("%_ANT_HOME%"^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -470,11 +473,11 @@ if defined __GRADLE_CMD (
         )
     )
     if defined _GRADLE_HOME (
-        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Gradle installation directory !_GRADLE_HOME! 1>&2
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Gradle installation directory "!_GRADLE_HOME!" 1>&2
     )
 )
 if not exist "%_GRADLE_HOME%\bin\gradle.bat" (
-    echo %_ERROR_LABEL% Gradle executable not found ^(%_GRADLE_HOME%^) 1>&2
+    echo %_ERROR_LABEL% Gradle executable not found ^("%_GRADLE_HOME%"^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -499,11 +502,11 @@ if defined __MVN_CMD (
     set _PATH=C:\opt
     for /f %%f in ('dir /ad /b "!_PATH!\apache-maven-*" 2^>NUL') do set "_MAVEN_HOME=!_PATH!\%%f"
     if defined _MAVEN_HOME (
-        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Maven installation directory !_MAVEN_HOME! 1>&2
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Maven installation directory "!_MAVEN_HOME!" 1>&2
     )
 )
 if not exist "%_MAVEN_HOME%\bin\mvn.cmd" (
-    echo %_ERROR_LABEL% Maven executable not found ^(%_MAVEN_HOME%^) 1>&2
+    echo %_ERROR_LABEL% Maven executable not found ^("%_MAVEN_HOME%"^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
@@ -527,6 +530,7 @@ if not defined __ASSIGNED_PATH (
     if %_DEBUG%==1 echo %_DEBUG_LABEL% subst "%__DRIVE_NAME%" "%_SUBST_PATH%" 1>&2
     subst "%__DRIVE_NAME%" "%_SUBST_PATH%"
     if not !ERRORLEVEL!==0 (
+        echo %_ERROR_LABEL% Failed to assign %__DRIVE_NAME% to path "%_SUBST_PATH%" 1>&2
         set _EXITCODE=1
         goto :eof
     )
@@ -639,6 +643,8 @@ if %__VERBOSE%==1 if defined __WHERE_ARGS (
     if defined GRADLE_HOME echo    "GRADLE_HOME=%GRADLE_HOME%" 1>&2
     if defined JAVA_HOME echo    "JAVA_HOME=%JAVA_HOME%" 1>&2
     if defined JAVA11_HOME echo    "JAVA11_HOME=%JAVA11_HOME%" 1>&2
+    if defined JAVA17_HOME echo    "JAVA17_HOME=%JAVA17_HOME%" 1>&2
+    if defined JAVA21_HOME echo    "JAVA21_HOME=%JAVA21_HOME%" 1>&2
     if defined KAFKA_HOME echo    "KAFKA_HOME=%KAFKA_HOME%" 1>&2
     if defined MAVEN_HOME echo    "MAVEN_HOME=%MAVEN_HOME%" 1>&2
     if defined SCALA_HOME echo    "SCALA_HOME=%SCALA_HOME%" 1>&2
@@ -657,6 +663,8 @@ endlocal & (
         if not defined GRADLE_HOME set "GRADLE_HOME=%_GRADLE_HOME%"
         if not defined JAVA_HOME set "JAVA_HOME=%_JAVA_HOME%"
         if not defined JAVA11_HOME set "JAVA11_HOME=%_JAVA11_HOME%"
+        if not defined JAVA17_HOME set "JAVA17_HOME=%_JAVA17_HOME%"
+        if not defined JAVA21_HOME set "JAVA21_HOME=%_JAVA21_HOME%"
         if not defined KAFKA_HOME set "KAFKA_HOME=%_KAFKA_HOME%"
         if not defined MAVEN_HOME set "MAVEN_HOME=%_MAVEN_HOME%"
         if not defined SCALA_HOME set "SCALA_HOME=%_SCALA_HOME%"
