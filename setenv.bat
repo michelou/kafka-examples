@@ -598,17 +598,17 @@ if %ERRORLEVEL%==0 (
 )
 where /q "%SCALA_HOME%\bin:scalac.bat"
 if %ERRORLEVEL%==0 (
-    for /f "tokens=1,2,3,4,*" %%i in ('"%SCALA_HOME%\bin\scalac.bat" -version') do set "__VERSIONS_LINE1=%__VERSIONS_LINE1% scalac %%l,"
+    for /f "tokens=1,2,3,4,*" %%i in ('call "%SCALA_HOME%\bin\scalac.bat" -version') do set "__VERSIONS_LINE1=%__VERSIONS_LINE1% scalac %%l,"
     set __WHERE_ARGS=%__WHERE_ARGS% "%SCALA_HOME%\bin:scalac.bat"
 )
 where /q "%GRADLE_HOME%\bin:gradle.bat"
 if %ERRORLEVEL%==0 (
-    for /f "tokens=1,*" %%i in ('"%GRADLE_HOME%\bin\gradle.bat" -version ^| findstr Gradle') do set "__VERSIONS_LINE2=%__VERSIONS_LINE2% gradle %%j,"
+    for /f "tokens=1,*" %%i in ('call "%GRADLE_HOME%\bin\gradle.bat" -version ^| findstr Gradle') do set "__VERSIONS_LINE2=%__VERSIONS_LINE2% gradle %%j,"
     set __WHERE_ARGS=%__WHERE_ARGS% "%GRADLE_HOME%\bin:gradle.bat"
 )
 where /q "%KAFKA_HOME%\bin\windows:kafka-configs.bat"
 if %ERRORLEVEL%==0 (
-    for /f "tokens=1,*" %%i in ('"%KAFKA_HOME%\bin\windows\kafka-configs.bat" -version') do set "__VERSIONS_LINE2=%__VERSIONS_LINE2% kafka-configs %%i,"
+    for /f "tokens=1,*" %%i in ('call "%KAFKA_HOME%\bin\windows\kafka-configs.bat" -version') do set "__VERSIONS_LINE2=%__VERSIONS_LINE2% kafka-configs %%i,"
     set __WHERE_ARGS=%__WHERE_ARGS% "%KAFKA_HOME%\bin\windows:kafka-configs.bat"
 )
 where /q "%MAVEN_HOME%\bin:mvn.cmd"

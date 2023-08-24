@@ -20,7 +20,7 @@
 
 This project depends on the following external software for the **Microsoft Windows** platform:
 
-- [Git 2.41][git_releases] ([*release notes*][git_relnotes])
+- [Git 2.42][git_releases] ([*release notes*][git_relnotes])
 - [Kafka 3.5][kafka_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*release notes*][kafka_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_opendjk17] <sup id="anchor_02">[2](#footnote_02)</sup> ([*release notes*][temurin_opendjk17_relnotes], [*bug fixes*][temurin_opendjk17_bugfixes])
 
@@ -40,7 +40,7 @@ For instance our development environment looks as follows (*August 2023*) <sup i
 
 <pre style="font-size:80%;">
 C:\opt\apache-maven-3.9.4\         <i>( 10 MB)</i>
-C:\opt\Git-2.41.0\                 <i>(315 MB)</i>
+C:\opt\Git\                        <i>(367 MB)</i>
 C:\opt\gradle\                     <i>(135 MB)</i>
 C:\opt\jdk-oracle-21-ea-35\        <i>(320 MB)</i>
 C:\opt\jdk-temurin-11.0.20_8\      <i>(302 MB)</i>
@@ -98,7 +98,7 @@ We distinguish different sets of batch commands:
     Tool versions:
       java 17.0.8, javac 17.0.8, scalac 2.13.11,
       gradle 8.3, kafka-configs 3.5.1, mvn 3.9.4,
-      git 2.41.0.windows.1, diff 3.9, bash 5.2.12(1)-release
+      git 2.42.0.windows.1, diff 3.10, bash 5.2.12(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.8_7\bin\java.exe
       C:\opt\jdk-temurin-17.0.8_7\bin\javac.exe
@@ -106,11 +106,11 @@ We distinguish different sets of batch commands:
       C:\opt\gradle\bin\gradle.bat
       C:\opt\kafka_2.13-3.5.1\bin\windows\kafka-configs.bat
       C:\opt\apache-maven-3.9.4\bin\mvn.cmd
-      C:\opt\Git-2.41.0\bin\git.exe
-      C:\opt\Git-2.41.0\usr\bin\diff.exe
-      C:\opt\Git-2.41.0\bin\bash.exe
+      C:\opt\Git\bin\git.exe
+      C:\opt\Git\usr\bin\diff.exe
+      C:\opt\Git\bin\bash.exe
     Environment variables:
-      "GIT_HOME=C:\opt\Git-2.41.0"
+      "GIT_HOME=C:\opt\Git"
       "GRADLE_HOME=C:\opt\gradle"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.8_7"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.5.1"
@@ -118,8 +118,8 @@ We distinguish different sets of batch commands:
       "SCALA_HOME=C:\opt\scala-2.13.11"
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
-    C:\opt\Git-2.41.0\bin\git.exe
-    C:\opt\Git-2.41.0\mingw64\bin\git.exe
+    C:\opt\Git\bin\git.exe
+    C:\opt\Git\mingw64\bin\git.exe
     C:\opt\gradle\bin\gradle
     C:\opt\gradle\bin\gradle.bat
    </pre>
@@ -178,7 +178,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.20_8.zip</a>   <i>( 99 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.8_7.zip</a>    <i>( 99 MB)</i>
 <a href="https://jdk.java.net/21/">openjdk-21_windows-x64_bin_build_35.zip</a>            <i>(191 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.41.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.42.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 </pre>
 </dd></dl>
 <!--
@@ -207,7 +207,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [git_cli]: https://git-scm.com/docs/git
 [git_downloads]: https://git-scm.com/download/win
 [git_releases]: https://git-scm.com/download/win
-[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.41.0.txt
+[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.42.0.txt
 [git_userguide]: https://git-scm.com/docs/git
 [github_markdown]: https://github.github.com/gfm/
 [golang_examples]: https://github.com/michelou/golang-examples
