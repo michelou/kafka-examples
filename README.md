@@ -132,16 +132,16 @@ We distinguish different sets of batch commands:
 
 <dl><dd>
 <table>
-<tr><th><a href="https://kafka.apache.org/">Kakfa</a></th><th>ZooKeeper</th><th><a href="https://www.eclipse.org/jetty/">Jetty</a></th></tr>
-<tr><td><a href="https://downloads.apache.org/kafka/3.5.1/RELEASE_NOTES.html">3.5.1</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td></tr>
-<tr><td><a href="https://downloads.apache.org/kafka/3.5.0/RELEASE_NOTES.html">3.5.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td></tr>
-<tr><td><a href="https://archive.apache.org/dist/kafka/3.4.1/RELEASE_NOTES.html">3.4.1</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td></tr>
-<tr><td><a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html">3.4.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.48.v20220622">9.4.48</a> <sup><b>c)</b></sup></td></tr>
-<tr><td><a href="https://archive.apache.org/dist/kafka/3.3.0/RELEASE_NOTES.html">3.3.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td></tr>
-<tr><td><a href="https://archive.apache.org/dist/kafka/3.2.0/RELEASE_NOTES.html">3.2.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td></tr>
+<tr><th><a href="https://kafka.apache.org/">Kakfa</a></th><th><a href="https://zookeeper.apache.org/releases.html" rel="external">ZooKeeper</a></th><th><a href="https://www.eclipse.org/jetty/">Jetty</a></th><th>Java</th></tr>
+<tr><td><a href="https://downloads.apache.org/kafka/3.5.1/RELEASE_NOTES.html">3.5.1</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td><td>8+</td></tr>
+<tr><td><a href="https://downloads.apache.org/kafka/3.5.0/RELEASE_NOTES.html">3.5.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td><td>8+</td></tr>
+<tr><td><a href="https://archive.apache.org/dist/kafka/3.4.1/RELEASE_NOTES.html">3.4.1</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td><td>8+</td></tr>
+<tr><td><a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html">3.4.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.48.v20220622">9.4.48</a> <sup><b>c)</b></sup></td><td>8+</td></tr>
+<tr><td><a href="https://archive.apache.org/dist/kafka/3.3.0/RELEASE_NOTES.html">3.3.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td><td>?</td></tr>
+<tr><td><a href="https://archive.apache.org/dist/kafka/3.2.0/RELEASE_NOTES.html">3.2.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td><td>?</td>></tr>
 </table>
-<span><sup><b>a)</b></sup> ZooKeeper current version is <a href="https://zookeeper.apache.org/doc/r3.8.1/"><b>3.8.1</b></a> as of January 30, 2023 (<a href="https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper">MVN Repository</a>).<br/>
-<sup><b>b)</b></sup> Jetty current version is <a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-11.0.15"><b>11.0.15</b></a> as of April 13, 2023 (<a href="https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server">MVN Repository</a>).<br/>
+<span><sup><b>a)</b></sup> ZooKeeper current stable version is <a href="https://zookeeper.apache.org/doc/r3.8.2/"><b>3.8.2</b></a> as of July 18, 2023 (<a href="https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper">MVN Repository</a>).<br/>
+<sup><b>b)</b></sup> Jetty current version is <a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-12.0.0"><b>12.0.0</b></a> as of August 7, 2023 (<a href="https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server">MVN Repository</a>).<br/>
 <sup><b>c)</b></sup> Jetty 9.4.x is at End of Community Support as of June 1, 2023 (<a href="https://github.com/eclipse/jetty.project/issues/7958">#7958</a>).
 </span>
 </dd></dl>
@@ -157,7 +157,7 @@ We distinguish different sets of batch commands:
 <dl><dd>
 <a href="https://www.kafkatool.com/features.html" rel="external"><b>Offset Explorer</b></a> (formerly named <b>Kalfa Tool</b>) provides the following features :
 <ul>
-  <li>The browser tree allows us to easily view and navigate the objects (brokers, topices, particitions, consumers) in our Apache Kafka cluster.</li>
+  <li>The browser tree allows us to easily view and navigate the objects (brokers, topices, particitions, consumers) in our <a href="https://www.confluent.io/blog/what-is-an-apache-kafka-cluster/">Apache Kafka cluster</a>.</li>
   <li>The explorer allows us to view messages (and their keys) in the partitions of the topics we are interested in.</li>
   <li>If the string-based data is either in JSON or XML format, we can view it in a pretty-printed manner.</li>
   <li>The browser tree also allows us to quickly view all offsets of our <a href="https://kafka.apache.org">Kafka</a> consumers.</li>
