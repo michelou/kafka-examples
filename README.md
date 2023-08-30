@@ -26,8 +26,8 @@ This project depends on the following external software for the **Microsoft Wind
 
 Optionally one may also install the following software:
 
-- [Apache Maven 3.9][apache_maven] ([requires Java 8 or newer][apache_maven_history])  ([*release notes*][apache_maven_relnotes])
-- [Gradle 8.3][gradle_install] ([requires Java 8 or newer][gradle_compatibility]) ([*release notes*][gradle_relnotes])
+- [Apache Maven 3.9][apache_maven] ([requires Java 8+][apache_maven_history])  ([*release notes*][apache_maven_relnotes])
+- [Gradle 8.3][gradle_install] ([requires Java 8+][gradle_compatibility]) ([*release notes*][gradle_relnotes])
 - [Offset Explorer 2.3][kafkatool_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*change history*][kafkatool_changes])
 - [Oracle OpenJDK 21 LTS][oracle_openjdk21] ([*release notes*][oracle_openjdk21_relnotes], [*Java 21 API*][oracle_openjdk21_api])
 - [Scala 2.13][scala_releases] (requires Java 8+) ([*release notes*][scala_relnotes], [*Scala API*][scala_api])
@@ -157,7 +157,7 @@ We distinguish different sets of batch commands:
 <dl><dd>
 <a href="https://www.kafkatool.com/features.html" rel="external"><b>Offset Explorer</b></a> (formerly named <b>Kalfa Tool</b>) provides the following features :
 <ul>
-  <li>The browser tree allows us to easily view and navigate the objects (brokers, topices, particitions, consumers) in our <a href="https://www.confluent.io/blog/what-is-an-apache-kafka-cluster/">Apache Kafka cluster</a>.</li>
+  <li>The browser tree allows us to easily view and navigate the objects (brokers, topics, partitions, consumers) in our <a href="https://www.confluent.io/blog/what-is-an-apache-kafka-cluster/">Apache Kafka cluster</a>.</li>
   <li>The explorer allows us to view messages (and their keys) in the partitions of the topics we are interested in.</li>
   <li>If the string-based data is either in JSON or XML format, we can view it in a pretty-printed manner.</li>
   <li>The browser tree also allows us to quickly view all offsets of our <a href="https://kafka.apache.org">Kafka</a> consumers.</li>
