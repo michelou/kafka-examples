@@ -34,7 +34,7 @@ Check if local port 8080 is free (needed for Jetty AdminServer)
 Start the Kafka server process
 </pre>
 
-The Zookeeper server <sup id="anchor_01">[1](#footnote_01)</sup> is started in a separate window (using the Windows command [`start`][windows_start]) :
+The [Zookeeper] server <sup id="anchor_01">[1](#footnote_01)</sup> is started in a separate window (using the Windows command [`start`][windows_start]) :
 
 <pre style="font-size:80%;">
 [...]
@@ -256,7 +256,7 @@ Here is a more detailed extract of the Kafka startup <code>INFO</code> logging :
 <span id="footnote_03">[3]</span> ***Java Processes*** [↩](#anchor_03)
 
 <dl><dd>
-tbd
+We rely on the <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html"><code><b>jps.exe</b></code></a> command to check if the Kafka and <a href="https://zookeeper.apache.org/" rel="external">Zookeeper</a> services are running locally on our machine :
 </dd>
 <dd>
 <pre style="font-size:80%;">
@@ -303,8 +303,11 @@ For instance, the StackOverflow post <a href="https://stackoverflow.com/question
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/August 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/September 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
+[jpd_cmd]: https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html
 [kafka]: https://kafka.apache.org
 [windows_start]: https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/start
+[zookeeper]: https://zookeeper.apache.org/
+

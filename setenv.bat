@@ -25,6 +25,7 @@ if %_HELP%==1 (
 
 set _GIT_PATH=
 set _GRADLE_PATH=
+set _VSCODE_PATH=
 
 call :gradle
 if not %_EXITCODE%==0 goto end
@@ -49,6 +50,11 @@ if not %_EXITCODE%==0 goto end
 call :git
 if not %_EXITCODE%==0 goto end
 
+call :vscode
+if not %_EXITCODE%==0 (
+    @rem optional
+    set _EXITCODE=0
+)
 goto end
 
 @rem #########################################################################
@@ -130,7 +136,7 @@ if "%__ARG:~0,1%"=="-" (
     ) else if "%__ARG%"=="-msys" ( set _BASH=0& set _MSYS=1
     ) else if "%__ARG%"=="-verbose" ( set _VERBOSE=1
     ) else (
-        echo %_ERROR_LABEL% Unknown option "%__ARG%" 1>&2
+        echo %_ERROR_LABEL% Unknown option %__ARG% 1>&2
         set _EXITCODE=1
         goto args_done
     )
@@ -138,7 +144,7 @@ if "%__ARG:~0,1%"=="-" (
     @rem subcommand
     if "%__ARG%"=="help" ( set _HELP=1
     ) else (
-        echo %_ERROR_LABEL% Unknown subcommand "%__ARG%" 1>&2
+        echo %_ERROR_LABEL% Unknown subcommand %__ARG% 1>&2
         set _EXITCODE=1
         goto args_done
     )
@@ -325,8 +331,8 @@ call :jdk_version "%_JAVA_HOME%\bin\javac.exe"
 set "_JAVA!_JDK_VERSION!_HOME=%_JAVA_HOME%"
 goto :eof
 
-@rem input parameter: %1=javac file path
-@rem output parameter: _JDK_VERSION
+@rem input parameter(s): %1=javac file path
+@rem output parameter(s): _JDK_VERSION
 :jdk_version
 set "__JAVAC_CMD=%~1"
 if not exist "%__JAVAC_CMD%" (
@@ -354,7 +360,6 @@ if defined __SERVER_START_CMD (
     for %%i in ("%__SERVER_START_CMD%\..") do set "__BIN_DIR=%%~dpi"
     for %%f in ("%__BIN_DIR%") do set "_KAFKA_HOME=%%~dpf"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of kafka-server-start executable found in PATH 1>&2
-    @rem keep _KAFKA_PATH undefined since executable already in path
     goto :eof
 ) else if defined KAFKA_HOME (
     set "_KAFKA_HOME=%KAFKA_HOME%"
@@ -418,9 +423,9 @@ set _ANT_PATH=
 set __ANT_CMD=
 for /f "delims=" %%f in ('where ant.bat 2^>NUL') do set "__ANT_CMD=%%f"
 if defined __ANT_CMD (
+    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Ant executable found in PATH 1>&2
     for %%i in ("%__ANT_CMD%") do set "__ANT_BIN_DIR=%%~dpi"
     for %%f in ("!__ANT_BIN_DIR!\.") do set "_ANT_HOME=%%~dpf"
-    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Ant executable found in PATH 1>&2
     @rem keep _ANT_PATH undefined since executable already in path
     goto :eof
 ) else if defined ANT_HOME (
@@ -459,7 +464,6 @@ if defined __GRADLE_CMD (
     for %%i in ("%__GRADLE_CMD%") do set "__GRADLE_BIN_DIR=%%~dpi"
     for %%f in ("!__GRADLE_BIN_DIR!\.") do set "_GRADLE_HOME=%%~dpf"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Gradle executable found in PATH 1>&2
-    @rem keep _GRADLE_PATH undefined since executable already in path
     goto :eof
 ) else if defined GRADLE_HOME (
     set "_GRADLE_HOME=%GRADLE_HOME%"
@@ -494,11 +498,9 @@ set _MAVEN_PATH=
 set __MVN_CMD=
 for /f "delims=" %%f in ('where mvn.cmd 2^>NUL') do set "__MVN_CMD=%%f"
 if defined __MVN_CMD (
+    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Maven executable found in PATH 1>&2
     for %%i in ("%__MVN_CMD%") do set "__MAVEN_BIN_DIR=%%~dpi"
     for %%f in ("!__MAVEN_BIN_DIR!\.") do set "_MAVEN_HOME=%%~dpf"
-    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Maven executable found in PATH 1>&2
-    @rem keep _MAVEN_PATH undefined since executable already in path
-    goto :eof
 ) else if defined MAVEN_HOME (
     set "_MAVEN_HOME=%MAVEN_HOME%"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using environment variable MAVEN_HOME 1>&2
@@ -584,6 +586,42 @@ if not exist "%_GIT_HOME%\bin\git.exe" (
 set "_GIT_PATH=;%_GIT_HOME%\bin;%_GIT_HOME%\mingw64\bin;%_GIT_HOME%\usr\bin"
 goto :eof
 
+@rem output parameters: _VSCODE_HOME, _VSCODE_PATH
+:vscode
+set _VSCODE_HOME=
+set _VSCODE_PATH=
+
+set __CODE_CMD=
+for /f "delims=" %%f in ('where code.exe 2^>NUL') do set "__CODE_CMD=%%f"
+if defined __CODE_CMD (
+    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of VSCode executable found in PATH 1>&2
+    @rem keep _VSCODE_PATH undefined since executable already in path
+    goto :eof
+) else if defined VSCODE_HOME (
+    set "_VSCODE_HOME=%VSCODE_HOME%"
+    if %_DEBUG%==1 echo %_DEBUG_LABEL% Using environment variable VSCODE_HOME 1>&2
+) else (
+    set __PATH=C:\opt
+    if exist "!__PATH!\VSCode\" ( set "_VSCODE_HOME=!__PATH!\VSCode"
+    ) else (
+        for /f %%f in ('dir /ad /b "!__PATH!\VSCode-1*" 2^>NUL') do set "_VSCODE_HOME=!__PATH!\%%f"
+        if not defined _VSCODE_HOME (
+            set "__PATH=%ProgramFiles%"
+            for /f "delims=" %%f in ('dir /ad /b "!__PATH!\VSCode-1*" 2^>NUL') do set "_VSCODE_HOME=!__PATH!\%%f"
+        )
+    )
+)
+if not exist "%_VSCODE_HOME%\code.exe" (
+    echo %_WARNING_LABEL% VSCode executable not found ^("%_VSCODE_HOME%"^) 1>&2
+    if exist "%_VSCODE_HOME%\Code - Insiders.exe" (
+        echo %_WARNING_LABEL% It looks like you've installed an Insider version of VSCode 1>&2
+    )
+    set _EXITCODE=1
+    goto :eof
+)
+set "_VSCODE_PATH=;%_VSCODE_HOME%"
+goto :eof
+
 :print_env
 set __VERBOSE=%1
 set __VERSIONS_LINE1=
@@ -652,8 +690,13 @@ if %__VERBOSE%==1 if defined __WHERE_ARGS (
     if defined KAFKA_HOME echo    "KAFKA_HOME=%KAFKA_HOME%" 1>&2
     if defined MAVEN_HOME echo    "MAVEN_HOME=%MAVEN_HOME%" 1>&2
     if defined SCALA_HOME echo    "SCALA_HOME=%SCALA_HOME%" 1>&2
+    if defined VSCODE_HOME echo    "VSCODE_HOME=%VSCODE_HOME%" 1>&2
     echo Path associations: 1>&2
-    for /f "delims=" %%i in ('subst') do echo    %%i 1>&2
+    for /f "delims=" %%i in ('subst') do (
+        set "__LINE=%%i"
+        setlocal enabledelayedexpansion
+        echo    !__LINE:%USERPROFILE%=%%USERPROFILE%%! 1>&2
+    )
 )
 goto :eof
 
@@ -672,7 +715,8 @@ endlocal & (
         if not defined KAFKA_HOME set "KAFKA_HOME=%_KAFKA_HOME%"
         if not defined MAVEN_HOME set "MAVEN_HOME=%_MAVEN_HOME%"
         if not defined SCALA_HOME set "SCALA_HOME=%_SCALA_HOME%"
-        set "PATH=%PATH%%_GRADLE_PATH%%_KAFKA_PATH%%_MAVEN_PATH%%_GIT_PATH%;%~dp0bin"
+        if not defined VSCODE_HOME set "VSCODE_HOME=%VSCODE_HOME%"
+        set "PATH=%PATH%%_GRADLE_PATH%%_KAFKA_PATH%%_MAVEN_PATH%%_GIT_PATH%%_VSCODE_PATH%;%~dp0bin"
         call :print_env %_VERBOSE%
         if not "%CD:~0,2%"=="%_DRIVE_NAME%" (
             if %_DEBUG%==1 echo %_DEBUG_LABEL% cd /d %_DRIVE_NAME% 1>&2

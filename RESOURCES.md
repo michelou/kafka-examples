@@ -8,7 +8,7 @@
   </tr>
 </table>
 
-## <span id="articles">Articles</span>
+## <span id="articles">Articles</span> [**&#x25B4;**](#top)
 
 - [Stream processing with Apache Kafka and Azure Databricks](https://learn.microsoft.com/en-us/azure/databricks/structured-streaming/kafka), January 2023.
 - [Apache Kafka Architecture: A Complete Guide][article_carter] by Michael Carter, June 2020.
@@ -19,12 +19,14 @@
   - [How persistence works in an Apache Kafka deployment](https://developer.ibm.com/articles/how-persistence-works-in-apache-kafka/) by Geoffrey Judd, June 2020.
   - [What is Apache Kafka?](https://developer.ibm.com/articles/an-introduction-to-apache-kafka/) by Gabor Tangelmayer &amp; al., April 2020.
 
-## <span id="blogs">Blogs</span>
+## <span id="blogs">Blogs</span> [**&#x25B4;**](#top)
 
 - [A Detailed Guide of Interview Questions on Apache Kafka](https://www.analyticsvidhya.com/blog/2023/04/a-detailed-guide-of-interview-questions-on-apache-kafka/) by Shikha Sharma, May 2023.
 - [Remote code execution flaw patched in Apache Kafka](https://portswigger.net/daily-swig/remote-code-execution-flaw-patched-in-apache-kafka) by Charlie Osborne, February 2023.
 - [Medium](https://medium.com/search?q=Elasticsearch)
+  - [Kafka Streams — Part I: An Introduction][blog_kundu_1] by Sazal Kanti Kundu, September 2023.
   - [Advance Optimization Techniques for Elasticsearch][blog_chye] by Lee Chye, September 2022.
+  - [Processing guarantees in Kafka][blog_bryant] by Andy Bryant, November 2019.
   - [Apache Kafka Best Practices][blog_chintalapani] by Sriharsha Chintalapani, May 2018.
   - [A Thorough Introduction to Apache Kafka][blog_kozlovski] by Stanislav Kozlovski, December 2017.
 - [Apache Kafka: 10 essential terms and concepts explained][blog_cozens] by Bill Cozens, March 2022.
@@ -35,6 +37,15 @@
 - [Strimzi](https://strimzi.io/blog/) blog posts :
   - [Optimizing Kafka broker configuration][blog_mellor] by Paul Mellor, June 2021.
 - [Compression of messages in Kafka][blog_pardi] by Fabio Pardi, June 2021.
+- [Zenika Blog](https://blog.zenika.com/?s=kafka) :
+  - [L’avenir de Zookeeper dans une architecture Kafka](https://blog.zenika.com/2021/04/07/lavenir-de-zookeeper-dans-une-architecture-kafka/) by Mohamed Karaga, April 2021.
+  - [Maîtriser le paramétrage des producers Kafka](https://blog.zenika.com/2020/11/04/maitriser-le-parametrage-des-producers-kafka/) by Alexandre Fruchaud, November 2020.
+- [instacluster Blog](https://www.instaclustr.com/blog/category/technical/kafka/) :
+  - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 3—Maximum Partitions and Conclusions](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-3-maximum-partitions-and-conclusions/) by Paul Brebner, January 2023.
+  - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 2—Partitions and Meta-Data Performance](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-2-partitions-and-meta-data-performance/) by Paul Brebner, December 2022.
+  - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 1— Partitions and Data Performance](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-1-partitions-and-data-performance/) by Paul Brebner, November 2022.
+  - [Apache Kafka® Architecture: A Complete Guide][blog_carter] by Michael Carter, June 2020.
+  - [Exploring the Apache Kafka “Castle” Part A: Architecture and Semantics](blog_brebner) by Paul Brebner, January 2018.
 - [Part 1: Apache Kafka for beginners - What is Apache Kafka?][blog_johansson] by Lovisa Johansson, March 2020.
 - [7 mistakes when using Apache Kafka][blog_matloka] by Michal Matloka, January 2020.
 - [A Practical Introduction to Kafka Storage Internals][blog_perla] by Durga Swaroop Perla, August 2018.
@@ -54,6 +65,7 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
+  - [Kafka Monthy Digest: August 2023](https://developers.redhat.com/blog/2023/09/01/kafka-monthly-digest-august-2023). 
   - [Kafka Monthly Digest: July 2023](https://developers.redhat.com/blog/2023/07/31/kafka-monthly-digest-july-2023).
   - [Kafka Monthly Digest: June 2023](https://developers.redhat.com/blog/2023/07/03/kafka-monthly-digest-june-2023).
   - [Kafka Monthly Digest: May 2023](https://developers.redhat.com/blog/2023/05/31/kafka-monthly-digest-may-2023).
@@ -90,7 +102,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/August 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/September 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -98,6 +110,9 @@
 [article_carter]: https://www.instaclustr.com/apache-kafka-architecture/
 [blog_aladev]: https://www.blazemeter.com/blog/apache-kafka-how-to-load-test-with-jmeter
 [blog_bockhorn]: https://ipt.ch/en/impuls/large-data-packets-and-kafka
+[blog_brebner]: https://www.instaclustr.com/blog/exploring-apache-kafka-castle-architecture-semantics/
+[blog_bryant]: https://medium.com/@andy.bryant/processing-guarantees-in-kafka-12dd2e30be0e
+[blog_carter]: https://www.instaclustr.com/blog/apache-kafka-architecture/
 [blog_chintalapani]: https://medium.com/real-time-streaming/apache-kafka-best-practices-d9fac5c483c0
 [blog_chye]: https://medium.com/csit-tech-blog/advance-optimization-techniques-for-elasticsearch-b728f59b70cc
 [blog_cozens]: https://www.redhat.com/en/blog/apache-kafka-10-essential-terms-and-concepts-explained
@@ -105,6 +120,7 @@
 [blog_johansson]: https://www.cloudkarafka.com/blog/part1-kafka-for-beginners-what-is-apache-kafka.html
 [blog_kafka3]: https://blogs.apache.org/kafka/entry/what-s-new-in-apache6
 [blog_kozlovski]: https://betterprogramming.pub/thorough-introduction-to-apache-kafka-6fbf2989bbc1
+[blog_kundu_1]: https://medium.com/@sazalkanti/kafka-streams-part-i-an-introduction-a8645534923
 [blog_matloka]: https://blog.softwaremill.com/7-mistakes-when-using-apache-kafka-44358cd9cd6
 [blog_mellor]: https://strimzi.io/blog/2021/06/08/broker-tuning/
 [blog_musyoka]: https://www.section.io/engineering-education/what-is-kafka-how-to-build-and-dockerize-a-kafka-cluster/

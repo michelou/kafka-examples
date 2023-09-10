@@ -16,7 +16,7 @@
 
 [Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other trending topics we are continuously monitoring.
 
-## <span id="proj_deps">Project dependencies</span>
+## <span id="proj_deps">Project dependencies</span> [**&#x25B4;**](#top)
 
 This project depends on the following external software for the **Microsoft Windows** platform:
 
@@ -36,7 +36,7 @@ Optionally one may also install the following software:
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*August 2023*) <sup id="anchor_04">[4](#footnote_04)</sup>:
+For instance our development environment looks as follows (*September 2023*) <sup id="anchor_04">[4](#footnote_04)</sup>:
 
 <pre style="font-size:80%;">
 C:\opt\apache-maven-3.9.4\         <i>( 10 MB)</i>
@@ -46,7 +46,7 @@ C:\opt\jdk-oracle-21-ea-35\        <i>(320 MB)</i>
 C:\opt\jdk-temurin-11.0.20_8\      <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.8_7\       <i>(299 MB)</i>
 C:\opt\kafka_2.13-3.5.1\           <i>(105 MB)</i>
-C:\opt\scala-2.13.11\              <i>( 23 MB)</i>
+C:\opt\scala-2.13.12\              <i>( 24 MB)</i>
 C:\Program Files\OffsetExplorer2\  <i>(112 MB)</i>
 </pre>
 
@@ -88,21 +88,20 @@ In the next section we give a brief description of the [batch files][windows_bat
 
 ## <span id="commands">Batch commands</span> [**&#x25B4;**](#top)
 
+### [**`setenv.bat`**](setenv.bat)
 
-We distinguish different sets of batch commands:
-
-1. [**`setenv.bat`**](setenv.bat) &ndash; This batch command makes external tools such as [**`git.exe`**][git_userguide] and [**`gradle.bat`**][gradle_cli] directly available from the Windows command prompt (see section [**Project dependencies**](#proj_deps)).
+Batch command [**`setenv.bat`**](setenv.bat) makes external tools such as [**`git.exe`**][git_userguide] and [**`gradle.bat`**][gradle_cli] directly available from the Windows command prompt (see section [**Project dependencies**](#proj_deps)).
 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
-      java 17.0.8, javac 17.0.8, scalac 2.13.11,
+      java 17.0.8, javac 17.0.8, scalac 2.13.12,
       gradle 8.3, kafka-configs 3.5.1, mvn 3.9.4,
       git 2.42.0.windows.1, diff 3.10, bash 5.2.12(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.8_7\bin\java.exe
       C:\opt\jdk-temurin-17.0.8_7\bin\javac.exe
-      C:\opt\scala-2.13.11\bin\scalac.bat
+      C:\opt\scala-2.13.12\bin\scalac.bat
       C:\opt\gradle\bin\gradle.bat
       C:\opt\kafka_2.13-3.5.1\bin\windows\kafka-configs.bat
       C:\opt\apache-maven-3.9.4\bin\mvn.cmd
@@ -115,7 +114,7 @@ We distinguish different sets of batch commands:
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.8_7"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.5.1"
       "MAVEN_HOME=C:\opt\apache-maven-3.9.4"
-      "SCALA_HOME=C:\opt\scala-2.13.11"
+      "SCALA_HOME=C:\opt\scala-2.13.12"
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
     C:\opt\Git\bin\git.exe
@@ -127,18 +126,41 @@ We distinguish different sets of batch commands:
 
 ## <span id="footnotes">Footnotes</span> [**&#x25B4;**](#top)
 
-
 <span id="footnote_01">[1]</span> ***Kafka components*** [↩](#anchor_01)
 
 <dl><dd>
-<table>
-<tr><th><a href="https://kafka.apache.org/">Kakfa</a></th><th><a href="https://zookeeper.apache.org/releases.html" rel="external">ZooKeeper</a></th><th><a href="https://www.eclipse.org/jetty/">Jetty</a></th><th>Java</th></tr>
-<tr><td><a href="https://downloads.apache.org/kafka/3.5.1/RELEASE_NOTES.html">3.5.1</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td><td>8+</td></tr>
-<tr><td><a href="https://downloads.apache.org/kafka/3.5.0/RELEASE_NOTES.html">3.5.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td><td>8+</td></tr>
-<tr><td><a href="https://archive.apache.org/dist/kafka/3.4.1/RELEASE_NOTES.html">3.4.1</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td><td>8+</td></tr>
-<tr><td><a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html">3.4.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.48.v20220622">9.4.48</a> <sup><b>c)</b></sup></td><td>8+</td></tr>
-<tr><td><a href="https://archive.apache.org/dist/kafka/3.3.0/RELEASE_NOTES.html">3.3.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td><td>?</td></tr>
-<tr><td><a href="https://archive.apache.org/dist/kafka/3.2.0/RELEASE_NOTES.html">3.2.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td><td>?</td>></tr>
+<table style="">
+<tr>
+<th><a href="https://kafka.apache.org/" rel="external">Kakfa</a></th>
+<th><a href="https://zookeeper.apache.org/releases.html" rel="external">ZooKeeper</a></th>
+<th><a href="https://www.eclipse.org/jetty/" rel="external">Jetty</a></th>
+<th>Java</th>
+</tr>
+<tr>
+<td><a href="https://downloads.apache.org/kafka/3.5.1/RELEASE_NOTES.html">3.5.1</a></td>
+<td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td>
+<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td>
+<td>8+</td>
+</tr>
+<tr>
+<td><a href="https://downloads.apache.org/kafka/3.5.0/RELEASE_NOTES.html">3.5.0</a></td>
+<td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td>
+<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td>
+<td>8+</td>
+</tr>
+<tr>
+<td><a href="https://archive.apache.org/dist/kafka/3.4.1/RELEASE_NOTES.html">3.4.1</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td><td>8+</td>
+</tr>
+<tr>
+<td><a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html">3.4.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.48.v20220622">9.4.48</a> <sup><b>c)</b></sup></td><td>8+</td></tr>
+<tr><td><a href="https://archive.apache.org/dist/kafka/3.3.0/RELEASE_NOTES.html">3.3.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td><td>?</td>
+</tr>
+<tr>
+<td><a href="https://archive.apache.org/dist/kafka/3.2.0/RELEASE_NOTES.html">3.2.x</a></td>
+<td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td>
+<td>?</td>
+<td>?</td>>
+</tr>
 </table>
 <span><sup><b>a)</b></sup> ZooKeeper current stable version is <a href="https://zookeeper.apache.org/doc/r3.8.2/"><b>3.8.2</b></a> as of July 18, 2023 (<a href="https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper">MVN Repository</a>).<br/>
 <sup><b>b)</b></sup> Jetty current version is <a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-12.0.0"><b>12.0.0</b></a> as of August 7, 2023 (<a href="https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server">MVN Repository</a>).<br/>
@@ -157,7 +179,7 @@ We distinguish different sets of batch commands:
 <dl><dd>
 <a href="https://www.kafkatool.com/features.html" rel="external"><b>Offset Explorer</b></a> (formerly named <b>Kalfa Tool</b>) provides the following features :
 <ul>
-  <li>The browser tree allows us to easily view and navigate the objects (brokers, topics, partitions, consumers) in our <a href="https://www.confluent.io/blog/what-is-an-apache-kafka-cluster/">Apache Kafka cluster</a>.</li>
+  <li>The browser tree allows us to easily view and navigate the objects (brokers, topices, particitions, consumers) in our <a href="https://www.confluent.io/blog/what-is-an-apache-kafka-cluster/">Apache Kafka cluster</a>.</li>
   <li>The explorer allows us to view messages (and their keys) in the partitions of the topics we are interested in.</li>
   <li>If the string-based data is either in JSON or XML format, we can view it in a pretty-printed manner.</li>
   <li>The browser tree also allows us to quickly view all offsets of our <a href="https://kafka.apache.org">Kafka</a> consumers.</li>
@@ -183,12 +205,12 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 </dd></dl>
 <!--
 <a href="https://github.com/sbt/sbt/releases">sbt-1.9.3.zip</a>                                      <i>( 17 MB)</i>
-<a href="https://www.scala-lang.org/files/archive/">scala-2.13.11.zip</a>                                  <i>( 21 MB)</i>
+<a href="https://www.scala-lang.org/files/archive/">scala-2.13.12.zip</a>                                  <i>( 21 MB)</i>
 -->
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/August 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/September 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -246,7 +268,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [rust_examples]: https://github.com/michelou/rust-examples
 [scala_api]: https://www.scala-lang.org/files/archive/api/current/
 [scala_releases]: https://www.scala-lang.org/files/archive/
-[scala_relnotes]: https://github.com/scala/scala/releases/tag/v2.13.11
+[scala_relnotes]: https://github.com/scala/scala/releases/tag/v2.13.12
 [scala3_examples]: https://github.com/michelou/dotty-examples
 [spark_examples]: https://github.com/michelou/spark-examples
 [spring_examples]: https://github.com/michelou/spring-examples
