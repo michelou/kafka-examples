@@ -300,8 +300,8 @@ for /f "delims=" %%f in ('where javac.exe 2^>NUL') do set "__JAVAC_CMD=%%f"
 if defined __JAVAC_CMD (
     call :jdk_version "%__JAVAC_CMD%"
     if !_JDK_VERSION!==%__VERSION% (
-        for %%i in ("%__JAVAC_CMD%") do set "__BIN_DIR=%%~dpi"
-        for %%f in ("%__BIN_DIR%") do set "_JAVA_HOME=%%~dpf"
+        for /f "delims=" %%i in ("%__JAVAC_CMD%") do set "__BIN_DIR=%%~dpi"
+        for /f "delims=" %%f in ("%__BIN_DIR%") do set "_JAVA_HOME=%%~dpf"
     ) else (
         echo %_ERROR_LABEL% Required JDK installation not found ^(%__JDK_NAME%^) 1>&2
         set _EXITCODE=1
@@ -357,9 +357,10 @@ set _KAFKA_PATH=
 set __SERVER_START_CMD=
 for /f "delims=" %%f in ('where kafka-server-start.bat 2^>NUL') do set "__SERVER_START_CMD=%%f"
 if defined __SERVER_START_CMD (
-    for %%i in ("%__SERVER_START_CMD%\..") do set "__BIN_DIR=%%~dpi"
-    for %%f in ("%__BIN_DIR%") do set "_KAFKA_HOME=%%~dpf"
+    for /f "delims=" %%i in ("%__SERVER_START_CMD%\..") do set "__BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("%__BIN_DIR%") do set "_KAFKA_HOME=%%~dpf"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of kafka-server-start executable found in PATH 1>&2
+    @rem keep _KAFKA_PATH undefined since executable already in path
     goto :eof
 ) else if defined KAFKA_HOME (
     set "_KAFKA_HOME=%KAFKA_HOME%"
@@ -498,16 +499,25 @@ set _MAVEN_PATH=
 set __MVN_CMD=
 for /f "delims=" %%f in ('where mvn.cmd 2^>NUL') do set "__MVN_CMD=%%f"
 if defined __MVN_CMD (
+    for /f "delims=" %%i in ("%__MVN_CMD%") do set "__MAVEN_BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("!__MAVEN_BIN_DIR!\.") do set "_MAVEN_HOME=%%~dpf"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Maven executable found in PATH 1>&2
-    for %%i in ("%__MVN_CMD%") do set "__MAVEN_BIN_DIR=%%~dpi"
-    for %%f in ("!__MAVEN_BIN_DIR!\.") do set "_MAVEN_HOME=%%~dpf"
+    @rem keep _MAVEN_PATH undefined since executable already in path
+    goto :eof
 ) else if defined MAVEN_HOME (
     set "_MAVEN_HOME=%MAVEN_HOME%"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using environment variable MAVEN_HOME 1>&2
 ) else (
-    set _PATH=C:\opt
-    for /f %%f in ('dir /ad /b "!_PATH!\apache-maven-*" 2^>NUL') do set "_MAVEN_HOME=!_PATH!\%%f"
-    if defined _MAVEN_HOME (
+    set __PATH=C:\opt
+    if exist "!__PATH!\apache-maven\" ( set "_MAVEN_HOME=!__PATH!\apache-maven"
+    ) else (
+        for /f %%f in ('dir /ad /b "!_PATH!\apache-maven-*" 2^>NUL') do set "_MAVEN_HOME=!__PATH!\%%f"
+        if not defined _MAVEN_HOME (
+            set "__PATH=%ProgramFiles%"
+            for /f "delims=" %%f in ('dir /ad /b "!__PATH!\apache-maven*" 2^>NUL') do set "_MAVEN_HOME=!__PATH!\%%f"
+        )
+    )
+	if defined _MAVEN_HOME (
         if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Maven installation directory "!_MAVEN_HOME!" 1>&2
     )
 )
@@ -552,8 +562,8 @@ set _GIT_PATH=
 set __GIT_CMD=
 for /f "delims=" %%f in ('where git.exe 2^>NUL') do set "__GIT_CMD=%%f"
 if defined __GIT_CMD (
-    for %%i in ("%__GIT_CMD%") do set "__GIT_BIN_DIR=%%~dpi"
-    for %%f in ("!__GIT_BIN_DIR!\.") do set "_GIT_HOME=%%~dpf"
+    for /f "delims=" %%i in ("%__GIT_CMD%") do set "__GIT_BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("!__GIT_BIN_DIR!\.") do set "_GIT_HOME=%%~dpf"
     @rem Executable git.exe is present both in bin\ and \mingw64\bin\
     if not "!_GIT_HOME:mingw=!"=="!_GIT_HOME!" (
         for %%f in ("!_GIT_HOME!\.") do set "_GIT_HOME=%%~dpf"

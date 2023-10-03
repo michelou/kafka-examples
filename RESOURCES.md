@@ -65,7 +65,8 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
-  - [Kafka Monthy Digest: August 2023](https://developers.redhat.com/blog/2023/09/01/kafka-monthly-digest-august-2023). 
+  - [Kafka Monthly Digest: September 2023](https://developers.redhat.com/blog/2023/10/02/kafka-monthly-digest-september-2023)
+  - [Kafka Monthly Digest: August 2023](https://developers.redhat.com/blog/2023/09/01/kafka-monthly-digest-august-2023). 
   - [Kafka Monthly Digest: July 2023](https://developers.redhat.com/blog/2023/07/31/kafka-monthly-digest-july-2023).
   - [Kafka Monthly Digest: June 2023](https://developers.redhat.com/blog/2023/07/03/kafka-monthly-digest-june-2023).
   - [Kafka Monthly Digest: May 2023](https://developers.redhat.com/blog/2023/05/31/kafka-monthly-digest-may-2023).
@@ -102,7 +103,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/September 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/October 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

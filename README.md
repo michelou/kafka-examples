@@ -36,13 +36,13 @@ Optionally one may also install the following software:
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*September 2023*) <sup id="anchor_04">[4](#footnote_04)</sup>:
+For instance our development environment looks as follows (*October 2023*) <sup id="anchor_04">[4](#footnote_04)</sup>:
 
 <pre style="font-size:80%;">
-C:\opt\apache-maven-3.9.4\         <i>( 10 MB)</i>
+C:\opt\apache-maven\               <i>( 10 MB)</i>
 C:\opt\Git\                        <i>(367 MB)</i>
 C:\opt\gradle\                     <i>(135 MB)</i>
-C:\opt\jdk-oracle-21-ea-35\        <i>(320 MB)</i>
+C:\opt\jdk-oracle-21-ga\           <i>(320 MB)</i>
 C:\opt\jdk-temurin-11.0.20_8\      <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.8_7\       <i>(299 MB)</i>
 C:\opt\kafka_2.13-3.5.1\           <i>(105 MB)</i>
@@ -104,7 +104,7 @@ Batch command [**`setenv.bat`**](setenv.bat) makes external tools such as [**`gi
       C:\opt\scala-2.13.12\bin\scalac.bat
       C:\opt\gradle\bin\gradle.bat
       C:\opt\kafka_2.13-3.5.1\bin\windows\kafka-configs.bat
-      C:\opt\apache-maven-3.9.4\bin\mvn.cmd
+      C:\opt\apache-maven\bin\mvn.cmd
       C:\opt\Git\bin\git.exe
       C:\opt\Git\usr\bin\diff.exe
       C:\opt\Git\bin\bash.exe
@@ -113,7 +113,7 @@ Batch command [**`setenv.bat`**](setenv.bat) makes external tools such as [**`gi
       "GRADLE_HOME=C:\opt\gradle"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.8_7"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.5.1"
-      "MAVEN_HOME=C:\opt\apache-maven-3.9.4"
+      "MAVEN_HOME=C:\opt\apache-maven"
       "SCALA_HOME=C:\opt\scala-2.13.12"
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
@@ -210,7 +210,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/September 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/October 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
