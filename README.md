@@ -21,17 +21,18 @@
 This project depends on the following external software for the **Microsoft Windows** platform:
 
 - [Git 2.42][git_releases] ([*release notes*][git_relnotes])
-- [Kafka 3.5][kafka_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*release notes*][kafka_relnotes])
-- [Temurin OpenJDK 17 LTS][temurin_opendjk17] <sup id="anchor_02">[2](#footnote_02)</sup> ([*release notes*][temurin_opendjk17_relnotes], [*bug fixes*][temurin_opendjk17_bugfixes])
+- [Kafka 3.6][kafka_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*release notes*][kafka_relnotes])
+- [Temurin OpenJDK 17 LTS][temurin_openjdk17] <sup id="anchor_02">[2](#footnote_02)</sup> ([*release notes*][temurin_openjdk17_relnotes], [*bug fixes*][temurin_openjdk17_bugfixes])
 
 Optionally one may also install the following software:
 
 - [Apache Maven 3.9][apache_maven] ([requires Java 8+][apache_maven_history])  ([*release notes*][apache_maven_relnotes])
-- [Gradle 8.3][gradle_install] ([requires Java 8+][gradle_compatibility]) ([*release notes*][gradle_relnotes])
+- [Gradle 8.4][gradle_install] ([requires Java 8+][gradle_compatibility]) ([*release notes*][gradle_relnotes])
 - [Offset Explorer 2.3][kafkatool_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*change history*][kafkatool_changes])
-- [Oracle OpenJDK 21 LTS][oracle_openjdk21] ([*release notes*][oracle_openjdk21_relnotes], [*Java 21 API*][oracle_openjdk21_api])
 - [Scala 2.13][scala_releases] (requires Java 8+) ([*release notes*][scala_relnotes], [*Scala API*][scala_api])
 - [Temurin OpenJDK 11 LTS][temurin_opendjk11] ([*release notes*][temurin_opendjk11_relnotes], [*bug fixes*][temurin_opendjk11_bugfixes])
+- [Temurin OpenJDK 21 LTS][temurin_openjdk21] ([*release notes*][temurin_openjdk21_relnotes], [*Java 21 API*][oracle_openjdk21_api])
+- [Visual Studio Code 1.83][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
@@ -42,11 +43,12 @@ For instance our development environment looks as follows (*October 2023*) <sup 
 C:\opt\apache-maven\               <i>( 10 MB)</i>
 C:\opt\Git\                        <i>(367 MB)</i>
 C:\opt\gradle\                     <i>(135 MB)</i>
-C:\opt\jdk-oracle-21-ga\           <i>(320 MB)</i>
-C:\opt\jdk-temurin-11.0.20_8\      <i>(302 MB)</i>
+C:\opt\jdk-temurin-11.0.21_9\      <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.8_7\       <i>(299 MB)</i>
-C:\opt\kafka_2.13-3.5.1\           <i>(105 MB)</i>
+C:\opt\jdk-temurin-21_35\          <i>(325 MB)</i>
+C:\opt\kafka_2.13-3.6.0\           <i>(112 MB)</i>
 C:\opt\scala-2.13.12\              <i>( 24 MB)</i>
+C:\opt\VSCode\                     <i>(341 MB)</i>
 C:\Program Files\OffsetExplorer2\  <i>(112 MB)</i>
 </pre>
 
@@ -96,14 +98,14 @@ Batch command [**`setenv.bat`**](setenv.bat) makes external tools such as [**`gi
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
       java 17.0.8, javac 17.0.8, scalac 2.13.12,
-      gradle 8.3, kafka-configs 3.5.1, mvn 3.9.4,
+      gradle 8.4, kafka-configs 3.6.0, mvn 3.9.5,
       git 2.42.0.windows.1, diff 3.10, bash 5.2.12(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.8_7\bin\java.exe
       C:\opt\jdk-temurin-17.0.8_7\bin\javac.exe
       C:\opt\scala-2.13.12\bin\scalac.bat
       C:\opt\gradle\bin\gradle.bat
-      C:\opt\kafka_2.13-3.5.1\bin\windows\kafka-configs.bat
+      C:\opt\kafka_2.13-3.6.0\bin\windows\kafka-configs.bat
       C:\opt\apache-maven\bin\mvn.cmd
       C:\opt\Git\bin\git.exe
       C:\opt\Git\usr\bin\diff.exe
@@ -112,7 +114,7 @@ Batch command [**`setenv.bat`**](setenv.bat) makes external tools such as [**`gi
       "GIT_HOME=C:\opt\Git"
       "GRADLE_HOME=C:\opt\gradle"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.8_7"
-      "KAFKA_HOME=C:\opt\kafka_2.13-3.5.1"
+      "KAFKA_HOME=C:\opt\kafka_2.13-3.6.0"
       "MAVEN_HOME=C:\opt\apache-maven"
       "SCALA_HOME=C:\opt\scala-2.13.12"
    &nbsp;
@@ -129,7 +131,7 @@ Batch command [**`setenv.bat`**](setenv.bat) makes external tools such as [**`gi
 <span id="footnote_01">[1]</span> ***Kafka components*** [↩](#anchor_01)
 
 <dl><dd>
-<table style="">
+<table>
 <tr>
 <th><a href="https://kafka.apache.org/" rel="external">Kakfa</a></th>
 <th><a href="https://zookeeper.apache.org/releases.html" rel="external">ZooKeeper</a></th>
@@ -137,22 +139,28 @@ Batch command [**`setenv.bat`**](setenv.bat) makes external tools such as [**`gi
 <th>Java</th>
 </tr>
 <tr>
+<td><a href="https://downloads.apache.org/kafka/3.6.0/RELEASE_NOTES.html">3.6.0</a></td>
+<td><a href="https://zookeeper.apache.org/doc/r3.8.2/releasenotes.html">3.8.2</a> <sup><b>a)</b></sup></td>
+<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.52.v20230217">9.4.52</a> <sup><b>b)</b></sup></td>
+<td>8+</td>
+</tr>
+<tr>
 <td><a href="https://downloads.apache.org/kafka/3.5.1/RELEASE_NOTES.html">3.5.1</a></td>
-<td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td>
-<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td>
+<td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td>
+<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td>
 <td>8+</td>
 </tr>
 <tr>
 <td><a href="https://downloads.apache.org/kafka/3.5.0/RELEASE_NOTES.html">3.5.0</a></td>
-<td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td>
-<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td>
+<td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td>
+<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td>
 <td>8+</td>
 </tr>
 <tr>
 <td><a href="https://archive.apache.org/dist/kafka/3.4.1/RELEASE_NOTES.html">3.4.1</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td><td>8+</td>
 </tr>
 <tr>
-<td><a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html">3.4.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.48.v20220622">9.4.48</a> <sup><b>c)</b></sup></td><td>8+</td></tr>
+<td><a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html">3.4.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.48.v20220622">9.4.48</a></td><td>8+</td></tr>
 <tr><td><a href="https://archive.apache.org/dist/kafka/3.3.0/RELEASE_NOTES.html">3.3.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td><td>?</td>
 </tr>
 <tr>
@@ -193,18 +201,18 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 </dd>
 <dd>
 <pre style="font-size:80%;">
-<a href="https://maven.apache.org/download.cgi">apache-maven-3.9.4-bin.zip</a>                         <i>( 10 MB)</i>
-<a href="https://gradle.org/install/">gradle-8.3-bin.zip</a>                                 <i>(118 MB)</i>
-<a href="https://kafka.apache.org/downloads">kafka_2.13-3.5.1.tgz</a>                               <i>( 82 MB)</i>
+<a href="https://maven.apache.org/download.cgi">apache-maven-3.9.5-bin.zip</a>                         <i>( 10 MB)</i>
+<a href="https://gradle.org/install/">gradle-8.4-bin.zip</a>                                 <i>(118 MB)</i>
+<a href="https://kafka.apache.org/downloads">kafka_2.13-3.6.0.tgz</a>                               <i>( 82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
-<a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.20_8.zip</a>   <i>( 99 MB)</i>
+<a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.21_9.zip</a>   <i>( 99 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.8_7.zip</a>    <i>( 99 MB)</i>
-<a href="https://jdk.java.net/21/">openjdk-21_windows-x64_bin_build_35.zip</a>            <i>(191 MB)</i>
+<a href="ttps://adoptium.net/releases.html?variant=openjdk21&jvmVariant=hotspot">OpenJDK21U-jdk_x64_windows_hotspot_21_35.zip</a>       <i>(191 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.42.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 </pre>
 </dd></dl>
 <!--
-<a href="https://github.com/sbt/sbt/releases">sbt-1.9.3.zip</a>                                      <i>( 17 MB)</i>
+<a href="https://github.com/sbt/sbt/releases">sbt-1.9.6.zip</a>                                      <i>( 17 MB)</i>
 <a href="https://www.scala-lang.org/files/archive/">scala-2.13.12.zip</a>                                  <i>( 21 MB)</i>
 -->
 
@@ -219,7 +227,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [akka_examples]: https://github.com/michelou/akka-examples
 [apache_maven]: https://maven.apache.org/download.cgi
 [apache_maven_history]: https://maven.apache.org/docs/history.html
-[apache_maven_relnotes]: https://maven.apache.org/docs/3.9.4/release-notes.html
+[apache_maven_relnotes]: https://maven.apache.org/docs/3.9.5/release-notes.html
 [cpp_examples]: https://github.com/michelou/cpp-examples
 [dart_examples]: https://github.com/michelou/dart-examples
 [deno_examples]: https://github.com/michelou/deno-examples
@@ -246,8 +254,9 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 3.4.1 -> https://archive.apache.org/dist/kafka/3.4.1/RELEASE_NOTES.html
 3.5.0 -> https://archive.apache.org/dist/kafka/3.5.0/RELEASE_NOTES.html
 3.5.1 -> https://archive.apache.org/dist/kafka/3.5.1/RELEASE_NOTES.html
+3.6.0 -> https://archive.apache.org/dist/kafka/3.6.0/RELEASE_NOTES.html
 -->
-[kafka_relnotes]: https://archive.apache.org/dist/kafka/3.5.1/RELEASE_NOTES.html
+[kafka_relnotes]: https://archive.apache.org/dist/kafka/3.6.0/RELEASE_NOTES.html
 [kafkatool_changes]: https://www.kafkatool.com/changes.html
 [kafkatool_downloads]: https://www.kafkatool.com/download.html
 [kotlin_examples]: https://github.com/michelou/kotlin-examples
@@ -275,28 +284,40 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <!--
 #### Archives ### https://mail.openjdk.org/pipermail/jdk-updates-dev/
 11.0.9  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2020-July/003498.html
-11.0.13 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2021-October/009368.html
-11.0.14 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-January/011643.html
+11.0.11 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2021-April/005860.html
+11.0.12 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2021-July/006954.html
+11.0.13 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2021-October/009368.html
+11.0.14 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2022-January/011643.html
+11.0.16 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-July/016017.html
 11.0.17 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-October/018119.html
+11.0.18 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-January/020111.html
+11.0.19 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-April/021900.html
 11.0.20 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-July/024064.html
+11.0.21 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026351.html
 -->
 [temurin_opendjk11]: https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot
 [temurin_opendjk11_bugfixes]: https://www.oracle.com/java/technologies/javase/11-0-17-bugfixes.html
 [temurin_opendjk11_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-July/024064.html
 <!--
-17.0.7  -> https://www.oracle.com/java/technologies/javase/17-0-7-relnotes.html
-17.0.8  -> https://www.oracle.com/java/technologies/javase/17-0-8-relnotes.html
--->
-[temurin_opendjk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
-[temurin_opendjk17_bugfixes]: https://www.oracle.com/java/technologies/javase/17-0-2-bugfixes.html
-<!--
 17.0.2  -> https://www.oracle.com/java/technologies/javase/17-0-2-bugfixes.html
 17.0.3  -> https://www.oracle.com/java/technologies/javase/17-0-3-bugfixes.html
+17.0.7  -> https://www.oracle.com/java/technologies/javase/17-0-7-relnotes.html
+17.0.8  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-September/025526.html
+17.0.9  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026352.html
 -->
-[temurin_opendjk17_relnotes]: https://github.com/openjdk/jdk/compare/jdk-17%2B20...jdk-17%2B21
+[temurin_openjdk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
+[temurin_openjdk17_bugfixes]: https://www.oracle.com/java/technologies/javase/17-0-2-bugfixes.html
+[temurin_openjdk17_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026352.html
+<!--
+21_35   -> https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
+-->
+[temurin_openjdk21]: https://adoptium.net/fr/temurin/releases/?variant=openjdk21&jvmVariant=hotspot
+[temurin_openjdk21_relnotes]: https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
 [trufflesqueak_examples]: https://github.com/michelou/trufflesqueak-examples
 [unix_bash_script]: https://www.gnu.org/software/bash/manual/bash.html
 [unix_opt]: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html
+[vscode_downloads]: https://code.visualstudio.com/#alt-downloads
+[vscode_relnotes]: https://code.visualstudio.com/updates/
 [windows_batch_file]: https://en.wikibooks.org/wiki/Windows_Batch_Scripting
 [windows_installer]: https://docs.microsoft.com/en-us/windows/win32/msi/windows-installer-portal
 [windows_limitation]: https://support.microsoft.com/en-gb/help/830473/command-prompt-cmd-exe-command-line-string-limitation

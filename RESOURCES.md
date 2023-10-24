@@ -41,6 +41,7 @@
   - [L’avenir de Zookeeper dans une architecture Kafka](https://blog.zenika.com/2021/04/07/lavenir-de-zookeeper-dans-une-architecture-kafka/) by Mohamed Karaga, April 2021.
   - [Maîtriser le paramétrage des producers Kafka](https://blog.zenika.com/2020/11/04/maitriser-le-parametrage-des-producers-kafka/) by Alexandre Fruchaud, November 2020.
 - [instacluster Blog](https://www.instaclustr.com/blog/category/technical/kafka/) :
+  - [An Introduction to Apache Kafka® Metrics for Developers](https://www.instaclustr.com/blog/an-introduction-to-apache-kafka-metrics-for-developers/) by Paul Brebner, August 2023.
   - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 3—Maximum Partitions and Conclusions](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-3-maximum-partitions-and-conclusions/) by Paul Brebner, January 2023.
   - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 2—Partitions and Meta-Data Performance](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-2-partitions-and-meta-data-performance/) by Paul Brebner, December 2022.
   - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 1— Partitions and Data Performance](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-1-partitions-and-data-performance/) by Paul Brebner, November 2022.
