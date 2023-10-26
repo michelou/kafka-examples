@@ -30,12 +30,12 @@ set _VSCODE_PATH=
 call :gradle
 if not %_EXITCODE%==0 goto end
 
-@rem %1=vendor, %2=version
+@rem %1=version, %2=vendor
 @rem eg. openjdk, bellsoft, corretto, bellsoft, openj9, redhat, sapmachine, zulu
-call :java "oracle" 21
+call :java 11 "temurin"
 if not %_EXITCODE%==0 goto end
 
-call :java "temurin" 17
+call :java 17 "temurin"
 if not %_EXITCODE%==0 goto end
 
 call :kafka
@@ -136,7 +136,7 @@ if "%__ARG:~0,1%"=="-" (
     ) else if "%__ARG%"=="-msys" ( set _BASH=0& set _MSYS=1
     ) else if "%__ARG%"=="-verbose" ( set _VERBOSE=1
     ) else (
-        echo %_ERROR_LABEL% Unknown option %__ARG% 1>&2
+        echo %_ERROR_LABEL% Unknown option "%__ARG%" 1>&2
         set _EXITCODE=1
         goto args_done
     )
@@ -144,7 +144,7 @@ if "%__ARG:~0,1%"=="-" (
     @rem subcommand
     if "%__ARG%"=="help" ( set _HELP=1
     ) else (
-        echo %_ERROR_LABEL% Unknown subcommand %__ARG% 1>&2
+        echo %_ERROR_LABEL% Unknown subcommand "%__ARG%" 1>&2
         set _EXITCODE=1
         goto args_done
     )
@@ -240,12 +240,12 @@ echo Usage: %__BEG_O%%_BASENAME% { ^<option^> ^| ^<subcommand^> }%__END%
 echo.
 echo   %__BEG_P%Options:%__END%
 echo     %__BEG_O%-bash%__END%       start Git bash shell instead of Windows command prompt
-echo     %__BEG_O%-debug%__END%      display commands executed by this script
+echo     %__BEG_O%-debug%__END%      print commands executed by this script
 echo     %__BEG_O%-msys%__END%       start MSYS2 bash shell instead of Windows command prompt
-echo     %__BEG_O%-verbose%__END%    display environment settings
+echo     %__BEG_O%-verbose%__END%    print progress messages
 echo.
 echo   %__BEG_P%Subcommands:%__END%
-echo     %__BEG_O%help%__END%        display this help message
+echo     %__BEG_O%help%__END%        print this help message
 goto :eof
 
 @rem output parameters: _GRADLE_HOME, _GRADLE_PATH
@@ -256,9 +256,10 @@ set _GRADLE_PATH=
 set __GRADLE_CMD=
 for /f "delims=" %%f in ('where gradle.bat 2^>NUL') do set "__GRADLE_CMD=%%f"
 if defined __GRADLE_CMD (
-    for %%i in ("%__GRADLE_CMD%") do set "__GRADLE_BIN_DIR=%%~dpi"
-    for %%f in ("!__GRADLE_BIN_DIR!\.") do set "_GRADLE_HOME=%%~dpf"
+    for /f "delims=" %%i in ("%__GRADLE_CMD%") do set "__GRADLE_BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("!__GRADLE_BIN_DIR!\.") do set "_GRADLE_HOME=%%~dpf"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Gradle executable found in PATH 1>&2
+    @rem keep _GRADLE_PATH undefined since executable already in path
     goto :eof
 ) else if defined GRADLE_HOME (
     set "_GRADLE_HOME=%GRADLE_HOME%"
@@ -274,24 +275,24 @@ if defined __GRADLE_CMD (
         )
     )
     if defined _GRADLE_HOME (
-        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Gradle installation directory !_GRADLE_HOME! 1>&2
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Gradle installation directory "!_GRADLE_HOME!" 1>&2
     )
 )
 if not exist "%_GRADLE_HOME%\bin\gradle.bat" (
-    echo %_ERROR_LABEL% Gradle executable not found ^(%_GRADLE_HOME%^) 1>&2
+    echo %_ERROR_LABEL% Gradle executable not found ^("%_GRADLE_HOME%"^) 1>&2
     set _EXITCODE=1
     goto :eof
 )
 set "_GRADLE_PATH=;%_GRADLE_HOME%\bin"
 goto :eof
 
-@rem input parameter: %1=vendor %2=required version
+@rem input parameter: %1=required version %2=vendor
 @rem output parameter: _JAVA_HOME (resp. JAVA11_HOME)
 :java
 set _JAVA_HOME=
 
-set __VENDOR=%~1
-set __VERSION=%~2
+set __VERSION=%~1
+set __VENDOR=%~2
 if not defined __VENDOR ( set __JDK_NAME=jdk-%__VERSION%
 ) else ( set __JDK_NAME=jdk-%__VENDOR%-%__VERSION%
 )
@@ -300,8 +301,8 @@ for /f "delims=" %%f in ('where javac.exe 2^>NUL') do set "__JAVAC_CMD=%%f"
 if defined __JAVAC_CMD (
     call :jdk_version "%__JAVAC_CMD%"
     if !_JDK_VERSION!==%__VERSION% (
-        for %%i in ("%__JAVAC_CMD%") do set "__BIN_DIR=%%~dpi"
-        for %%f in ("%__BIN_DIR%") do set "_JAVA_HOME=%%~dpf"
+        for /f "delims=" %%i in ("%__JAVAC_CMD%") do set "__BIN_DIR=%%~dpi"
+        for /f "delims=" %%f in ("%__BIN_DIR%") do set "_JAVA_HOME=%%~dpf"
     ) else (
         echo %_ERROR_LABEL% Required JDK installation not found ^(%__JDK_NAME%^) 1>&2
         set _EXITCODE=1
@@ -357,9 +358,10 @@ set _KAFKA_PATH=
 set __SERVER_START_CMD=
 for /f "delims=" %%f in ('where kafka-server-start.bat 2^>NUL') do set "__SERVER_START_CMD=%%f"
 if defined __SERVER_START_CMD (
-    for %%i in ("%__SERVER_START_CMD%\..") do set "__BIN_DIR=%%~dpi"
-    for %%f in ("%__BIN_DIR%") do set "_KAFKA_HOME=%%~dpf"
+    for /f "delims=" %%i in ("%__SERVER_START_CMD%\..") do set "__BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("%__BIN_DIR%") do set "_KAFKA_HOME=%%~dpf"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of kafka-server-start executable found in PATH 1>&2
+    @rem keep _KAFKA_PATH undefined since executable already in path
     goto :eof
 ) else if defined KAFKA_HOME (
     set "_KAFKA_HOME=%KAFKA_HOME%"
@@ -373,6 +375,9 @@ if defined __SERVER_START_CMD (
             set "__PATH=%ProgramFiles%"
             for /f "delims=" %%f in ('dir /ad /b "!__PATH!\kafka*" 2^>NUL') do set "_SBT_HOME=!__PATH!\%%f"
         )
+    )
+    if defined _KAFKA_HOME (
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Kafka installation directory "!_KAFKA_HOME!" 1>&2
     )
 )
 if not exist "%_KAFKA_HOME%\bin\windows\kafka-server-start.bat" (
@@ -394,8 +399,8 @@ for /f "delims=" %%f in ('where scalac.bat 2^>NUL') do (
     if defined __VERSION if "!__VERSION:~0,1!"=="2" set "__SCALAC_CMD=%%f"
 )
 if defined __SCALAC_CMD (
-    for %%i in ("%__SCALAC_CMD%") do set "__SCALA_BIN_DIR=%%~dpi"
-    for %%f in ("!__SCALA_BIN_DIR!..") do set "_SCALA_HOME=%%f"
+    for /f "delims=" %%i in ("%__SCALAC_CMD%") do set "__SCALA_BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("!__SCALA_BIN_DIR!..") do set "_SCALA_HOME=%%f"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Scala 2 executable found in PATH 1>&2
     goto :eof
 ) else if defined SCALA_HOME (
@@ -423,9 +428,9 @@ set _ANT_PATH=
 set __ANT_CMD=
 for /f "delims=" %%f in ('where ant.bat 2^>NUL') do set "__ANT_CMD=%%f"
 if defined __ANT_CMD (
+    for /f "delims=" %%i in ("%__ANT_CMD%") do set "__ANT_BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("!__ANT_BIN_DIR!\.") do set "_ANT_HOME=%%~dpf"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Ant executable found in PATH 1>&2
-    for %%i in ("%__ANT_CMD%") do set "__ANT_BIN_DIR=%%~dpi"
-    for %%f in ("!__ANT_BIN_DIR!\.") do set "_ANT_HOME=%%~dpf"
     @rem keep _ANT_PATH undefined since executable already in path
     goto :eof
 ) else if defined ANT_HOME (
@@ -461,9 +466,10 @@ set _GRADLE_PATH=
 set __GRADLE_CMD=
 for /f "delims=" %%f in ('where gradle.bat 2^>NUL') do set "__GRADLE_CMD=%%f"
 if defined __GRADLE_CMD (
-    for %%i in ("%__GRADLE_CMD%") do set "__GRADLE_BIN_DIR=%%~dpi"
-    for %%f in ("!__GRADLE_BIN_DIR!\.") do set "_GRADLE_HOME=%%~dpf"
+    for /f "delims=" %%i in ("%__GRADLE_CMD%") do set "__GRADLE_BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("!__GRADLE_BIN_DIR!\.") do set "_GRADLE_HOME=%%~dpf"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Gradle executable found in PATH 1>&2
+    @rem keep _GRADLE_PATH undefined since executable already in path
     goto :eof
 ) else if defined GRADLE_HOME (
     set "_GRADLE_HOME=%GRADLE_HOME%"
@@ -498,15 +504,20 @@ set _MAVEN_PATH=
 set __MVN_CMD=
 for /f "delims=" %%f in ('where mvn.cmd 2^>NUL') do set "__MVN_CMD=%%f"
 if defined __MVN_CMD (
+    for /f "delims=" %%i in ("%__MVN_CMD%") do set "__MAVEN_BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("!__MAVEN_BIN_DIR!\.") do set "_MAVEN_HOME=%%~dpf"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Maven executable found in PATH 1>&2
-    for %%i in ("%__MVN_CMD%") do set "__MAVEN_BIN_DIR=%%~dpi"
-    for %%f in ("!__MAVEN_BIN_DIR!\.") do set "_MAVEN_HOME=%%~dpf"
+    @rem keep _MAVEN_PATH undefined since executable already in path
+    goto :eof
 ) else if defined MAVEN_HOME (
     set "_MAVEN_HOME=%MAVEN_HOME%"
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using environment variable MAVEN_HOME 1>&2
 ) else (
-    set _PATH=C:\opt
-    for /f %%f in ('dir /ad /b "!_PATH!\apache-maven-*" 2^>NUL') do set "_MAVEN_HOME=!_PATH!\%%f"
+    set __PATH=C:\opt
+    if exist "!__PATH!\apache-maven\" ( set "_MAVEN_HOME=!__PATH!\apache-maven"
+    ) else (
+        for /f %%f in ('dir /ad /b "!__PATH!\apache-maven-*" 2^>NUL') do set "_MAVEN_HOME=!__PATH!\%%f"
+    )
     if defined _MAVEN_HOME (
         if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Maven installation directory "!_MAVEN_HOME!" 1>&2
     )
@@ -519,7 +530,7 @@ if not exist "%_MAVEN_HOME%\bin\mvn.cmd" (
 set "_MAVEN_PATH=;%_MAVEN_HOME%\bin"
 goto :eof
 
-@rem input parameter(s): %1=directory path
+@rem input parameter: %1=directory path
 @rem output parameter: _SUBST_PATH
 :subst_path
 set "_SUBST_PATH=%~1"
@@ -552,11 +563,11 @@ set _GIT_PATH=
 set __GIT_CMD=
 for /f "delims=" %%f in ('where git.exe 2^>NUL') do set "__GIT_CMD=%%f"
 if defined __GIT_CMD (
-    for %%i in ("%__GIT_CMD%") do set "__GIT_BIN_DIR=%%~dpi"
-    for %%f in ("!__GIT_BIN_DIR!\.") do set "_GIT_HOME=%%~dpf"
+    for /f "delims=" %%i in ("%__GIT_CMD%") do set "__GIT_BIN_DIR=%%~dpi"
+    for /f "delims=" %%f in ("!__GIT_BIN_DIR!\.") do set "_GIT_HOME=%%~dpf"
     @rem Executable git.exe is present both in bin\ and \mingw64\bin\
     if not "!_GIT_HOME:mingw=!"=="!_GIT_HOME!" (
-        for %%f in ("!_GIT_HOME!\.") do set "_GIT_HOME=%%~dpf"
+        for /f "delims=" %%f in ("!_GIT_HOME!\.") do set "_GIT_HOME=%%~dpf"
     )
     if %_DEBUG%==1 echo %_DEBUG_LABEL% Using path of Git executable found in PATH 1>&2
     @rem keep _GIT_PATH undefined since executable already in path
@@ -609,6 +620,9 @@ if defined __CODE_CMD (
             set "__PATH=%ProgramFiles%"
             for /f "delims=" %%f in ('dir /ad /b "!__PATH!\VSCode-1*" 2^>NUL') do set "_VSCODE_HOME=!__PATH!\%%f"
         )
+    )
+    if defined _VSCODE_HOME (
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default VSCode installation directory "!_VSCODE_HOME!" 1>&2
     )
 )
 if not exist "%_VSCODE_HOME%\code.exe" (

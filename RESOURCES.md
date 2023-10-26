@@ -54,7 +54,8 @@
 
 ## <span id="books">Books</span> [**&#x25B4;**](#top)
 
-- [Event Streaming with Kafka Streams and ksqlDB][book_bejeck2] by William P. Bejeck, *early* 2022.<br/><span style="font-size:80%;">(Manning, ISBN 978-1-6172-9868-4, 325 pages)</span>
+- [Kafka Streams in Action][book_bejeck] (2<sup>nd</sup> Edition) by Bill Bejeck, February 2024.<br/><span style="font-size:80%;">(Manning, ISBN  978-1-6172-9868-4, 325 pages)</span>
+- [Event Streaming with Kafka Streams and ksqlDB][book_bejeck_event] by William P. Bejeck, *early* 2022.<br/><span style="font-size:80%;">(Manning, ISBN 978-1-6172-9868-4, 325 pages)</span>
 - [Kafka in Action][book_scott] by Dylan Scott et al., February 2022.<br/><span style="font-size:80%;">(Manning, ISBN 978-1-6172-9523-2, 272 pages)</span>
 - [Kafka - The Definitive Guide][book_palino] by Todd Palino et al., 2021.<br/><span style="font-size:80%;">(O'Reilly, IsBN 978-1-4920-4307-2, pages)</span>
 - [Effective Kafka][book_koutanov] by Emil Koutanov, March 2021.<br/><span style="font-size:80%;">(Leanpub, ISBN 979-8-6285-5851-5, 348 pages)</span>
@@ -81,10 +82,12 @@
 
 ## <span id="tools">Tools</span>
 
+- [`kafka-encryption`](https://github.com/QuickSign/kafka-encryption) &ndash; [Kafka] End to End Encryption.
 - [`kafka-junit`](https://github.com/salesforce/kafka-junit) &ndash; easily create and run tests against one or more "real" [kafka] brokers.
+- [`kafka-rest`](https://github.com/confluentinc/kafka-rest) &ndash; Confluent REST Proxy for Kafka.
 - [Klaw](https://www.klaw-project.io/) &ndash; an open source data governance tool for [Apache Kafka][kafka].
 - [librdkakfa](https://github.com/confluentinc/librdkafka) &ndash; an Apache Kafka C/C++ library.
-- [Sarama](https://github.com/Shopify/sarama) &ndash; a Go library for Apache Kafka.
+- [Sarama](https://github.com/Shopify/sarama) &ndash; a Go library for [Apache Kafka][kafka].
 - [Strimzi](https://strimzi.io/) &ndash; [Kafka] on Kubernetes in a few minutes.
 
 ## <span id="tutorials">Tutorials</span> [**&#x25B4;**](#top)
@@ -129,7 +132,8 @@
 [blog_shortiss]: https://developers.redhat.com/articles/2021/07/27/connect-nodejs-applications-red-hat-openshift-streams-apache-kafka-service
 [blog_xxx]: https://www.blazemeter.com/blog/apache-kafka-how-to-load-test-with-jmeter
 [book_bejeck]: https://www.manning.com/books/kafka-streams-in-action
-[book_bejeck2]: https://www.manning.com/books/event-streaming-with-kafka-streams-and-ksqldb
+[book_bejeck2]: https://www.manning.com/books/kafka-streams-in-action-second-edition
+[book_bejeck_event]: https://www.manning.com/books/event-streaming-with-kafka-streams-and-ksqldb
 [book_koutanov]: aa
 [book_palino]: https://www.oreilly.com/library/view/kafka-the-definitive/9781492043072/
 [book_pandey]: https://www.amazon.com/Kafka-Streams-Real-time-Stream-Processing-ebook/dp/B07NNBTYS3
