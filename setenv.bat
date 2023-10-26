@@ -35,6 +35,9 @@ if not %_EXITCODE%==0 goto end
 call :java 11 "temurin"
 if not %_EXITCODE%==0 goto end
 
+call :java 21 "temurin"
+if not %_EXITCODE%==0 goto end
+
 call :java 17 "temurin"
 if not %_EXITCODE%==0 goto end
 
@@ -317,7 +320,7 @@ if defined JAVA_HOME (
     for /f "delims=" %%f in ('dir /ad /b "!_PATH!\%__JDK_NAME%*" 2^>NUL') do set "_JAVA_HOME=!_PATH!\%%f"
     if not defined _JAVA_HOME (
         set "_PATH=%ProgramFiles%\Java"
-        for /f %%f in ('dir /ad /b "!_PATH!\%__JDK_NAME%*" 2^>NUL') do set "_JAVA_HOME=!_PATH!\%%f"
+        for /f "delims=" %%f in ('dir /ad /b "!_PATH!\%__JDK_NAME%*" 2^>NUL') do set "_JAVA_HOME=!_PATH!\%%f"
     )
     if defined _JAVA_HOME (
         if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Java SDK installation directory "!_JAVA_HOME!" 1>&2
@@ -332,8 +335,8 @@ call :jdk_version "%_JAVA_HOME%\bin\javac.exe"
 set "_JAVA!_JDK_VERSION!_HOME=%_JAVA_HOME%"
 goto :eof
 
-@rem input parameter(s): %1=javac file path
-@rem output parameter(s): _JDK_VERSION
+@rem input parameter: %1=javac file path
+@rem output parameter: _JDK_VERSION
 :jdk_version
 set "__JAVAC_CMD=%~1"
 if not exist "%__JAVAC_CMD%" (
@@ -517,8 +520,12 @@ if defined __MVN_CMD (
     if exist "!__PATH!\apache-maven\" ( set "_MAVEN_HOME=!__PATH!\apache-maven"
     ) else (
         for /f %%f in ('dir /ad /b "!__PATH!\apache-maven-*" 2^>NUL') do set "_MAVEN_HOME=!__PATH!\%%f"
+        if not defined _MAVEN_HOME (
+            set "__PATH=%ProgramFiles%"
+            for /f "delims=" %%f in ('dir /ad /b "!__PATH!\apache-maven*" 2^>NUL') do set "_MAVEN_HOME=!__PATH!\%%f"
+        )
     )
-    if defined _MAVEN_HOME (
+	if defined _MAVEN_HOME (
         if %_DEBUG%==1 echo %_DEBUG_LABEL% Using default Maven installation directory "!_MAVEN_HOME!" 1>&2
     )
 )

@@ -43,11 +43,12 @@ For instance our development environment looks as follows (*October 2023*) <sup 
 C:\opt\apache-maven\               <i>( 10 MB)</i>
 C:\opt\Git\                        <i>(367 MB)</i>
 C:\opt\gradle\                     <i>(135 MB)</i>
-C:\opt\jdk-temurin-11.0.12_9\      <i>(302 MB)</i>
+C:\opt\jdk-temurin-11.0.21_9\      <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.8_7\       <i>(299 MB)</i>
 C:\opt\jdk-temurin-21_35\          <i>(325 MB)</i>
 C:\opt\kafka_2.13-3.6.0\           <i>(112 MB)</i>
 C:\opt\scala-2.13.12\              <i>( 24 MB)</i>
+C:\opt\VSCode\                     <i>(341 MB)</i>
 C:\Program Files\OffsetExplorer2\  <i>(112 MB)</i>
 </pre>
 
@@ -145,21 +146,21 @@ Batch command [**`setenv.bat`**](setenv.bat) makes external tools such as [**`gi
 </tr>
 <tr>
 <td><a href="https://downloads.apache.org/kafka/3.5.1/RELEASE_NOTES.html">3.5.1</a></td>
-<td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td>
-<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td>
+<td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td>
+<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td>
 <td>8+</td>
 </tr>
 <tr>
 <td><a href="https://downloads.apache.org/kafka/3.5.0/RELEASE_NOTES.html">3.5.0</a></td>
-<td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a> <sup><b>a)</b></sup></td>
-<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a> <sup><b>b)</b></sup></td>
+<td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td>
+<td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td>
 <td>8+</td>
 </tr>
 <tr>
 <td><a href="https://archive.apache.org/dist/kafka/3.4.1/RELEASE_NOTES.html">3.4.1</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.4/releasenotes.html">3.6.4</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.51.v20230217">9.4.51</a></td><td>8+</td>
 </tr>
 <tr>
-<td><a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html">3.4.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.48.v20220622">9.4.48</a> <sup><b>c)</b></sup></td><td>8+</td></tr>
+<td><a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html">3.4.0</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td><a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-9.4.48.v20220622">9.4.48</a></td><td>8+</td></tr>
 <tr><td><a href="https://archive.apache.org/dist/kafka/3.3.0/RELEASE_NOTES.html">3.3.x</a></td><td><a href="https://zookeeper.apache.org/doc/r3.6.3/releasenotes.html">3.6.3</a></td><td>?</td><td>?</td>
 </tr>
 <tr>
@@ -202,16 +203,16 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <pre style="font-size:80%;">
 <a href="https://maven.apache.org/download.cgi">apache-maven-3.9.5-bin.zip</a>                         <i>( 10 MB)</i>
 <a href="https://gradle.org/install/">gradle-8.4-bin.zip</a>                                 <i>(118 MB)</i>
-<a href="https://kafka.apache.org/downloads">kafka_2.13-3.5.1.tgz</a>                               <i>( 82 MB)</i>
+<a href="https://kafka.apache.org/downloads">kafka_2.13-3.6.0.tgz</a>                               <i>( 82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
-<a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.12_9.zip</a>   <i>( 99 MB)</i>
+<a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.21_9.zip</a>   <i>( 99 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.8_7.zip</a>    <i>( 99 MB)</i>
-<a href="https://jdk.java.net/21/">openjdk-21_windows-x64_bin_build_35.zip</a>            <i>(191 MB)</i>
+<a href="ttps://adoptium.net/releases.html?variant=openjdk21&jvmVariant=hotspot">OpenJDK21U-jdk_x64_windows_hotspot_21_35.zip</a>       <i>(191 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.42.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 </pre>
 </dd></dl>
 <!--
-<a href="https://github.com/sbt/sbt/releases">sbt-1.9.3.zip</a>                                      <i>( 17 MB)</i>
+<a href="https://github.com/sbt/sbt/releases">sbt-1.9.6.zip</a>                                      <i>( 17 MB)</i>
 <a href="https://www.scala-lang.org/files/archive/">scala-2.13.12.zip</a>                                  <i>( 21 MB)</i>
 -->
 
@@ -282,6 +283,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [spring_examples]: https://github.com/michelou/spring-examples
 <!--
 #### Archives ### https://mail.openjdk.org/pipermail/jdk-updates-dev/
+<<<<<<< HEAD
 11.0.3  -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2019-April/000951.html
 11.0.4  -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2019-July/001423.html
 11.0.5  -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2019-October/002025.html
@@ -295,6 +297,13 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 11.0.13 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2021-October/009368.html
 11.0.14 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-January/011643.html
 11.0.15 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-April/014104.html
+=======
+11.0.9  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2020-July/003498.html
+11.0.11 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2021-April/005860.html
+11.0.12 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2021-July/006954.html
+11.0.13 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2021-October/009368.html
+11.0.14 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2022-January/011643.html
+>>>>>>> 58eae57b5c64dc27669c3381839b29b547a81db3
 11.0.16 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-July/016017.html
 11.0.17 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-October/018119.html
 11.0.18 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-January/020111.html
@@ -306,20 +315,20 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [temurin_openjdk11_bugfixes]: https://www.oracle.com/java/technologies/javase/11-0-21-bugfixes.html
 [temurin_openjdk11_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026351.html
 <!--
-17.0.7  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-April/021899.html
-17.0.8  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-July/024063.html
+17.0.2  -> https://www.oracle.com/java/technologies/javase/17-0-2-bugfixes.html
+17.0.3  -> https://www.oracle.com/java/technologies/javase/17-0-3-bugfixes.html
+17.0.7  -> https://www.oracle.com/java/technologies/javase/17-0-7-relnotes.html
+17.0.8  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-September/025526.html
 17.0.9  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026352.html
 -->
 [temurin_openjdk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
 [temurin_openjdk17_bugfixes]: https://www.oracle.com/java/technologies/javase/17-0-9-relnotes.html
 [temurin_openjdk17_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026352.html
 <!--
-#### Bug fixes ### https://www.java.com/releases/
-21_35   -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026351.html
+21_35   -> https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
 -->
-[temurin_openjdk21]: https://adoptium.net/releases.html?variant=openjdk21&jvmVariant=hotspot
-[temurin_openjdk21_bugfixes]: https://www.oracle.com/java/technologies/javase/21-0-1-relnotes.html
-[temurin_openjdk21_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026351.html
+[temurin_openjdk21]: https://adoptium.net/fr/temurin/releases/?variant=openjdk21&jvmVariant=hotspot
+[temurin_openjdk21_relnotes]: https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
 [trufflesqueak_examples]: https://github.com/michelou/trufflesqueak-examples
 [unix_bash_script]: https://www.gnu.org/software/bash/manual/bash.html
 [unix_opt]: https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html

@@ -41,6 +41,7 @@
   - [L’avenir de Zookeeper dans une architecture Kafka](https://blog.zenika.com/2021/04/07/lavenir-de-zookeeper-dans-une-architecture-kafka/) by Mohamed Karaga, April 2021.
   - [Maîtriser le paramétrage des producers Kafka](https://blog.zenika.com/2020/11/04/maitriser-le-parametrage-des-producers-kafka/) by Alexandre Fruchaud, November 2020.
 - [instacluster Blog](https://www.instaclustr.com/blog/category/technical/kafka/) :
+  - [An Introduction to Apache Kafka® Metrics for Developers](https://www.instaclustr.com/blog/an-introduction-to-apache-kafka-metrics-for-developers/) by Paul Brebner, August 2023.
   - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 3—Maximum Partitions and Conclusions](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-3-maximum-partitions-and-conclusions/) by Paul Brebner, January 2023.
   - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 2—Partitions and Meta-Data Performance](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-2-partitions-and-meta-data-performance/) by Paul Brebner, December 2022.
   - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 1— Partitions and Data Performance](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-1-partitions-and-data-performance/) by Paul Brebner, November 2022.
@@ -66,7 +67,8 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
-  - [Kafka Monthy Digest: August 2023](https://developers.redhat.com/blog/2023/09/01/kafka-monthly-digest-august-2023). 
+  - [Kafka Monthly Digest: September 2023](https://developers.redhat.com/blog/2023/10/02/kafka-monthly-digest-september-2023)
+  - [Kafka Monthly Digest: August 2023](https://developers.redhat.com/blog/2023/09/01/kafka-monthly-digest-august-2023). 
   - [Kafka Monthly Digest: July 2023](https://developers.redhat.com/blog/2023/07/31/kafka-monthly-digest-july-2023).
   - [Kafka Monthly Digest: June 2023](https://developers.redhat.com/blog/2023/07/03/kafka-monthly-digest-june-2023).
   - [Kafka Monthly Digest: May 2023](https://developers.redhat.com/blog/2023/05/31/kafka-monthly-digest-may-2023).
@@ -105,7 +107,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/September 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/October 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
