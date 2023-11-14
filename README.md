@@ -14,7 +14,7 @@
 
 > **&#9755;** Read the document <a href="https://kafka.apache.org/documentation/#gettingStarted">"Getting Started"</a> from the <a href="https://kafka.apache.org/" rel="external">Kafka</a> documentation to know more about the <a href="https://kafka.apache.org/" rel="external">Kafka</a> ecosystem. 
 
-[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other trending topics we are continuously monitoring.
+[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other trending topics we are continuously monitoring.
 
 ## <span id="proj_deps">Project dependencies</span> [**&#x25B4;**](#top)
 
@@ -31,21 +31,21 @@ Optionally one may also install the following software:
 - [Offset Explorer 2.3][kafkatool_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*change history*][kafkatool_changes])
 - [Scala 2.13][scala_releases] (requires Java 8+) ([*release notes*][scala_relnotes], [*Scala API*][scala_api])
 - [Temurin OpenJDK 11 LTS][temurin_openjdk11] ([*release notes*][temurin_openjdk11_relnotes], [*bug fixes*][temurin_openjdk11_bugfixes])
-- [Temurin OpenJDK 21 LTS][temurin_openjdk21] ([*release notes*][temurin_openjdk21_relnotes], [*bug fixes*][temurin_openjdk21_bugfixes], [*Java 21 API*][oracle_openjdk21_api])
-- [Visual Studio Code 1.83][vscode_downloads] ([*release notes*][vscode_relnotes])
+- [Temurin OpenJDK 21 LTS][temurin_openjdk21] ([*release notes*][temurin_openjdk21_relnotes], [*Java 21 API*][oracle_openjdk21_api])
+- [Visual Studio Code 1.84][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*October 2023*) <sup id="anchor_04">[4](#footnote_04)</sup>:
+For instance our development environment looks as follows (*November 2023*) <sup id="anchor_04">[4](#footnote_04)</sup>:
 
 <pre style="font-size:80%;">
 C:\opt\apache-maven\               <i>( 10 MB)</i>
 C:\opt\Git\                        <i>(367 MB)</i>
 C:\opt\gradle\                     <i>(135 MB)</i>
 C:\opt\jdk-temurin-11.0.21_9\      <i>(302 MB)</i>
-C:\opt\jdk-temurin-17.0.8_7\       <i>(299 MB)</i>
-C:\opt\jdk-temurin-21_35\          <i>(325 MB)</i>
+C:\opt\jdk-temurin-17.0.9_9\       <i>(299 MB)</i>
+C:\opt\jdk-temurin-21.0.1_12\      <i>(325 MB)</i>
 C:\opt\kafka_2.13-3.6.0\           <i>(112 MB)</i>
 C:\opt\scala-2.13.12\              <i>( 24 MB)</i>
 C:\opt\VSCode\                     <i>(341 MB)</i>
@@ -92,17 +92,17 @@ In the next section we give a brief description of the [batch files][windows_bat
 
 ### [**`setenv.bat`**](setenv.bat)
 
-Batch command [**`setenv.bat`**](setenv.bat) makes external tools such as [**`git.exe`**][git_userguide] and [**`gradle.bat`**][gradle_cli] directly available from the Windows command prompt (see section [**Project dependencies**](#proj_deps)).
+We execute command [**`setenv.bat`**](setenv.bat) once to setup our development environment; it makes external tools such as [**`git.exe`**][git_userguide] and [**`gradle.bat`**][gradle_cli] directly available from the Windows command prompt (see section [**Project dependencies**](#proj_deps)).
 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
-      java 17.0.8, javac 17.0.8, scalac 2.13.12,
+      java 17.0.9, javac 17.0.9, scalac 2.13.12,
       gradle 8.4, kafka-configs 3.6.0, mvn 3.9.5,
       git 2.42.0.windows.1, diff 3.10, bash 5.2.12(1)-release
     Tool paths:
-      C:\opt\jdk-temurin-17.0.8_7\bin\java.exe
-      C:\opt\jdk-temurin-17.0.8_7\bin\javac.exe
+      C:\opt\jdk-temurin-17.0.9_9\bin\java.exe
+      C:\opt\jdk-temurin-17.0.9_9\bin\javac.exe
       C:\opt\scala-2.13.12\bin\scalac.bat
       C:\opt\gradle\bin\gradle.bat
       C:\opt\kafka_2.13-3.6.0\bin\windows\kafka-configs.bat
@@ -113,7 +113,7 @@ Batch command [**`setenv.bat`**](setenv.bat) makes external tools such as [**`gi
     Environment variables:
       "GIT_HOME=C:\opt\Git"
       "GRADLE_HOME=C:\opt\gradle"
-      "JAVA_HOME=C:\opt\jdk-temurin-17.0.8_7"
+      "JAVA_HOME=C:\opt\jdk-temurin-17.0.9_9"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.6.0"
       "MAVEN_HOME=C:\opt\apache-maven"
       "SCALA_HOME=C:\opt\scala-2.13.12"
@@ -206,19 +206,19 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://kafka.apache.org/downloads">kafka_2.13-3.6.0.tgz</a>                               <i>( 82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.21_9.zip</a>   <i>( 99 MB)</i>
-<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.8_7.zip</a>    <i>( 99 MB)</i>
-<a href="ttps://adoptium.net/releases.html?variant=openjdk21&jvmVariant=hotspot">OpenJDK21U-jdk_x64_windows_hotspot_21_35.zip</a>       <i>(191 MB)</i>
+<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.9_9.zip</a>    <i>( 99 MB)</i>
+<a href="ttps://adoptium.net/releases.html?variant=openjdk21&jvmVariant=hotspot">OpenJDK21U-jdk_x64_windows_hotspot_21.0.1_12.zip</a>   <i>(191 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.42.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 </pre>
 </dd></dl>
 <!--
-<a href="https://github.com/sbt/sbt/releases">sbt-1.9.6.zip</a>                                      <i>( 17 MB)</i>
+<a href="https://github.com/sbt/sbt/releases">sbt-1.9.7.zip</a>                                      <i>( 17 MB)</i>
 <a href="https://www.scala-lang.org/files/archive/">scala-2.13.12.zip</a>                                  <i>( 21 MB)</i>
 -->
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -261,6 +261,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [kafkatool_downloads]: https://www.kafkatool.com/download.html
 [kotlin_examples]: https://github.com/michelou/kotlin-examples
 [llvm_examples]: https://github.com/michelou/llvm-examples
+[m2_examples]: https://github.com/michelou/m2-examples
 [man1_awk]: https://www.linux.org/docs/man1/awk.html
 [man1_diff]: https://www.linux.org/docs/man1/diff.html
 [man1_file]: https://www.linux.org/docs/man1/file.html
@@ -283,7 +284,6 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [spring_examples]: https://github.com/michelou/spring-examples
 <!--
 #### Archives ### https://mail.openjdk.org/pipermail/jdk-updates-dev/
-<<<<<<< HEAD
 11.0.3  -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2019-April/000951.html
 11.0.4  -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2019-July/001423.html
 11.0.5  -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2019-October/002025.html
@@ -297,13 +297,6 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 11.0.13 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2021-October/009368.html
 11.0.14 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-January/011643.html
 11.0.15 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-April/014104.html
-=======
-11.0.9  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2020-July/003498.html
-11.0.11 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2021-April/005860.html
-11.0.12 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2021-July/006954.html
-11.0.13 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2021-October/009368.html
-11.0.14 -> https://mail.openjdk.java.net/pipermail/jdk-updates-dev/2022-January/011643.html
->>>>>>> 58eae57b5c64dc27669c3381839b29b547a81db3
 11.0.16 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-July/016017.html
 11.0.17 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2022-October/018119.html
 11.0.18 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-January/020111.html
@@ -326,6 +319,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [temurin_openjdk17_relnotes]: https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026352.html
 <!--
 21_35   -> https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
+21.0.1  -> https://www.oracle.com/java/technologies/javase/21-0-1-relnotes.html
 -->
 [temurin_openjdk21]: https://adoptium.net/fr/temurin/releases/?variant=openjdk21&jvmVariant=hotspot
 [temurin_openjdk21_relnotes]: https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
