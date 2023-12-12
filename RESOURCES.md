@@ -67,6 +67,7 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
+  - [Kafka Monthly Digest: November 2023][news_maison_nov23].
   - [Kafka Monthly Digest: October 2023](https://developers.redhat.com/blog/2023/11/02/kafka-monthly-digest-october-2023).
   - [Kafka Monthly Digest: September 2023](https://developers.redhat.com/blog/2023/10/02/kafka-monthly-digest-september-2023)
   - [Kafka Monthly Digest: August 2023](https://developers.redhat.com/blog/2023/09/01/kafka-monthly-digest-august-2023). 
@@ -108,7 +109,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/November 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/December 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -144,5 +145,6 @@
 [book_seymour]: https://www.oreilly.com/library/view/mastering-kafka-streams/9781492062486/
 [cloudera_docs]: https://docs.cloudera.com/
 [kafka]: https://kafka.apache.org/
+[news_maison_nov23]: https://developers.redhat.com/blog/2023/11/29/kafka-monthly-digest-november-2023
 [tutorial_hashemian]: https://developer.ibm.com/tutorials/kafka-authn-authz/
 [tutorial_maison]: https://developer.ibm.com/tutorials/get-started-with-apache-kafka/

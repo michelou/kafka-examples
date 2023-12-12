@@ -51,7 +51,7 @@ The [Zookeeper] server <sup id="anchor_01">[1](#footnote_01)</sup> is started in
 [2023-01-25 19:03:39,835] INFO                                               | |
 [2023-01-25 19:03:39,835] INFO                                               |_|
 [2023-01-25 19:03:39,835] INFO
-[2023-01-25 19:03:39,866] INFO Server environment:<b>zookeeper.version=3.8.2</b>--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT
+[2023-01-25 19:03:39,866] INFO Server environment:<b>zookeeper.version=3.8.3</b>--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT
 [2023-01-25 19:03:39,866] INFO Server environment:host.name=192.168.0.105
 [2023-01-25 19:03:39,866] INFO Server environment:<b>java.version=17.0.9</b>
 [...]
@@ -64,7 +64,7 @@ And the [Kafka] server <sup id="anchor_02">[2](#footnote_02)</sup> starts in ano
 [2023-01-25 19:03:45,286] INFO starting
 [2023-01-25 19:03:45,287] INFO Connecting to zookeeper on localhost:2181
 [2023-01-25 19:03:45,303] INFO [ZooKeeperClient Kafka server] Initializing a new session to localhost:2181.
-[2023-01-25 19:03:45,326] INFO Client environment:zookeeper.version=3.8.2--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT
+[2023-01-25 19:03:45,326] INFO Client environment:zookeeper.version=3.8.3--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT
 [2023-01-25 19:03:45,328] INFO Client environment:<b>host.name=192.168.0.105</b>
 [2023-01-25 19:03:45,329] INFO Client environment:<b>java.version=17.0.9</b>
 [...]
@@ -81,7 +81,7 @@ And the [Kafka] server <sup id="anchor_02">[2](#footnote_02)</sup> starts in ano
        [...]
  (kafka.server.KafkaConfig)
 [...]
-[2023-01-25 19:03:47,022] INFO Kafka version: <b>3.6.0</b>
+[2023-01-25 19:03:47,022] INFO Kafka version: <b>3.6.1</b>
 [2023-01-25 19:03:47,023] INFO Kafka commitId: b66af662e61082cb
 [2023-01-25 19:03:47,023] INFO Kafka startTimeMs: 1674669827014
 [2023-01-25 19:03:47,028] INFO [KafkaServer id=0] started
@@ -126,7 +126,7 @@ Here is a more detailed extract of the Zookeeper startup <code>INFO</code> loggi
 [2023-01-25 19:03:39,804] INFO Purge task is not scheduled. (o.a.z.s.DatadirCleanupManager)
 [2023-01-25 19:03:39,804] WARN Either no config or no quorum defined in config, running in standalone mode (o.a.z.s.quorum.QuorumPeerMain)
 [2023-01-25 19:03:39,804] INFO Log4j 1.2 jmx support not found; jmx disabled. (org.apache.zookeeper.jmx.ManagedUtil)
-[2023-01-25 19:03:39,804] INFO Reading configuration from: C:\opt\kafka_2.13-3.6.0\config\zookeeper.properties (o.a.z.s.quorum.QuorumPeerConfig)
+[2023-01-25 19:03:39,804] INFO Reading configuration from: C:\opt\kafka_2.13-3.6.1\config\zookeeper.properties (o.a.z.s.quorum.QuorumPeerConfig)
 [2023-01-25 19:03:39,804] INFO clientPortAddress is 0.0.0.0:2181 (o.a.z.s.quorum.QuorumPeerConfig)
 [2023-01-25 19:03:39,804] INFO secureClientPort is not set (o.a.z.s.quorum.QuorumPeerConfig)
 [2023-01-25 19:03:39,804] INFO observerMasterPort is not set (o.a.z.s.quorum.QuorumPeerConfig)
@@ -144,12 +144,12 @@ Here is a more detailed extract of the Zookeeper startup <code>INFO</code> loggi
 [2023-01-25 19:03:39,835] INFO                                               | |                    (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,835] INFO                                               |_|                    (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,835] INFO  (o.a.z.s.ZooKeeperServer)
-[2023-01-25 19:03:39,866] INFO Server environment:zookeeper.version=3.8.2--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT (o.a.z.s.ZooKeeperServer)
+[2023-01-25 19:03:39,866] INFO Server environment:zookeeper.version=3.8.3--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,866] INFO Server environment:host.name=192.168.0.105 (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,866] INFO Server environment:java.version=17.0.9 (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,866] INFO Server environment:java.vendor=Eclipse Adoptium (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,866] INFO Server environment:java.home=C:\opt\jdk-temurin-17.0.9_9 (o.a.z.s.ZooKeeperServer)
-[2023-01-25 19:03:39,866] INFO Server environment:java.class.path=C:\opt\kafka_2.13-3.6.0\libs\activation-1.1.1.jar;[...];C:\opt\kafka_2.13-3.6.0\libs\zstd-jni-1.5.2-1.jar (o.a.z.s.ZooKeeperServer)
+[2023-01-25 19:03:39,866] INFO Server environment:java.class.path=C:\opt\kafka_2.13-3.6.1\libs\activation-1.1.1.jar;[...];C:\opt\kafka_2.13-3.6.1\libs\zstd-jni-1.5.2-1.jar (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,882] INFO Server environment:java.library.path=C:\opt\jdk-temurin-17.0.9_9\bin;[...];. (o.a.z.s.ZooKeeperServer)
 [2023-01-25 19:03:39,898] INFO Server environment:java.io.tmpdir=%LOCALAPPDATA%\Temp\ (o.a.z.s.ZooKeeperServer)
 [...]
@@ -179,12 +179,12 @@ Here is a more detailed extract of the Kafka startup <code>INFO</code> logging :
 [2023-01-25 19:03:45,286] INFO starting (kafka.server.KafkaServer)
 [2023-01-25 19:03:45,287] INFO Connecting to zookeeper on localhost:2181 (kafka.server.KafkaServer)
 [2023-01-25 19:03:45,303] INFO [ZooKeeperClient Kafka server] Initializing a new session to localhost:2181. (kafka.zookeeper.ZooKeeperClient)
-[2023-01-25 19:03:45,326] INFO Client environment:zookeeper.version=3.8.2--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT (org.apache.zookeeper.ZooKeeper)
+[2023-01-25 19:03:45,326] INFO Client environment:zookeeper.version=3.8.3--6401e4ad2087061bc6b9f80dec2d69f2e3c8660a, built on 04/08/2021 16:35 GMT (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,328] INFO Client environment:host.name=192.168.0.105 (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,329] INFO Client environment:java.version=17.0.9 (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,330] INFO Client environment:java.vendor=Eclipse Adoptium (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,331] INFO Client environment:java.home=C:\opt\jdk-temurin-17.0.9_9 (org.apache.zookeeper.ZooKeeper)
-[2023-01-25 19:03:45,332] INFO Client environment:java.class.path=C:\opt\kafka_2.13-3.6.0\libs\activation-1.1.1.jar;[...];. (org.apache.zookeeper.ZooKeeper)
+[2023-01-25 19:03:45,332] INFO Client environment:java.class.path=C:\opt\kafka_2.13-3.6.1\libs\activation-1.1.1.jar;[...];. (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,353] INFO Client environment:java.io.tmpdir=C:\Users\michelou\AppData\Local\Temp\ (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,353] INFO Client environment:java.compiler=<NA> (org.apache.zookeeper.ZooKeeper)
 [2023-01-25 19:03:45,354] INFO Client environment:os.name=Windows 11 (org.apache.zookeeper.ZooKeeper)
@@ -246,7 +246,7 @@ Here is a more detailed extract of the Kafka startup <code>INFO</code> logging :
         zookeeper.ssl.truststore.type = null
  (kafka.server.KafkaConfig)
 [...]
-[2023-01-25 19:03:47,022] INFO Kafka version: 3.6.0 (org.apache.kafka.common.utils.AppInfoParser)
+[2023-01-25 19:03:47,022] INFO Kafka version: 3.6.1 (org.apache.kafka.common.utils.AppInfoParser)
 [2023-01-25 19:03:47,023] INFO Kafka commitId: b66af662e61082cb (org.apache.kafka.common.utils.AppInfoParser)
 [2023-01-25 19:03:47,023] INFO Kafka startTimeMs: 1674669827014 (org.apache.kafka.common.utils.AppInfoParser)
 [2023-01-25 19:03:47,028] INFO [KafkaServer id=0] started (kafka.server.KafkaServer)
@@ -303,7 +303,7 @@ For instance, the StackOverflow post <a href="https://stackoverflow.com/question
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/November 2023* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/December 2023* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 [jpd_cmd]: https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html
