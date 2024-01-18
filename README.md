@@ -44,7 +44,7 @@ C:\opt\apache-maven\               <i>( 10 MB)</i>
 C:\opt\Git\                        <i>(367 MB)</i>
 C:\opt\gradle\                     <i>(135 MB)</i>
 C:\opt\jdk-temurin-11.0.21_9\      <i>(302 MB)</i>
-C:\opt\jdk-temurin-17.0.9_9\       <i>(299 MB)</i>
+C:\opt\jdk-temurin-17.0.10_7\      <i>(301 MB)</i>
 C:\opt\jdk-temurin-21.0.1_12\      <i>(325 MB)</i>
 C:\opt\kafka_2.13-3.6.1\           <i>(112 MB)</i>
 C:\opt\scala-2.13.12\              <i>( 24 MB)</i>
@@ -97,12 +97,12 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
-      java 17.0.9, javac 17.0.9, scalac 2.13.12,
+      java 17.0.10, javac 17.0.10, scalac 2.13.12,
       gradle 8.5, kafka-configs 3.6.1, mvn 3.9.6,
       git 2.43.0.windows.1, diff 3.10, bash 5.2.12(1)-release
     Tool paths:
-      C:\opt\jdk-temurin-17.0.9_9\bin\java.exe
-      C:\opt\jdk-temurin-17.0.9_9\bin\javac.exe
+      C:\opt\jdk-temurin-17.0.10_7\bin\java.exe
+      C:\opt\jdk-temurin-17.0.10_7\bin\javac.exe
       C:\opt\scala-2.13.12\bin\scalac.bat
       C:\opt\gradle\bin\gradle.bat
       C:\opt\kafka_2.13-3.6.1\bin\windows\kafka-configs.bat
@@ -113,7 +113,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
     Environment variables:
       "GIT_HOME=C:\opt\Git"
       "GRADLE_HOME=C:\opt\gradle"
-      "JAVA_HOME=C:\opt\jdk-temurin-17.0.9_9"
+      "JAVA_HOME=C:\opt\jdk-temurin-17.0.10_7"
       "KAFKA_HOME=C:\opt\kafka_2.13-3.6.1"
       "MAVEN_HOME=C:\opt\apache-maven"
       "SCALA_HOME=C:\opt\scala-2.13.12"
@@ -212,7 +212,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://kafka.apache.org/downloads">kafka_2.13-3.6.1.tgz</a>                               <i>( 82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.21_9.zip</a>   <i>( 99 MB)</i>
-<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.9_9.zip</a>    <i>( 99 MB)</i>
+<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.10_7.zip</a>   <i>( 99 MB)</i>
 <a href="ttps://adoptium.net/releases.html?variant=openjdk21&jvmVariant=hotspot">OpenJDK21U-jdk_x64_windows_hotspot_21.0.1_12.zip</a>   <i>(191 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.43.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 </pre>
@@ -310,6 +310,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 11.0.19 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-April/021900.html
 11.0.20 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-July/024064.html
 11.0.21 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026351.html
+11.0.22 -> https://mail.openjdk.org/pipermail/jdk-updates-dev
 -->
 [temurin_openjdk11]: https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot
 [temurin_openjdk11_bugfixes]: https://www.oracle.com/java/technologies/javase/11-0-21-bugfixes.html
@@ -320,6 +321,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 17.0.7  -> https://www.oracle.com/java/technologies/javase/17-0-7-relnotes.html
 17.0.8  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-September/025526.html
 17.0.9  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026352.html
+17.0.10 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-January/029089.html
 -->
 [temurin_openjdk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
 [temurin_openjdk17_bugfixes]: https://www.oracle.com/java/technologies/javase/17-0-9-relnotes.html
@@ -327,6 +329,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <!--
 21_35   -> https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
 21.0.1  -> https://www.oracle.com/java/technologies/javase/21-0-1-relnotes.html
+21.0.2  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-January/029090.html
 -->
 [temurin_openjdk21]: https://adoptium.net/fr/temurin/releases/?variant=openjdk21&jvmVariant=hotspot
 [temurin_openjdk21_relnotes]: https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
