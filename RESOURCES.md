@@ -11,6 +11,9 @@
 ## <span id="articles">Articles</span> [**&#x25B4;**](#top)
 
 - [Stream processing with Apache Kafka and Azure Databricks](https://learn.microsoft.com/en-us/azure/databricks/structured-streaming/kafka), January 2023.
+- [Digit'Owl Articles](https://fr.linkedin.com/today/author/jocelyn-pichonnat) by Jocelyn Pichonnat :
+  - [101 - Kafka Connect : intégrer des systèmes externes sans se fouler les poignets][article_pichonnat_202212], December 2022.
+  - [101 - Architecture évènementielle et Apache Kafka][article_pichonnat_202209], September 2022.
 - [Apache Kafka Architecture: A Complete Guide][article_carter] by Michael Carter, June 2020.
 - [IBM Developer](https://developer.ibm.com/) - [Apache Kafka Articles](https://developer.ibm.com/components/kafka/articles/) :
   - [Monitoring Apache Kafka applications](https://developer.ibm.com/articles/monitoring-apache-kafka-apps/) by Tina Selenge, July 2021.
@@ -55,6 +58,7 @@
 
 ## <span id="books">Books</span> [**&#x25B4;**](#top)
 
+- [Kafka Connect][book_maison] by Michael Maison &amp; Kate Stanley, 2024.<br/><span style="font-size:80%;">(O'Reilly, ISBN 978-1-098-12653-7, 403 pages)</span>
 - [Kafka Streams in Action][book_bejeck] (2<sup>nd</sup> Edition) by Bill Bejeck, February 2024.<br/><span style="font-size:80%;">(Manning, ISBN  978-1-6172-9868-4, 325 pages)</span>
 - [Event Streaming with Kafka Streams and ksqlDB][book_bejeck_event] by William P. Bejeck, *early* 2022.<br/><span style="font-size:80%;">(Manning, ISBN 978-1-6172-9868-4, 325 pages)</span>
 - [Kafka in Action][book_scott] by Dylan Scott et al., February 2022.<br/><span style="font-size:80%;">(Manning, ISBN 978-1-6172-9523-2, 272 pages)</span>
@@ -67,7 +71,9 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
-  - [Kafka Monthly Digest: November 2023][news_maison_nov23].
+  - [Kafka Monthly Digest: January 2024][news_maison_202401].
+  - [Kafka Monthly Digest: December 2023][news_maison_202312].
+  - [Kafka Monthly Digest: November 2023][news_maison_202311].
   - [Kafka Monthly Digest: October 2023](https://developers.redhat.com/blog/2023/11/02/kafka-monthly-digest-october-2023).
   - [Kafka Monthly Digest: September 2023](https://developers.redhat.com/blog/2023/10/02/kafka-monthly-digest-september-2023)
   - [Kafka Monthly Digest: August 2023](https://developers.redhat.com/blog/2023/09/01/kafka-monthly-digest-august-2023). 
@@ -115,6 +121,8 @@
 <!-- link refs -->
 
 [article_carter]: https://www.instaclustr.com/apache-kafka-architecture/
+[article_pichonnat_202209]: https://www.linkedin.com/pulse/101-architecture-%C3%A9v%C3%A8nementielle-et-apache-kafka-jocelyn-pichonnat/
+[article_pichonnat_202212]: https://fr.linkedin.com/pulse/101-kafka-connect-int%C3%A9grer-des-syst%C3%A8mes-externes-sans-pichonnat
 [blog_aladev]: https://www.blazemeter.com/blog/apache-kafka-how-to-load-test-with-jmeter
 [blog_bockhorn]: https://ipt.ch/en/impuls/large-data-packets-and-kafka
 [blog_brebner]: https://www.instaclustr.com/blog/exploring-apache-kafka-castle-architecture-semantics/
@@ -138,13 +146,16 @@
 [book_bejeck]: https://www.manning.com/books/kafka-streams-in-action
 [book_bejeck2]: https://www.manning.com/books/kafka-streams-in-action-second-edition
 [book_bejeck_event]: https://www.manning.com/books/event-streaming-with-kafka-streams-and-ksqldb
-[book_koutanov]: aa
+[book_koutanov]: https://leanpub.com/effectivekafka
+[book_maison]: https://www.oreilly.com/library/view/kafka-connect/9781098126520/
 [book_palino]: https://www.oreilly.com/library/view/kafka-the-definitive/9781492043072/
 [book_pandey]: https://www.amazon.com/Kafka-Streams-Real-time-Stream-Processing-ebook/dp/B07NNBTYS3
 [book_scott]: https://www.manning.com/books/kafka-in-action
 [book_seymour]: https://www.oreilly.com/library/view/mastering-kafka-streams/9781492062486/
 [cloudera_docs]: https://docs.cloudera.com/
 [kafka]: https://kafka.apache.org/
-[news_maison_nov23]: https://developers.redhat.com/blog/2023/11/29/kafka-monthly-digest-november-2023
+[news_maison_202311]: https://developers.redhat.com/blog/2023/11/29/kafka-monthly-digest-november-2023
+[news_maison_202312]: https://developers.redhat.com/blog/2023/12/22/kafka-monthly-digest-december-2023
+[news_maison_202401]: https://developers.redhat.com/blog/2024/01/31/kafka-monthly-digest-january-2024
 [tutorial_hashemian]: https://developer.ibm.com/tutorials/kafka-authn-authz/
 [tutorial_maison]: https://developer.ibm.com/tutorials/get-started-with-apache-kafka/
