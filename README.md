@@ -20,7 +20,7 @@
 
 This project depends on the following external software for the **Microsoft Windows** platform:
 
-- [Git 2.43][git_releases] ([*release notes*][git_relnotes])
+- [Git 2.44][git_releases] ([*release notes*][git_relnotes])
 - [Kafka 3.6][kafka_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*release notes*][kafka_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_openjdk17] <sup id="anchor_02">[2](#footnote_02)</sup> ([*release notes*][temurin_openjdk17_relnotes], [*bug fixes*][temurin_openjdk17_bugfixes])
 
@@ -37,7 +37,7 @@ Optionally one may also install the following software:
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*February 2024*) <sup id="anchor_04">[4](#footnote_04)</sup>:
+For instance our development environment looks as follows (*March 2024*) <sup id="anchor_04">[4](#footnote_04)</sup>:
 
 <pre style="font-size:80%;">
 C:\opt\apache-maven\               <i>( 10 MB)</i>
@@ -46,8 +46,8 @@ C:\opt\gradle\                     <i>(135 MB)</i>
 C:\opt\jdk-temurin-11.0.22_7\      <i>(302 MB)</i>
 C:\opt\jdk-temurin-17.0.10_7\      <i>(301 MB)</i>
 C:\opt\jdk-temurin-21.0.2_13\      <i>(325 MB)</i>
-C:\opt\kafka_2.13-3.6.1\           <i>(112 MB)</i>
-C:\opt\scala-2.13.12\              <i>( 24 MB)</i>
+C:\opt\kafka_2.13-3.7.0\           <i>(118 MB)</i>
+C:\opt\scala-2.13.13\              <i>( 24 MB)</i>
 C:\opt\VSCode\                     <i>(341 MB)</i>
 C:\Program Files\OffsetExplorer2\  <i>(112 MB)</i>
 </pre>
@@ -97,15 +97,15 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
-      java 17.0.10, javac 17.0.10, scalac 2.13.12,
-      gradle 8.6, kafka-configs 3.6.1, mvn 3.9.6,
-      git 2.43.0.windows.1, diff 3.10, bash 5.2.21(1)-release
+      java 17.0.10, javac 17.0.10, scalac 2.13.13,
+      gradle 8.6, kafka-configs 3.7.0, mvn 3.9.6,
+      git 2.44.0.windows.1, diff 3.10, bash 5.2.26(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.10_7\bin\java.exe
       C:\opt\jdk-temurin-17.0.10_7\bin\javac.exe
-      C:\opt\scala-2.13.12\bin\scalac.bat
+      C:\opt\scala-2.13.13\bin\scalac.bat
       C:\opt\gradle\bin\gradle.bat
-      C:\opt\kafka_2.13-3.6.1\bin\windows\kafka-configs.bat
+      C:\opt\kafka_2.13-3.7.0\bin\windows\kafka-configs.bat
       C:\opt\apache-maven\bin\mvn.cmd
       C:\opt\Git\bin\git.exe
       C:\opt\Git\usr\bin\diff.exe
@@ -114,9 +114,9 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
       "GIT_HOME=C:\opt\Git"
       "GRADLE_HOME=C:\opt\gradle"
       "JAVA_HOME=C:\opt\jdk-temurin-17.0.10_7"
-      "KAFKA_HOME=C:\opt\kafka_2.13-3.6.1"
+      "KAFKA_HOME=C:\opt\kafka_2.13-3.7.0"
       "MAVEN_HOME=C:\opt\apache-maven"
-      "SCALA_HOME=C:\opt\scala-2.13.12"
+      "SCALA_HOME=C:\opt\scala-2.13.13"
    &nbsp;
    <b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/where">where</a> git gradle</b>
     C:\opt\Git\bin\git.exe
@@ -139,6 +139,12 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
 <th><a href="https://zookeeper.apache.org/releases.html" rel="external">ZooKeeper</a></th>
 <th><a href="https://www.eclipse.org/jetty/" rel="external">Jetty</a></th>
 <th>Java</th>
+</tr>
+<tr>
+<td><a href="https://downloads.apache.org/kafka/3.7.0/RELEASE_NOTES.html">3.7.0</a></td>
+<td></td>
+<td><a href="https://github.com/jetty/jetty.project/releases/tag/jetty-9.4.54.v20240208">9.4.54</a> <sup><b>b)</b></sup></td>
+<td>8+</td>
 </tr>
 <tr>
 <td><a href="https://downloads.apache.org/kafka/3.6.1/RELEASE_NOTES.html">3.6.1</a></td>
@@ -179,7 +185,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
 </tr>
 </table>
 <span><sup><b>a)</b></sup> ZooKeeper current stable version is <a href="https://zookeeper.apache.org/doc/r3.9.1/"><b>3.9.1</b></a> as of October 3, 2023 (<a href="https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper">MVN Repository</a>).<br/>
-<sup><b>b)</b></sup> Jetty current version is <a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-12.0.4"><b>12.0.4</b></a> as of December 5, 2023 (<a href="https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server">MVN Repository</a>).<br/>
+<sup><b>b)</b></sup> Jetty current version is <a href="https://github.com/eclipse/jetty.project/releases/tag/jetty-12.0.6"><b>12.0.6</b></a> as of January 31, 2024 (<a href="https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server">MVN Repository</a>).<br/>
 <sup><b>c)</b></sup> Jetty 9.4.x is at End of Community Support as of June 1, 2023 (<a href="https://github.com/eclipse/jetty.project/issues/7958">#7958</a>).
 </span>
 </dd></dl>
@@ -211,22 +217,22 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <pre style="font-size:80%;">
 <a href="https://maven.apache.org/download.cgi">apache-maven-3.9.6-bin.zip</a>                         <i>( 10 MB)</i>
 <a href="https://gradle.org/install/">gradle-8.6-bin.zip</a>                                 <i>(118 MB)</i>
-<a href="https://kafka.apache.org/downloads">kafka_2.13-3.6.1.tgz</a>                               <i>( 82 MB)</i>
+<a href="https://kafka.apache.org/downloads">kafka_2.13-3.7.0.tgz</a>                               <i>( 82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.22_7.zip</a>   <i>( 99 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.10_7.zip</a>   <i>( 99 MB)</i>
 <a href="ttps://adoptium.net/releases.html?variant=openjdk21&jvmVariant=hotspot">OpenJDK21U-jdk_x64_windows_hotspot_21.0.2_13.zip</a>   <i>(191 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.43.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.44.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 </pre>
 </dd></dl>
 <!--
 <a href="https://github.com/sbt/sbt/releases">sbt-1.9.7.zip</a>                                      <i>( 17 MB)</i>
-<a href="https://www.scala-lang.org/files/archive/">scala-2.13.12.zip</a>                                  <i>( 21 MB)</i>
+<a href="https://www.scala-lang.org/files/archive/">scala-2.13.13.zip</a>                                  <i>( 21 MB)</i>
 -->
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/February 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/March 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -245,7 +251,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [git_cli]: https://git-scm.com/docs/git
 [git_downloads]: https://git-scm.com/download/win
 [git_releases]: https://git-scm.com/download/win
-[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.43.0.txt
+[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.44.0.txt
 [git_userguide]: https://git-scm.com/docs/git
 [github_markdown]: https://github.github.com/gfm/
 [golang_examples]: https://github.com/michelou/golang-examples
@@ -264,8 +270,9 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 3.5.1 -> https://archive.apache.org/dist/kafka/3.5.1/RELEASE_NOTES.html
 3.6.0 -> https://archive.apache.org/dist/kafka/3.6.0/RELEASE_NOTES.html
 3.6.1 -> https://archive.apache.org/dist/kafka/3.6.1/RELEASE_NOTES.html
+3.7.0 -> https://archive.apache.org/dist/kafka/3.7.0/RELEASE_NOTES.html
 -->
-[kafka_relnotes]: https://archive.apache.org/dist/kafka/3.6.1/RELEASE_NOTES.html
+[kafka_relnotes]: https://archive.apache.org/dist/kafka/3.7.0/RELEASE_NOTES.html
 [kafkatool_changes]: https://www.kafkatool.com/changes.html
 [kafkatool_downloads]: https://www.kafkatool.com/download.html
 [kotlin_examples]: https://github.com/michelou/kotlin-examples
@@ -287,7 +294,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [rust_examples]: https://github.com/michelou/rust-examples
 [scala_api]: https://www.scala-lang.org/files/archive/api/current/
 [scala_releases]: https://www.scala-lang.org/files/archive/
-[scala_relnotes]: https://github.com/scala/scala/releases/tag/v2.13.12
+[scala_relnotes]: https://github.com/scala/scala/releases/tag/v2.13.13
 [scala3_examples]: https://github.com/michelou/dotty-examples
 [sh_cli]: https://man7.org/linux/man-pages/man1/sh.1p.html
 [spark_examples]: https://github.com/michelou/spark-examples
