@@ -21,7 +21,7 @@
 This project depends on the following external software for the **Microsoft Windows** platform:
 
 - [Git 2.44][git_releases] ([*release notes*][git_relnotes])
-- [Kafka 3.6][kafka_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*release notes*][kafka_relnotes])
+- [Kafka 3.7][kafka_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*release notes*][kafka_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_openjdk17] <sup id="anchor_02">[2](#footnote_02)</sup> ([*release notes*][temurin_openjdk17_relnotes], [*bug fixes*][temurin_openjdk17_bugfixes])
 
 Optionally one may also install the following software:
