@@ -95,6 +95,7 @@
 - [`kafka-encryption`](https://github.com/QuickSign/kafka-encryption) &ndash; [Kafka] End to End Encryption.
 - [`kafka-junit`](https://github.com/salesforce/kafka-junit) &ndash; easily create and run tests against one or more "real" [kafka] brokers.
 - [`kafka-rest`](https://github.com/confluentinc/kafka-rest) &ndash; Confluent REST Proxy for Kafka.
+- [`kafka-ui`](https://github.com/provectus/kafka-ui) &ndash; a Web UI for [Apache Kafka][kafka] Management.
 - [Klaw](https://www.klaw-project.io/) &ndash; an open source data governance tool for [Apache Kafka][kafka].
 - [librdkakfa](https://github.com/confluentinc/librdkafka) &ndash; an Apache Kafka C/C++ library.
 - [Sarama](https://github.com/Shopify/sarama) &ndash; a Go library for [Apache Kafka][kafka].

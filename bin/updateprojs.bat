@@ -9,16 +9,9 @@ set _DEBUG=0
 
 set _EXITCODE=0
 
-@rem files README.md, RESOURCES.md, etc.
-set _LAST_MODIFIED_OLD=michelou/)/February 2024
-set _LAST_MODIFIED_NEW=michelou/)/March 2024
-
-set _LAST_DOWNLOAD_OLD=(\*February 2024\*)
-set _LAST_DOWNLOAD_NEW=(*March 2024*)
-
-@rem to be transformed into -not -path "./<dirname>/*"
-set _EXCLUDE_TOPDIRS=bin docs kafka
-set _EXCLUDE_SUBDIRS=_LOCAL
+@rem copyright dates
+set _COPYRIGHT_DATES_OLD=2018-2023
+set _COPYRIGHT_DATES_NEW=2018-2024
 
 call :env
 if not %_EXITCODE%==0 goto end
@@ -34,8 +27,10 @@ if %_HELP%==1 (
     exit /b !_EXITCODE!
 )
 if %_RUN%==1 (
-    call :run
-    if not !_EXITCODE!==0 goto end
+    for %%i in (examples) do (
+       if %_DEBUG%==1 echo %_DEBUG_LABEL% call :update_project "%_ROOT_DIR%\%%i" 1>&2
+        call :update_project "%_ROOT_DIR%\%%i"
+    )
 )
 goto end
 
@@ -59,11 +54,10 @@ if not exist "%GIT_HOME%\usr\bin\grep.exe" (
     set _EXITCODE=1
     goto :eof
 )
-set "_CYGPATH_CMD=%GIT_HOME%\usr\bin\cygpath.exe"
-set "_FIND_CMD=%GIT_HOME%\usr\bin\find.exe"
 set "_GREP_CMD=%GIT_HOME%\usr\bin\grep.exe"
 set "_SED_CMD=%GIT_HOME%\usr\bin\sed.exe"
 set "_UNIX2DOS_CMD=%GIT_HOME%\usr\bin\unix2dos.exe"
+
 goto :eof
 
 :env_colors
@@ -109,8 +103,8 @@ set _STRONG_BG_BLUE=[104m
 
 @rem we define _RESET in last position to avoid crazy console output with type command
 set _BOLD=[1m
-set _INVERSE=[7m
 set _UNDERSCORE=[4m
+set _INVERSE=[7m
 set _RESET=[0m
 goto :eof
 
@@ -119,7 +113,6 @@ goto :eof
 set _HELP=0
 set _RUN=1
 set _VERBOSE=0
-set __N=0
 :args_loop
 set "__ARG=%~1"
 if not defined __ARG goto args_done
@@ -143,7 +136,6 @@ if "%__ARG:~0,1%"=="-" (
         set _EXITCODE=1
         goto args_done
     )
-    set /a __N+=1
 )
 shift
 goto args_loop
@@ -174,46 +166,41 @@ echo     %__BEG_O%-verbose%__END%     print progress messages
 echo.
 echo   %__BEG_P%Subcommands:%__END%
 echo     %__BEG_O%help%__END%         print this help message
-echo     %__BEG_O%run%__END%          replace old patterns with new ones
+echo     %__BEG_O%run%__END%          execute main class
 goto :eof
 
 :run
-for /f "delims=" %%f in ('"%_CYGPATH_CMD%" %_ROOT_DIR%\') do set "__ROOT_DIR=%%~f"
+for %%i in (examples) do (
+    set "__PROJECT_DIR=%_ROOT_DIR%\%%i"
+    if exist "!__PROJECT_DIR!\" (
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% call :update_project "!__PROJECT_DIR!" 1>&2
+        call :update_project "!__PROJECT_DIR!"
+    ) else (
+        echo %_WARNING_LABEL% Project directory not found ^("!__PROJECT_DIR!"^) 1>&2
+    )
+)
+goto :eof
 
-set __FIND_EXCLUDES=
-for %%i in (%_EXCLUDE_TOPDIRS%) do (
-    set __FIND_EXCLUDES=!__FIND_EXCLUDES! -not -path "%__ROOT_DIR%%%i/*"
-)
-for %%i in (%_EXCLUDE_SUBDIRS%) do (
-    set __FIND_EXCLUDES=!__FIND_EXCLUDES! -not -path "*/*%%i/*"
-)
-set __N=0
-if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_FIND_CMD%" "%__ROOT_DIR%" -type f -name "*.md" %__FIND_EXCLUDES% 1>&2
-for /f "delims=" %%f in ('%_FIND_CMD% "%__ROOT_DIR%" -type f -name "*.md" %__FIND_EXCLUDES%') do (
-    set __OLD_N=!__N!
-    set "__INPUT_FILE=%%f"
-    if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_GREP_CMD%" -q "%_LAST_MODIFIED_OLD%" "!__INPUT_FILE!" 1>&2
-    ) else if %_VERBOSE%==1 ( echo Check file "!__INPUT_FILE!" 1>&2
-    )
-    call "%_GREP_CMD%" -q "%_LAST_MODIFIED_OLD%" "!__INPUT_FILE!"
-    if !ERRORLEVEL!==0 (
-        if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_SED_CMD%" -i "s@%_LAST_MODIFIED_OLD%@%_LAST_MODIFIED_NEW%@g" "!__INPUT_FILE!" 1>&2
-        ) else if %_VERBOSE%==1 ( echo    Replace pattern "%_LAST_MODIFIED_OLD%" by "%_LAST_MODIFIED_NEW%" 1>&2
+:update_project
+set "__PARENT_DIR=%~1"
+set __N_SH=0
+echo Parent directory: %__PARENT_DIR%
+for /f %%i in ('dir /ad /b "%__PARENT_DIR%" ^| findstr /v /c:"lib"') do (
+    set "__BUILD_SH=%__PARENT_DIR%\%%i\build.sh"
+    if exist "!__BUILD_SH!" (
+        if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_GREP_CMD%" -q "%_COPYRIGHT_DATES_OLD%" "!__BUILD_SH!" 1>&2
+        call "%_GREP_CMD%" -q "%_COPYRIGHT_DATES_OLD%" "!__BUILD_SH!"
+        if !ERRORLEVEL!==0 (
+            if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_SED_CMD%" -i "s@%_COPYRIGHT_DATES_OLD%@%_COPYRIGHT_DATES_NEW%@g" "!__BUILD_SH!" 1>&2
+            call "%_SED_CMD%" -i "s@%_COPYRIGHT_DATES_OLD%@%_COPYRIGHT_DATES_NEW%@g" "!__BUILD_SH!"
+            call "%_UNIX2DOS_CMD%" -q "!__BUILD_SH!"
+            set /a __N_SH+=1
         )
-        call "%_SED_CMD%" -i "s@%_LAST_MODIFIED_OLD%@%_LAST_MODIFIED_NEW%@g" "!__INPUT_FILE!"
-        call "%_UNIX2DOS_CMD%" -q "!__INPUT_FILE!"
-        set /a __N+=1
-    )
-    if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_GREP_CMD%" -q "%_LAST_DOWNLOAD_OLD%" "!__INPUT_FILE!" 1>&2
-    call "%_GREP_CMD%" -q "%_LAST_DOWNLOAD_OLD%" "!__INPUT_FILE!"
-    if !ERRORLEVEL!==0 (
-        if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_SED_CMD%" -i "s@%_LAST_DOWNLOAD_OLD%@%_LAST_DOWNLOAD_NEW%@g" "!__INPUT_FILE!" 1>&2
-        call "%_SED_CMD%" -i "s@%_LAST_DOWNLOAD_OLD%@%_LAST_DOWNLOAD_NEW%@g" "!__INPUT_FILE!"
-        call "%_UNIX2DOS_CMD%" -q "!__INPUT_FILE!"
-        if !__N!==!__OLD_N! set /a __N+=1
+    ) else (
+       echo    %_WARNING_LABEL% Could not find file "%%i\build.sh" 1>&2
     )
 )
-call :message %__N% "Markdown"
+call :message %__N_SH% "build.sh"
 goto :eof
 
 @rem input parameters: %1=nr of updates, %2=file name
