@@ -10,11 +10,11 @@ set _DEBUG=0
 set _EXITCODE=0
 
 @rem files README.md, RESOURCES.md, etc.
-set _LAST_MODIFIED_OLD=michelou/)/February 2024
-set _LAST_MODIFIED_NEW=michelou/)/March 2024
+set _LAST_MODIFIED_OLD=michelou/)/March 2024
+set _LAST_MODIFIED_NEW=michelou/)/April 2024
 
-set _LAST_DOWNLOAD_OLD=(\*February 2024\*)
-set _LAST_DOWNLOAD_NEW=(*March 2024*)
+set _LAST_DOWNLOAD_OLD=(\*March 2024\*)
+set _LAST_DOWNLOAD_NEW=(*April 2024*)
 
 @rem to be transformed into -not -path "./<dirname>/*"
 set _EXCLUDE_TOPDIRS=bin docs kafka
@@ -187,10 +187,9 @@ for %%i in (%_EXCLUDE_TOPDIRS%) do (
 for %%i in (%_EXCLUDE_SUBDIRS%) do (
     set __FIND_EXCLUDES=!__FIND_EXCLUDES! -not -path "*/*%%i/*"
 )
-set __N=0
+set __N_MD=0
 if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_FIND_CMD%" "%__ROOT_DIR%" -type f -name "*.md" %__FIND_EXCLUDES% 1>&2
 for /f "delims=" %%f in ('%_FIND_CMD% "%__ROOT_DIR%" -type f -name "*.md" %__FIND_EXCLUDES%') do (
-    set __OLD_N=!__N!
     set "__INPUT_FILE=%%f"
     if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_GREP_CMD%" -q "%_LAST_MODIFIED_OLD%" "!__INPUT_FILE!" 1>&2
     ) else if %_VERBOSE%==1 ( echo Check file "!__INPUT_FILE!" 1>&2
@@ -202,7 +201,7 @@ for /f "delims=" %%f in ('%_FIND_CMD% "%__ROOT_DIR%" -type f -name "*.md" %__FIN
         )
         call "%_SED_CMD%" -i "s@%_LAST_MODIFIED_OLD%@%_LAST_MODIFIED_NEW%@g" "!__INPUT_FILE!"
         call "%_UNIX2DOS_CMD%" -q "!__INPUT_FILE!"
-        set /a __N+=1
+        set /a __N_MD+=1
     )
     if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_GREP_CMD%" -q "%_LAST_DOWNLOAD_OLD%" "!__INPUT_FILE!" 1>&2
     call "%_GREP_CMD%" -q "%_LAST_DOWNLOAD_OLD%" "!__INPUT_FILE!"
@@ -210,10 +209,10 @@ for /f "delims=" %%f in ('%_FIND_CMD% "%__ROOT_DIR%" -type f -name "*.md" %__FIN
         if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_SED_CMD%" -i "s@%_LAST_DOWNLOAD_OLD%@%_LAST_DOWNLOAD_NEW%@g" "!__INPUT_FILE!" 1>&2
         call "%_SED_CMD%" -i "s@%_LAST_DOWNLOAD_OLD%@%_LAST_DOWNLOAD_NEW%@g" "!__INPUT_FILE!"
         call "%_UNIX2DOS_CMD%" -q "!__INPUT_FILE!"
-        if !__N!==!__OLD_N! set /a __N+=1
+        if !__N_MD!==0 set /a __N_MD+=1
     )
 )
-call :message %__N% "Markdown"
+call :message %__N_MD% "Markdown"
 goto :eof
 
 @rem input parameters: %1=nr of updates, %2=file name
