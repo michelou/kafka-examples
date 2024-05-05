@@ -24,6 +24,18 @@
 
 ## <span id="blogs">Blogs</span> [**&#x25B4;**](#top)
 
+- [Confluent Technology Blog](https://www.confluent.io/blog/area/technology/) :
+  - [Introducing Apache Kafka 3.7](https://www.confluent.io/blog/introducing-apache-kafka-3-7/) by Stanislav Kozlovski, February 2024.
+  - [Introducing Apache Kafka 3.6](https://www.confluent.io/blog/introducing-apache-kafka-3-6/) by Satish Duggana, October 2023.
+  - [Apache Kafka Message Compression](https://www.confluent.io/blog/apache-kafka-message-compression/) by Lucia Cerchie and Dave Trioiano, September 2023.
+  - [How to Run Apache Kafka on Windows](https://www.confluent.io/blog/set-up-and-run-kafka-on-windows-linux-wsl-2/) by Jim Galasyn, September 2023.
+  - [How to Tune Kafka Connect Source Connectors to Optimize Throughput](https://www.confluent.io/blog/how-to-increase-throughput-on-kafka-connect-source-connectors/)
+ by Catalin Pop, August 2023.
+  - [The Importance of Standardized Hashing Across Producers](https://www.confluent.io/blog/standardized-hashing-across-java-and-non-java-producers/) by Italo Mesi, August 2023.
+  - [What Is an Event in the Apache Kafka Ecosystem?](https://www.confluent.io/blog/what-is-an-event-in-the-apache-kafka-ecosystem/) by Lucia Cerchie, June 2023.
+  - [Introducing Apache Kafka 3.5](https://www.confluent.io/blog/introducing-apache-kafka-3-5/) by Mickael Maison, June 2023.
+  - [Apache Kafka Beyond the Basics: Windowing](https://www.confluent.io/blog/windowing-in-kafka-streams/) by Lucia Cerchie, February 2023.
+  - [What’s New in Apache Kafka 2.7.0](https://www.confluent.io/blog/apache-kafka-2-7-features-updates-improvements/) by Bill Bejeck, December 2020.
 - [A Detailed Guide of Interview Questions on Apache Kafka](https://www.analyticsvidhya.com/blog/2023/04/a-detailed-guide-of-interview-questions-on-apache-kafka/) by Shikha Sharma, May 2023.
 - [Remote code execution flaw patched in Apache Kafka](https://portswigger.net/daily-swig/remote-code-execution-flaw-patched-in-apache-kafka) by Charlie Osborne, February 2023.
 - [Medium](https://medium.com/search?q=Elasticsearch)
@@ -71,6 +83,7 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
+  - [Kafka Monthly Digest: April 2024](https://developers.redhat.com/blog/2024/05/02/kafka-monthly-digest-april-2024.)
   - [Kafka Monthly Digest: March 2024](https://developers.redhat.com/blog/2024/03/29/kafka-monthly-digest-march-2024).
   - [Kafka Monthly Digest: February 2024](https://developers.redhat.com/blog/2024/03/01/kafka-monthly-digest-february-2024).
   - [Kafka Monthly Digest: January 2024][news_maison_202401].
