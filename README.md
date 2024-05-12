@@ -6,7 +6,7 @@
     <a href="https://kafka.apache.org/" rel="external"><img style="border:0;width:120px;" src="./docs/images/apache-kafka.png" alt="Kafka project"/></a>
   </td>
   <td style="border:0;padding:0;vertical-align:text-top;">
-    This repository gathers <a href="https://kafka.apache.org/" rel="external">Kafka</a> code examples coming from various websites or written by myself.<br/>
+    This repository gathers <a href="https://kafka.apache.org/" rel="external">Kafka</a> code examples coming from various websites or written by ourself.<br/>
     In particular it includes several build scripts (<a href="https://www.gnu.org/software/bash/manual/bash.html" rel="external">bash scripts</a>, <a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting" rel="external">batch files</a>) for experimenting with the <a href="https://kafka.apache.org" rel="external">Kafka</a> system on a Windows machine.
   </td>
   </tr>
@@ -14,7 +14,7 @@
 
 > **&#9755;** Read the document <a href="https://kafka.apache.org/documentation/#gettingStarted">"Getting Started"</a> from the <a href="https://kafka.apache.org/" rel="external">Kafka</a> documentation to know more about the <a href="https://kafka.apache.org/" rel="external">Kafka</a> ecosystem. 
 
-[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [COBOL][cobol_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other trending topics we are continuously monitoring.
+[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [COBOL][cobol_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Erlang][erlang_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other topics we are continuously monitoring.
 
 ## <span id="proj_deps">Project dependencies</span> [**&#x25B4;**](#top)
 
@@ -27,12 +27,13 @@ This project depends on the following external software for the **Microsoft Wind
 Optionally one may also install the following software:
 
 - [Apache Maven 3.9][apache_maven] ([requires Java 8+][apache_maven_history])  ([*release notes*][apache_maven_relnotes])
+- [ConEmu][conemu_downloads] ([*release notes*][conemu_relnotes])
 - [Gradle 8.7][gradle_install] ([requires Java 8+][gradle_compatibility]) ([*release notes*][gradle_relnotes])
 - [Offset Explorer 3.0][kafkatool_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*change history*][kafkatool_changes])
 - [Scala 2.13][scala_releases] (requires Java 8+) ([*release notes*][scala_relnotes], [*Scala API*][scala_api])
 - [Temurin OpenJDK 11 LTS][temurin_openjdk11] ([*release notes*][temurin_openjdk11_relnotes], [*bug fixes*][temurin_openjdk11_bugfixes])
 - [Temurin OpenJDK 21 LTS][temurin_openjdk21] ([*release notes*][temurin_openjdk21_relnotes], [*Java 21 API*][oracle_openjdk21_api])
-- [Visual Studio Code 1.88][vscode_downloads] ([*release notes*][vscode_relnotes])
+- [Visual Studio Code 1.89][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
@@ -41,6 +42,7 @@ For instance our development environment looks as follows (*May 2024*) <sup id="
 
 <pre style="font-size:80%;">
 C:\opt\apache-maven\               <i>( 10 MB)</i>
+C:\opt\ConEmu\                     <i>( 26 MB)</i>
 C:\opt\Git\                        <i>(387 MB)</i>
 C:\opt\gradle\                     <i>(135 MB)</i>
 C:\opt\jdk-temurin-11.0.23_9\      <i>(302 MB)</i>
@@ -99,7 +101,7 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
     Tool versions:
       java 17.0.11, javac 17.0.11, scalac 2.13.14,
       gradle 8.7, kafka-configs 3.7.0, mvn 3.9.6,
-      git 2.45.0.windows.1, diff 3.10, bash 5.2.26(1)-release
+      git 2.45.0, diff 3.10, bash 5.2.26(1)-release
     Tool paths:
       C:\opt\jdk-temurin-17.0.11_9\bin\java.exe
       C:\opt\jdk-temurin-17.0.11_9\bin\javac.exe
@@ -222,6 +224,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <dd>
 <pre style="font-size:80%;">
 <a href="https://maven.apache.org/download.cgi">apache-maven-3.9.6-bin.zip</a>                         <i>( 10 MB)</i>
+<a href="https://github.com/Maximus5/ConEmu/releases/tag/v23.07.24" rel="external">ConEmuPack.230724.7z</a>                               <i>(  5 MB)</i>
 <a href="https://gradle.org/install/">gradle-8.7-bin.zip</a>                                 <i>(118 MB)</i>
 <a href="https://kafka.apache.org/downloads">kafka_2.13-3.7.0.tgz</a>                               <i>( 82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
@@ -229,6 +232,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.11_9.zip</a>   <i>( 99 MB)</i>
 <a href="ttps://adoptium.net/releases.html?variant=openjdk21&jvmVariant=hotspot">OpenJDK21U-jdk_x64_windows_hotspot_21.0.3_9.zip</a>    <i>(191 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.45.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
+<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.89.1.zip</a>                        <i>(131 MB)</i>
 </pre>
 </dd></dl>
 <!--
@@ -243,16 +247,19 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 
 <!-- link refs -->
 
-[ada_examples]: https://github.com/michelou/ada-examples
-[akka_examples]: https://github.com/michelou/akka-examples
+[ada_examples]: https://github.com/michelou/ada-examples?tab=readme-ov-file#playing-with-ada-on-windows
+[akka_examples]: https://github.com/michelou/akka-examples?tab=readme-ov-file#playing-with-akka-on-windows
 [apache_maven]: https://maven.apache.org/download.cgi
 [apache_maven_history]: https://maven.apache.org/docs/history.html
 [apache_maven_relnotes]: https://maven.apache.org/docs/3.9.6/release-notes.html
-[cobol_examples]: https://github.com/michelou/cobol-examples
-[cpp_examples]: https://github.com/michelou/cpp-examples
+[cobol_examples]: https://github.com/michelou/cobol-examples?tab=readme-ov-file#playing-with-cobol-on-windows
+[conemu_downloads]: https://github.com/Maximus5/ConEmu/releases
+[conemu_relnotes]: https://conemu.github.io/blog/2023/07/24/Build-230724.html
+[cpp_examples]: https://github.com/michelou/cpp-examples?tab=readme-ov-file#playing-with-c-on-windows
 [dart_examples]: https://github.com/michelou/dart-examples
 [deno_examples]: https://github.com/michelou/deno-examples
 [docker_examples]: https://github.com/michelou/docker-examples
+[erlang_examples]: https://github.com/michelou/erlang-examples
 [flix_examples]: https://github.com/michelou/flix-examples
 [git_bash]: https://www.atlassian.com/git/tutorials/git-bash
 [git_cli]: https://git-scm.com/docs/git
