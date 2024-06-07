@@ -1,4 +1,4 @@
-# <span id="top">Kafka Resources</span> <span style="size:30%;"><a href="README.md">↩</a></span>
+# <span id="top">Kafka Resources</span> <span style="font-size:90%;">[↩](README.md#top)</span>
 
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
@@ -83,7 +83,8 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
-  - [Kafka Monthly Digest: April 2024](https://developers.redhat.com/blog/2024/05/02/kafka-monthly-digest-april-2024.)
+  - [Kafka Monthly Digest: May 2024](https://developers.redhat.com/blog/2024/06/03/kafka-monthly-digest-may-2024).
+  - [Kafka Monthly Digest: April 2024](https://developers.redhat.com/blog/2024/05/02/kafka-monthly-digest-april-2024).
   - [Kafka Monthly Digest: March 2024](https://developers.redhat.com/blog/2024/03/29/kafka-monthly-digest-march-2024).
   - [Kafka Monthly Digest: February 2024](https://developers.redhat.com/blog/2024/03/01/kafka-monthly-digest-february-2024).
   - [Kafka Monthly Digest: January 2024][news_maison_202401].
@@ -131,7 +132,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/May 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/June 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->

@@ -1,4 +1,4 @@
-# <span id="top">Kafka examples</span> <span style="size:30%;"><a href="../README.md">⬆</a></span>
+# <span id="top">Kafka examples</span> <span style="font-size:90%;">[⬆](../README.md#top)</span>
 
 <table style="font-family:Helvetica,Arial;line-height:1.6;">
   <tr>
@@ -303,7 +303,7 @@ For instance, the StackOverflow post <a href="https://stackoverflow.com/question
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/May 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/June 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 [jpd_cmd]: https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html
