@@ -12,7 +12,7 @@
   </tr>
 </table>
 
-[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [COBOL][cobol_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Erlang][erlang_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples] and [WiX Toolset][wix_examples] are other topics we are continuously monitoring.
+[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [COBOL][cobol_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Erlang][erlang_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples], [WiX Toolset][wix_examples] and [Zig][zig_examples] are other topics we are continuously monitoring.
 
 > **&#9755;** Read the document <a href="https://kafka.apache.org/documentation/#gettingStarted">"Getting Started"</a> from the <a href="https://kafka.apache.org/" rel="external">Kafka</a> documentation to know more about the <a href="https://kafka.apache.org/" rel="external">Kafka</a> ecosystem.
 
@@ -33,7 +33,7 @@ Optionally one may also install the following software:
 - [Scala 2.13][scala_releases] (requires Java 8+) ([*release notes*][scala_relnotes], [*Scala API*][scala_api])
 - [Temurin OpenJDK 11 LTS][temurin_openjdk11] ([*release notes*][temurin_openjdk11_relnotes], [*bug fixes*][temurin_openjdk11_bugfixes])
 - [Temurin OpenJDK 21 LTS][temurin_openjdk21] ([*release notes*][temurin_openjdk21_relnotes], [*Java 21 API*][oracle_openjdk21_api])
-- [Visual Studio Code 1.89][vscode_downloads] ([*release notes*][vscode_relnotes])
+- [Visual Studio Code 1.90][vscode_downloads] ([*release notes*][vscode_relnotes])
 
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
@@ -233,7 +233,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <a href="ttps://adoptium.net/releases.html?variant=openjdk21&jvmVariant=hotspot">OpenJDK21U-jdk_x64_windows_hotspot_21.0.3_9.zip</a>    <i>(191 MB)</i>
 <a href="https://git-scm.com/download/win">PortableGit-2.45.2-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 <a href="https://www.scala-lang.org/files/archive/" rel="external">scala-2.13.14.zip</a>                                  <i>( 22 MB)</i>
-<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.89.1.zip</a>                        <i>(131 MB)</i>
+<a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.90.1.zip</a>                        <i>(131 MB)</i>
 </pre>
 </dd></dl>
 <!--
@@ -347,6 +347,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 17.0.8  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-September/025526.html
 17.0.9  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2023-October/026352.html
 17.0.10 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-January/029089.html
+17.0.11 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-April/032197.html
 -->
 [temurin_openjdk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
 [temurin_openjdk17_bugfixes]: https://www.oracle.com/java/technologies/javase/17-0-9-relnotes.html
@@ -355,6 +356,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 21_35   -> https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
 21.0.1  -> https://www.oracle.com/java/technologies/javase/21-0-1-relnotes.html
 21.0.2  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-January/029090.html
+21.0.3  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-April/032196.html
 -->
 [temurin_openjdk21]: https://adoptium.net/fr/temurin/releases/?variant=openjdk21&jvmVariant=hotspot
 [temurin_openjdk21_relnotes]: https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
@@ -368,4 +370,5 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [windows_limitation]: https://support.microsoft.com/en-gb/help/830473/command-prompt-cmd-exe-command-line-string-limitation
 [windows_subst]: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/subst
 [wix_examples]: https://github.com/michelou/wix-examples#top
+[zig_examples]: https://github.com/michelou/zig-examples#top
 [zip_archive]: https://www.howtogeek.com/178146/htg-explains-everything-you-need-to-know-about-zipped-files/
