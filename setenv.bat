@@ -32,9 +32,6 @@ if not %_EXITCODE%==0 goto end
 
 @rem %1=version, %2=vendor
 @rem eg. openjdk, bellsoft, corretto, bellsoft, openj9, redhat, sapmachine, zulu
-call :java 11 "temurin"
-if not %_EXITCODE%==0 goto end
-
 call :java 21 "temurin"
 if not %_EXITCODE%==0 goto end
 
@@ -188,7 +185,8 @@ for /f "tokens=1,2,*" %%f in ('subst') do (
     set "__SUBST_DRIVE=%%f"
     set "__SUBST_DRIVE=!__SUBST_DRIVE:~0,2!"
     set "__SUBST_PATH=%%h"
-    if "!__SUBST_DRIVE!"=="!__GIVEN_PATH:~0,2!" (
+    @rem Windows local file systems are not case sensitive (by default)
+    if /i "!__SUBST_DRIVE!"=="!__GIVEN_PATH:~0,2!" (
         set _DRIVE_NAME=!__SUBST_DRIVE:~0,2!
         if %_DEBUG%==1 ( echo %_DEBUG_LABEL% Select drive !_DRIVE_NAME! for which a substitution already exists 1>&2
         ) else if %_VERBOSE%==1 ( echo Select drive !_DRIVE_NAME! for which a substitution already exists 1>&2
@@ -702,8 +700,11 @@ if %ERRORLEVEL%==0 (
 )
 where /q "%GIT_HOME%\bin:bash.exe"
 if %ERRORLEVEL%==0 (
-    for /f "tokens=1-3,4,*" %%i in ('"%GIT_HOME%\bin\bash.exe" --version ^| findstr bash') do set "__VERSIONS_LINE3=%__VERSIONS_LINE3% bash %%l"
-    set __WHERE_ARGS=%__WHERE_ARGS% "%GIT_HOME%\bin:bash.exe"
+    for /f "tokens=1-3,4,*" %%i in ('"%GIT_HOME%\bin\bash.exe" --version ^| findstr bash') do (
+        set "__VERSION=%%l"
+        setlocal enabledelayedexpansion
+        set "__VERSIONS_LINE3=%__VERSIONS_LINE3% bash !__VERSION:-release=!"
+    )
 )
 echo Tool versions:
 echo   %__VERSIONS_LINE1%
