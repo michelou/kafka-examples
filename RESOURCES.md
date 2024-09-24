@@ -25,6 +25,7 @@
 ## <span id="blogs">Blogs</span> [**&#x25B4;**](#top)
 
 - [Confluent Technology Blog](https://www.confluent.io/blog/area/technology/) :
+  - [How Producers Work: Kafka Producer and Consumer Internals, Part 1](https://www.confluent.io/blog/kafka-producer-internals-preparing-event-data/) by Danica, September 2024.
   - [Introducing Apache Kafka 3.8](https://www.confluent.io/blog/introducing-apache-kafka-3-8/) by Josep Prat, July 2024.
   - [Introducing Apache Kafka 3.7](https://www.confluent.io/blog/introducing-apache-kafka-3-7/) by Stanislav Kozlovski, February 2024.
   - [Introducing Apache Kafka 3.6](https://www.confluent.io/blog/introducing-apache-kafka-3-6/) by Satish Duggana, October 2023.
@@ -39,7 +40,8 @@
   - [What’s New in Apache Kafka 2.7.0](https://www.confluent.io/blog/apache-kafka-2-7-features-updates-improvements/) by Bill Bejeck, December 2020.
 - [A Detailed Guide of Interview Questions on Apache Kafka](https://www.analyticsvidhya.com/blog/2023/04/a-detailed-guide-of-interview-questions-on-apache-kafka/) by Shikha Sharma, May 2023.
 - [Remote code execution flaw patched in Apache Kafka](https://portswigger.net/daily-swig/remote-code-execution-flaw-patched-in-apache-kafka) by Charlie Osborne, February 2023.
-- [Medium](https://medium.com/search?q=Elasticsearch)
+- [Medium](https://medium.com/search?q=Kafka)
+  - [Mastering Kafka: Advanced Concepts Every Senior Software Engineer Should Know](https://manjulapiyumal.medium.com/mastering-kafka-advanced-concepts-every-senior-software-engineer-should-know-9283664c99e1) by Manjula Piyumal, August 2024.
   - [Kafka Streams — Part I: An Introduction][blog_kundu_1] by Sazal Kanti Kundu, September 2023.
   - [Advance Optimization Techniques for Elasticsearch][blog_chye] by Lee Chye, September 2022.
   - [Processing guarantees in Kafka][blog_bryant] by Andy Bryant, November 2019.
@@ -57,6 +59,7 @@
   - [L’avenir de Zookeeper dans une architecture Kafka](https://blog.zenika.com/2021/04/07/lavenir-de-zookeeper-dans-une-architecture-kafka/) by Mohamed Karaga, April 2021.
   - [Maîtriser le paramétrage des producers Kafka](https://blog.zenika.com/2020/11/04/maitriser-le-parametrage-des-producers-kafka/) by Alexandre Fruchaud, November 2020.
 - [instacluster Blog](https://www.instaclustr.com/blog/category/technical/kafka/) :
+  - [Apache Kafka Use Cases and Real-Life Examples](https://www.instaclustr.com/blog/apache-kafka-use-cases-and-real-life-examples/), August 2024.
   - [An Introduction to Apache Kafka® Metrics for Developers](https://www.instaclustr.com/blog/an-introduction-to-apache-kafka-metrics-for-developers/) by Paul Brebner, August 2023.
   - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 3—Maximum Partitions and Conclusions](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-3-maximum-partitions-and-conclusions/) by Paul Brebner, January 2023.
   - [Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 2—Partitions and Meta-Data Performance](https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-2-partitions-and-meta-data-performance/) by Paul Brebner, December 2022.
@@ -114,7 +117,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/August 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/September 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
