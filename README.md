@@ -12,7 +12,7 @@
   </tr>
 </table>
 
-[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [COBOL][cobol_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Erlang][erlang_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples], [WiX Toolset][wix_examples] and [Zig][zig_examples] are other topics we are continuously monitoring.
+[Ada][ada_examples], [Akka][akka_examples], [C++][cpp_examples], [COBOL][cobol_examples], [Dafny][dafny_examples], [Dart][dart_examples], [Deno][deno_examples], [Docker][docker_examples], [Erlang][erlang_examples], [Flix][flix_examples], [Golang][golang_examples], [GraalVM][graalvm_examples], [Haskell][haskell_examples], [Kotlin][kotlin_examples], [LLVM][llvm_examples], [Modula-2][m2_examples], [Node.js][nodejs_examples], [Rust][rust_examples], [Scala 3][scala3_examples], [Spark][spark_examples], [Spring][spring_examples], [TruffleSqueak][trufflesqueak_examples], [WiX Toolset][wix_examples] and [Zig][zig_examples] are other topics we are continuously monitoring.
 
 > **&#9755;** Read the document <a href="https://kafka.apache.org/documentation/#gettingStarted">"Getting Started"</a> from the <a href="https://kafka.apache.org/" rel="external">Kafka</a> documentation to know more about the <a href="https://kafka.apache.org/" rel="external">Kafka</a> ecosystem.
 
@@ -20,7 +20,7 @@
 
 This project depends on the following external software for the **Microsoft Windows** platform:
 
-- [Git 2.46][git_releases] ([*release notes*][git_relnotes])
+- [Git 2.47][git_releases] ([*release notes*][git_relnotes])
 - [Kafka 3.8][kafka_downloads] <sup id="anchor_01">[1](#footnote_01)</sup> ([*release notes*][kafka_relnotes])
 - [Temurin OpenJDK 17 LTS][temurin_openjdk17] <sup id="anchor_02">[2](#footnote_02)</sup> ([*release notes*][temurin_openjdk17_relnotes], [*bug fixes*][temurin_openjdk17_bugfixes])
 
@@ -32,7 +32,7 @@ Optionally one may also install the following software:
 - [Offset Explorer 3.0][kafkatool_downloads] <sup id="anchor_03">[3](#footnote_03)</sup> ([*change history*][kafkatool_changes])
 - [Scala 2.13][scala_releases] (requires Java 8+) ([*release notes*][scala_relnotes], [*Scala API*][scala_api])
 - [Temurin OpenJDK 21 LTS][temurin_openjdk21] ([*release notes*][temurin_openjdk21_relnotes], [*Java 21 API*][oracle_openjdk21_api])
-- [Visual Studio Code 1.93][vscode_downloads] ([*release notes*][vscode_relnotes])
+- [Visual Studio Code 1.94][vscode_downloads] ([*release notes*][vscode_relnotes])
 <!--
 - [Temurin OpenJDK 11 LTS][temurin_openjdk11] ([*release notes*][temurin_openjdk11_relnotes], [*bug fixes*][temurin_openjdk11_bugfixes])
 -->
@@ -40,16 +40,16 @@ Optionally one may also install the following software:
 > **&#9755;** ***Installation policy***<br/>
 > When possible we install software from a [Zip archive][zip_archive] rather than via a [Windows installer][windows_installer]. In our case we defined **`C:\opt\`** as the installation directory for optional software tools (*in reference to* the [`/opt/`][unix_opt] directory on Unix).
 
-For instance our development environment looks as follows (*September 2024*) <sup id="anchor_04">[4](#footnote_04)</sup>:
+For instance our development environment looks as follows (*November 2024*) <sup id="anchor_04">[4](#footnote_04)</sup>:
 
 <pre style="font-size:80%;">
 C:\opt\apache-maven\               <i>( 10 MB)</i>
 C:\opt\ConEmu\                     <i>( 26 MB)</i>
 C:\opt\Git\                        <i>(387 MB)</i>
 C:\opt\gradle\                     <i>(135 MB)</i>
-C:\opt\jdk-temurin-17.0.12_7\      <i>(301 MB)</i>
-C:\opt\jdk-temurin-21.0.4_7\       <i>(325 MB)</i>
-C:\opt\kafka_2.13-3.8.0\           <i>(119 MB)</i>
+C:\opt\jdk-temurin-17.0.13_11\     <i>(301 MB)</i>
+C:\opt\jdk-temurin-21.0.5_11\      <i>(325 MB)</i>
+C:\opt\kafka_2.13-3.8.1\           <i>(120 MB)</i>
 C:\opt\scala-2.13.15\              <i>( 24 MB)</i>
 C:\opt\VSCode\                     <i>(341 MB)</i>
 C:\Program Files\OffsetExplorer2\  <i>(112 MB)</i>
@@ -103,15 +103,15 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
    <pre style="font-size:80%;">
    <b>&gt; <a href="./setenv.bat">setenv</a> -verbose</b>
     Tool versions:
-      java 17.0.12, javac 17.0.12, scalac 2.13.15,
-      gradle 8.10.1, kafka-configs 3.8.0, mvn 3.9.9,
-      git 2.46.1, diff 3.10, bash 5.2.32(1)
+      java 17.0.13, javac 17.0.13, scalac 2.13.15,
+      gradle 8.10.2, kafka-configs 3.8.0, mvn 3.9.9,
+      git 2.47.0, diff 3.10, bash 5.2.32(1)
     Tool paths:
-      C:\opt\jdk-temurin-17.0.12_7\bin\java.exe
-      C:\opt\jdk-temurin-17.0.12_7\bin\javac.exe
+      C:\opt\jdk-temurin-17.0.13_11\bin\java.exe
+      C:\opt\jdk-temurin-17.0.13_11\bin\javac.exe
       C:\opt\scala-2.13.15\bin\scalac.bat
       C:\opt\gradle\bin\gradle.bat
-      C:\opt\kafka_2.13-3.8.0\bin\windows\kafka-configs.bat
+      C:\opt\kafka_2.13-3.8.1\bin\windows\kafka-configs.bat
       C:\opt\apache-maven\bin\mvn.cmd
       C:\opt\Git\bin\git.exe
       C:\opt\Git\usr\bin\diff.exe
@@ -119,8 +119,8 @@ We execute command [**`setenv.bat`**](setenv.bat) once to setup our development 
     Environment variables:
       "GIT_HOME=C:\opt\Git"
       "GRADLE_HOME=C:\opt\gradle"
-      "JAVA_HOME=C:\opt\jdk-temurin-17.0.12_7"
-      "KAFKA_HOME=C:\opt\kafka_2.13-3.8.0"
+      "JAVA_HOME=C:\opt\jdk-temurin-17.0.13_11"
+      "KAFKA_HOME=C:\opt\kafka_2.13-3.8.1"
       "MAVEN_HOME=C:\opt\apache-maven"
       "SCALA_HOME=C:\opt\scala-2.13.15"
    &nbsp;
@@ -241,13 +241,13 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 <pre style="font-size:80%;">
 <a href="https://maven.apache.org/download.cgi">apache-maven-3.9.9-bin.zip</a>                         <i>( 10 MB)</i>
 <a href="https://github.com/Maximus5/ConEmu/releases/tag/v23.07.24" rel="external">ConEmuPack.230724.7z</a>                               <i>(  5 MB)</i>
-<a href="https://gradle.org/install/">gradle-8.10.1-bin.zip</a>                              <i>(118 MB)</i>
-<a href="https://kafka.apache.org/downloads">kafka_2.13-3.8.0.tgz</a>                               <i>( 82 MB)</i>
+<a href="https://gradle.org/install/">gradle-8.10.2-bin.zip</a>                              <i>(118 MB)</i>
+<a href="https://kafka.apache.org/downloads">kafka_2.13-3.8.1.tgz</a>                               <i>( 82 MB)</i>
 <a href="https://www.kafkatool.com/download.html" rel="external">offsetexplorer_64bit.exe</a>                           <i>( 37 MB)</i>
 <a href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">OpenJDK11U-jdk_x64_windows_hotspot_11.0.23_9.zip</a>   <i>( 99 MB)</i>
-<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.12_7.zip</a>   <i>( 99 MB)</i>
+<a href="https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot">OpenJDK17U-jdk_x64_windows_hotspot_17.0.13_11.zip</a>   <i>( 99 MB)</i>
 <a href="ttps://adoptium.net/releases.html?variant=openjdk21&jvmVariant=hotspot">OpenJDK21U-jdk_x64_windows_hotspot_21.0.4_7.zip</a>    <i>(191 MB)</i>
-<a href="https://git-scm.com/download/win">PortableGit-2.46.1-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
+<a href="https://git-scm.com/download/win">PortableGit-2.47.0-64-bit.7z.exe</a>                   <i>( 41 MB)</i>
 <a href="https://www.scala-lang.org/files/archive/" rel="external">scala-2.13.15.zip</a>                                  <i>( 22 MB)</i>
 <a href="https://code.visualstudio.com/Download#" rel="external">VSCode-win32-x64-1.91.1.zip</a>                        <i>(131 MB)</i>
 </pre>
@@ -259,7 +259,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/September 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -273,6 +273,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [conemu_downloads]: https://github.com/Maximus5/ConEmu/releases
 [conemu_relnotes]: https://conemu.github.io/blog/2023/07/24/Build-230724.html
 [cpp_examples]: https://github.com/michelou/cpp-examples#top
+[dafny_examples]: https://github.com/michelou/dafny-examples#top
 [dart_examples]: https://github.com/michelou/dart-examples#top
 [deno_examples]: https://github.com/michelou/deno-examples#top
 [docker_examples]: https://github.com/michelou/docker-examples#top
@@ -282,7 +283,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [git_cli]: https://git-scm.com/docs/git
 [git_downloads]: https://git-scm.com/download/win
 [git_releases]: https://git-scm.com/download/win
-[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.46.1.txt
+[git_relnotes]: https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.47.0.txt
 [git_userguide]: https://git-scm.com/docs/git
 [github_markdown]: https://github.github.com/gfm/
 [golang_examples]: https://github.com/michelou/golang-examples#top
@@ -290,7 +291,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 [gradle_cli]: https://docs.gradle.org/current/userguide/command_line_interface.html
 [gradle_compatibility]: https://docs.gradle.org/current/release-notes.html#upgrade-instructions
 [gradle_install]: https://gradle.org/install/
-[gradle_relnotes]: https://docs.gradle.org/8.10.1/release-notes.html
+[gradle_relnotes]: https://docs.gradle.org/8.10.2/release-notes.html
 [haskell_examples]: https://github.com/michelou/haskell-examples#top
 [kafka]: https://kafka.apache.org
 [kafka_downloads]: https://kafka.apache.org/downloads
@@ -304,8 +305,9 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 3.7.0 -> https://archive.apache.org/dist/kafka/3.7.0/RELEASE_NOTES.html
 3.7.1 -> https://archive.apache.org/dist/kafka/3.7.1/RELEASE_NOTES.html
 3.8.0 -> https://archive.apache.org/dist/kafka/3.8.0/RELEASE_NOTES.html
+3.8.1 -> https://archive.apache.org/dist/kafka/3.8.1/RELEASE_NOTES.html
 -->
-[kafka_relnotes]: https://archive.apache.org/dist/kafka/3.8.0/RELEASE_NOTES.html
+[kafka_relnotes]: https://archive.apache.org/dist/kafka/3.8.1/RELEASE_NOTES.html
 [kafkatool_changes]: https://www.kafkatool.com/changes.html
 [kafkatool_downloads]: https://www.kafkatool.com/download.html
 [kotlin_examples]: https://github.com/michelou/kotlin-examples#top
@@ -368,6 +370,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 17.0.10 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-January/029089.html
 17.0.11 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-April/032197.html
 17.0.12 -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-July/035798.html
+17.0.13 -> 
 -->
 [temurin_openjdk17]: https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot
 [temurin_openjdk17_bugfixes]: https://www.oracle.com/java/technologies/javase/17-0-9-relnotes.html
@@ -378,6 +381,7 @@ In our case we downloaded the following installation files (<a href="#proj_deps"
 21.0.2  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-January/029090.html
 21.0.3  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-April/032196.html
 21.0.4  -> https://mail.openjdk.org/pipermail/jdk-updates-dev/2024-July/035862.html
+21.0.5  -> 
 -->
 [temurin_openjdk21]: https://adoptium.net/fr/temurin/releases/?variant=openjdk21&jvmVariant=hotspot
 [temurin_openjdk21_relnotes]: https://adoptium.net/fr/temurin/release-notes/?version=jdk-21+35
