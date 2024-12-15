@@ -25,6 +25,7 @@
 ## <span id="blogs">Blogs</span> [**&#x25B4;**](#top)
 
 - [Confluent Technology Blog](https://www.confluent.io/blog/area/technology/) :
+  - [Introducing Apache Kafka 3.9](https://www.confluent.io/blog/introducing-apache-kafka-3-9/) by Colin P. McCabe, November 2024.
   - [How Producers Work: Kafka Producer and Consumer Internals, Part 1](https://www.confluent.io/blog/kafka-producer-internals-preparing-event-data/) by Danica, September 2024.
   - [Introducing Apache Kafka 3.8](https://www.confluent.io/blog/introducing-apache-kafka-3-8/) by Josep Prat, July 2024.
   - [Introducing Apache Kafka 3.7](https://www.confluent.io/blog/introducing-apache-kafka-3-7/) by Stanislav Kozlovski, February 2024.
@@ -41,6 +42,7 @@
 - [A Detailed Guide of Interview Questions on Apache Kafka](https://www.analyticsvidhya.com/blog/2023/04/a-detailed-guide-of-interview-questions-on-apache-kafka/) by Shikha Sharma, May 2023.
 - [Remote code execution flaw patched in Apache Kafka](https://portswigger.net/daily-swig/remote-code-execution-flaw-patched-in-apache-kafka) by Charlie Osborne, February 2023.
 - [Medium](https://medium.com/search?q=Kafka)
+  - [Beyond Kafka: The Rise of Kafka-Compatible Alternatives](https://medium.com/@sanjmo/beyond-kafka-the-rise-of-kafka-compatible-alternatives-ed9a91f53e70) by Sanjeev Mohan, September 2024.
   - [Mastering Kafka: Advanced Concepts Every Senior Software Engineer Should Know](https://manjulapiyumal.medium.com/mastering-kafka-advanced-concepts-every-senior-software-engineer-should-know-9283664c99e1) by Manjula Piyumal, August 2024.
   - [Kafka Streams — Part I: An Introduction][blog_kundu_1] by Sazal Kanti Kundu, September 2023.
   - [Advance Optimization Techniques for Elasticsearch][blog_chye] by Lee Chye, September 2022.
@@ -117,7 +119,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/November 2024* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/December 2024* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
