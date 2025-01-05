@@ -10,8 +10,8 @@ set _DEBUG=0
 set _EXITCODE=0
 
 @rem copyright dates
-set _COPYRIGHT_DATES_OLD=2018-2023
-set _COPYRIGHT_DATES_NEW=2018-2024
+set _COPYRIGHT_DATES_OLD=2018-2024
+set _COPYRIGHT_DATES_NEW=2018-2025
 
 call :env
 if not %_EXITCODE%==0 goto end
