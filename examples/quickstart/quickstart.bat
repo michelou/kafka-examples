@@ -70,8 +70,8 @@ if not exist "%KAFKA_HOME%\bin\windows\kafka-topics.bat" (
     set _EXITCODE=1
     goto :eof
 )
-set "_ZOOKEEPER_START_CMD=%KAFKA_HOME%\bin\windows\zookeeper-server-start.bat"
-set "_ZOOKEEPER_STOP_CMD=%KAFKA_HOME%\bin\windows\zookeeper-server-stop.bat"
+set "_ZOOKEEPER_START_CMD=%KAFKA_HOME%\bin\windows\kafka-server-start.bat"
+set "_ZOOKEEPER_STOP_CMD=%KAFKA_HOME%\bin\windows\kafka-server-stop.bat"
 
 set "_KAFKA_START_CMD=%KAFKA_HOME%\bin\windows\kafka-server-start.bat"
 set "_KAFKA_STOP_CMD=%KAFKA_HOME%\bin\windows\kafka-server-stop.bat"

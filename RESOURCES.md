@@ -25,6 +25,8 @@
 ## <span id="blogs">Blogs</span> [**&#x25B4;**](#top)
 
 - [Confluent Technology Blog](https://www.confluent.io/blog/area/technology/) :
+  - [Introducing Apache Kafka 4.1.0](https://www.confluent.io/blog/introducing-apache-kafka-4-1/) by Mickael Maison, September 2025.
+  - [Introducing Apache Kafka 4.0](https://www.confluent.io/blog/introducing-apache-kafka-4-0/) by David Jacot, March 2025.
   - [Introducing Apache Kafka 3.9](https://www.confluent.io/blog/introducing-apache-kafka-3-9/) by Colin P. McCabe, November 2024.
   - [How Producers Work: Kafka Producer and Consumer Internals, Part 1](https://www.confluent.io/blog/kafka-producer-internals-preparing-event-data/) by Danica, September 2024.
   - [Introducing Apache Kafka 3.8](https://www.confluent.io/blog/introducing-apache-kafka-3-8/) by Josep Prat, July 2024.
@@ -89,7 +91,8 @@
 ## <span id="news">News</span> [**&#x25B4;**](#top)
 
 - [Kafka Monthly Digests](https://developers.redhat.com/author/mickael-maison) by Mickael Maison :
-  - **2024**: [January][news_maison_202401], [February](https://developers.redhat.com/blog/2024/03/01/kafka-monthly-digest-february-2024), [March](https://developers.redhat.com/blog/2024/03/29/kafka-monthly-digest-march-2024), [April](https://developers.redhat.com/blog/2024/05/02/kafka-monthly-digest-april-2024), [May](https://developers.redhat.com/blog/2024/06/03/kafka-monthly-digest-may-2024), [June](https://developers.redhat.com/blog/2024/07/01/kafka-monthly-digest-june-2024), [July](https://developers.redhat.com/blog/2024/08/01/kafka-monthly-digest-july-2024).
+  - **2025**: [January][news_maison_202501], [February][news_maison_202502], [March][news_maison_202503], [April][news_maison_202504], [May][news_maison_202505], [June][news_maison_202506], [July][news_maison_202507], [August][news_maison_202508], [September][news_maison_202509].
+  - **2024**: [January][news_maison_202401], [February](https://developers.redhat.com/blog/2024/03/01/kafka-monthly-digest-february-2024), [March](https://developers.redhat.com/blog/2024/03/29/kafka-monthly-digest-march-2024), [April](https://developers.redhat.com/blog/2024/05/02/kafka-monthly-digest-april-2024), [May](https://developers.redhat.com/blog/2024/06/03/kafka-monthly-digest-may-2024), [June](https://developers.redhat.com/blog/2024/07/01/kafka-monthly-digest-june-2024), [July](https://developers.redhat.com/blog/2024/08/01/kafka-monthly-digest-july-2024), [August][news_maison_202408], [September][news_maison_202409], [October][news_maison_202410], [November][news_maison_202411], [December][news_maison_202412].
   - **2023**: [January](https://developers.redhat.com/blog/2023/02/01/kafka-monthly-digest-january-2023), [February](https://developers.redhat.com/blog/2023/03/01/kafka-monthly-digest-february-2023), [March](https://developers.redhat.com/blog/2023/04/03/kafka-monthly-digest-march-2023), [April](https://developers.redhat.com/blog/2023/05/01/kafka-monthly-digest-april-2023), [May](https://developers.redhat.com/blog/2023/05/31/kafka-monthly-digest-may-2023), [June](https://developers.redhat.com/blog/2023/07/03/kafka-monthly-digest-june-2023), [July](https://developers.redhat.com/blog/2023/07/31/kafka-monthly-digest-july-2023), [August](https://developers.redhat.com/blog/2023/09/01/kafka-monthly-digest-august-2023), [September][news_maison_202309], [October][news_maison_202310], [November][news_maison_202311],  [December][news_maison_202312].
   - **2022**: [July](https://developers.redhat.com/articles/2022/08/04/kafka-monthly-digest-july-2022), [August](https://developers.redhat.com/articles/2022/09/13/kafka-monthly-digest-august-2022), [September](https://developers.redhat.com/blog/2022/10/05/kafka-monthly-digest-september-2022), [November](https://developers.redhat.com/blog/2022/12/05/kafka-monthly-digest-november-2022), [December](https://developers.redhat.com/blog/2023/01/03/kafka-monthly-digest-december-2022).
 
@@ -119,7 +122,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/January 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/October 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
@@ -163,5 +166,19 @@
 [news_maison_202311]: https://developers.redhat.com/blog/2023/11/29/kafka-monthly-digest-november-2023
 [news_maison_202312]: https://developers.redhat.com/blog/2023/12/22/kafka-monthly-digest-december-2023
 [news_maison_202401]: https://developers.redhat.com/blog/2024/01/31/kafka-monthly-digest-january-2024
+[news_maison_202408]: https://developers.redhat.com/blog/2024/09/02/kafka-monthly-digest-august-2024
+[news_maison_202409]: https://developers.redhat.com/blog/2024/10/01/kafka-monthly-digest-september-2024
+[news_maison_202410]: https://developers.redhat.com/blog/2024/11/04/kafka-monthly-digest-october-2024
+[news_maison_202411]: https://developers.redhat.com/blog/2024/12/02/kafka-monthly-digest-november-2024
+[news_maison_202412]: https://developers.redhat.com/blog/2025/01/07/kafka-monthly-digest-december-2024
+[news_maison_202501]: https://developers.redhat.com/blog/2025/02/03/kafka-monthly-digest-january-2025
+[news_maison_202502]: https://developers.redhat.com/blog/2025/03/03/kafka-monthly-digest-february-2025
+[news_maison_202503]: https://developers.redhat.com/blog/2025/04/01/kafka-monthly-digest-march-2025
+[news_maison_202504]: https://developers.redhat.com/blog/2025/05/06/kafka-monthly-digest-april-2025
+[news_maison_202505]: https://developers.redhat.com/blog/2025/06/02/kafka-monthly-digest-may-2025
+[news_maison_202506]: https://developers.redhat.com/blog/2025/07/01/kafka-monthly-digest-june-2025
+[news_maison_202507]: https://developers.redhat.com/blog/2025/08/01/kafka-monthly-digest-july-2025
+[news_maison_202508]: https://developers.redhat.com/blog/2025/09/02/kafka-monthly-digest-august-2025
+[news_maison_202509]: https://developers.redhat.com/blog/2025/10/01/kafka-monthly-digest-september-2025
 [tutorial_hashemian]: https://developer.ibm.com/tutorials/kafka-authn-authz/
 [tutorial_maison]: https://developer.ibm.com/tutorials/get-started-with-apache-kafka/
