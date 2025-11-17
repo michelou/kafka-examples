@@ -26,20 +26,11 @@ if %_START%==1 (
     if not !_EXITCODE!==0 goto end
 )
 if %_TEST%==1 (
-    call :create_topic
-    if not !_EXITCODE!==0 goto end
-
-    call :check_topic
-    if not !_EXITCODE!==0 goto end
-
-    call :produce_message
-    if not !_EXITCODE!==0 goto end
-
-    call :consume_message
+    call :test
     if not !_EXITCODE!==0 goto end
 )
 if %_STOP%==1 (
-    call :stop_servers
+    call :stop_services
     if not !_EXITCODE!==0 goto end
 )
 goto end
@@ -70,24 +61,32 @@ if not exist "%KAFKA_HOME%\bin\windows\kafka-topics.bat" (
     set _EXITCODE=1
     goto :eof
 )
-set "_ZOOKEEPER_START_CMD=%KAFKA_HOME%\bin\windows\kafka-server-start.bat"
-set "_ZOOKEEPER_STOP_CMD=%KAFKA_HOME%\bin\windows\kafka-server-stop.bat"
+@rem set "_ZOOKEEPER_START_CMD=%KAFKA_HOME%\bin\windows\kafka-server-start.bat"
+@rem set "_ZOOKEEPER_STOP_CMD=%KAFKA_HOME%\bin\windows\kafka-server-stop.bat"
 
 set "_KAFKA_START_CMD=%KAFKA_HOME%\bin\windows\kafka-server-start.bat"
 set "_KAFKA_STOP_CMD=%KAFKA_HOME%\bin\windows\kafka-server-stop.bat"
+set "_KAFKA_STORAGE_CMD=%KAFKA_HOME%\bin\windows\kafka-storage.bat"
 set "_KAFKA_TOPICS_CMD=%KAFKA_HOME%\bin\windows\kafka-topics.bat"
 
 set "_CONSUMER_CMD=%KAFKA_HOME%\bin\windows\kafka-console-consumer.bat"
 set "_PRODUCER_CMD=%KAFKA_HOME%\bin\windows\kafka-console-producer.bat"
 
+@rem use newer PowerShell version if available
+where /q pwsh.exe
+if %ERRORLEVEL%==0 ( set _PWSH_CMD=pwsh.exe
+) else ( set _PWSH_CMD=powershell.exe
+)
 for /f "delims=" %%f in ("%~dp0.") do set "_CONFIG_DIR=%%~dpf\config"
 
 set _SERVER_HOST=localhost
 set _SERVER_PORT=9092
 set _BOOTSTRAP_SERVER=%_SERVER_HOST%:%_SERVER_PORT%
 
-set _KAFKA_PROC_NAME=kafka.Kafka
-set _ZOOKEEPER_PROC_NAME=zookeeper.server
+set _KAFKA_PROCESS_TITLE=kafka.Kafka
+set _KAFKA_PRODUCER_TITLE=kafka.Producer
+@rem Removed since Kafka 4.x
+@rem set _ZOOKEEPER_PROCESS_TITLE=zookeeper.server
 
 set _TOPIC_NAME=quickstart-events
 goto :eof
@@ -145,6 +144,7 @@ set _HELP=0
 set _START=0
 set _STOP=0
 set _TEST=0
+set _TEST_DELAYED=0
 set _TIMER=0
 set _VERBOSE=0
 set __N=0
@@ -184,6 +184,9 @@ goto args_loop
 set _STDERR_REDIRECT=2^>NUL
 if %_DEBUG%==1 set _STDERR_REDIRECT=
 
+if %_TEST%==1 (
+    if %_START%==1 ( set _TEST_DELAYED=1 )
+)
 if %_DEBUG%==1 (
     echo %_DEBUG_LABEL% Options    : _TIMER=%_TIMER% _VERBOSE=%_VERBOSE% 1>&2
     echo %_DEBUG_LABEL% Subcommands: _START=%_START% _STOP=%_STOP% _TEST=%_TEST% 1>&2
@@ -191,7 +194,7 @@ if %_DEBUG%==1 (
     echo %_DEBUG_LABEL% Variables  : "JAVA_HOME=%JAVA_HOME%" 1>&2
     echo %_DEBUG_LABEL% Variables  : "KAFKA_HOME=%KAFKA_HOME%" 1>&2
 )
-if %_TIMER%==1 for /f "delims=" %%i in ('powershell -c "(Get-Date)"') do set _TIMER_START=%%i
+if %_TIMER%==1 for /f "delims=" %%i in ('call "%_PWSH_CMD%" -c "(Get-Date)"') do set _TIMER_START=%%i
 goto :eof
 
 :help
@@ -221,8 +224,9 @@ echo     %__BEG_O%test%__END%        execute producer/consumer test
 goto :eof
 
 :start_services
-call :start_zookeeper
-if not %_EXITCODE%==0 goto :eof
+@rem Deprecated since Kafka 4.x
+@rem call :start_zookeeper
+@rem if not %_EXITCODE%==0 goto :eof
 call :start_kafka
 if not %_EXITCODE%==0 goto :eof
 goto :eof
@@ -237,11 +241,11 @@ set __SERVICE_NAME=%~2
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l^|findstr "%__PROC_NAME%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Check if %__SERVICE_NAME% service is up and running 1>&2
 )
-for /f "usebackq" %%i in (`call "%_JPS_CMD%" -l^|findstr "%__PROC_NAME%" 2^>NUL`) do set _IS_RUNNING=1
+for /f "usebackq" %%i in (`call "%_JPS_CMD%" -l ^| findstr "%__PROC_NAME%" 2^>NUL`) do set _IS_RUNNING=1
 goto :eof
 
 :start_zookeeper
-call :is_running "%_ZOOKEEPER_PROC_NAME%" Zookeeper
+call :is_running "%_ZOOKEEPER_PROCESS_TITLE%" Zookeeper
 if %_IS_RUNNING%==1 (
     if %_VERBOSE%==1 echo Zookeeper service is up and running 1>&2
     goto :eof
@@ -257,16 +261,42 @@ set "__BATCH_FILE=%TEMP%\%_BASENAME%_zookeeper.bat"
     echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_ZOOKEEPER_START_CMD%" %__ZOOKEEPER_PROPS_FILE% 1^>^&2
     echo call "%_ZOOKEEPER_START_CMD%" %__ZOOKEEPER_PROPS_FILE%
 ) > "%__BATCH_FILE%"
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_ZOOKEEPER_PROC_NAME%" "%__BATCH_FILE%" 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_ZOOKEEPER_PROCESS_TITLE%" "%__BATCH_FILE%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Start the Zookeeper service 1>&2
 )
-start "%_ZOOKEEPER_PROC_NAME%" "%__BATCH_FILE%"
+start "%_ZOOKEEPER_PROCESS_TITLE%" "%__BATCH_FILE%"
 if not %ERRORLEVEL%==0 (
     echo %_ERROR_LABEL% Failed to start the Zookeeper service 1>&2
     set _EXITCODE=1
     goto :eof
 )
 timeout /t 5 /nobreak 1>NUL
+goto :eof
+
+@rem adapted from https://www.skybert.net/linux/kafka-fails-to-start/
+:check_storage
+@rem directory defined in config file server.properties
+for %%i in (%__KAFKA_PROPS_FILE%) do (
+   echo 00000000 %%i
+)
+set "__LOGS_DIR=C:\temp\kraft-combined-logs"
+if not exist "%__LOGS_DIR%" mkdir "%__LOGS_DIR%"
+
+if exist "%__LOGS_DIR%\meta.properties" goto :eof
+
+for /f %%u in ('call "%_KAFKA_STORAGE_CMD%" random-uuid') do set "__UUID=%%u"
+
+set "__KAFKA_PROPS_FILE=%_CONFIG_DIR%\server.properties"
+
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "!_KAFKA_STORAGE_CMD:%KAFKA_HOME%=%%KAFKA_HOME%%!" format -t "%__UUID%" -c "%__KAFKA_PROPS_FILE%" --standalone 1>&2
+) else if %_VERBOSE%==1 ( echo Initialize directory "%__LOGS_DIR%" 1>&2
+)
+call "%_KAFKA_STORAGE_CMD%" format -t "%__UUID%" -c "%__KAFKA_PROPS_FILE%" --standalone
+if not %ERRORLEVEL%==0 (
+    echo %_ERROR_LABEL% Failed to initialize directory "%__LOGS_DIR%" 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
 goto :eof
 
 @rem input parameter: %1=local port number (to check)
@@ -291,7 +321,7 @@ if defined __PID (
 goto :eof
 
 :start_kafka
-call :is_running "%_KAFKA_PROC_NAME%" Kafka
+call :is_running "%_KAFKA_PROCESS_TITLE%" Kafka
 if %_IS_RUNNING%==1 (
     if %_VERBOSE%==1 echo Kafka service is up and running 1>&2
     goto :eof
@@ -304,16 +334,20 @@ if not exist "%__KAFKA_PROPS_FILE%" (
     echo %_WARNING_LABEL% Property file 'server.properties' not found 1>&2
     set __KAFKA_PROPS_FILE=
 )
+call :check_storage
+if not %_EXITCODE%==0 goto :eof
+
 set "__BATCH_FILE=%TEMP%\%_BASENAME%_kafka.bat"
 (
     echo @echo off
     echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_KAFKA_START_CMD%" %__KAFKA_PROPS_FILE% 1^>^&2
+    set "KAFKA_LOG4J_OPTS=-Dlog4j.configurationFile=%_CONFIG_DIR%\tools-log4j2.yaml"
     echo call "%_KAFKA_START_CMD%" %__KAFKA_PROPS_FILE%
 ) > "%__BATCH_FILE%"
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_KAFKA_PROC_NAME%" "%__BATCH_FILE%" 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_KAFKA_PROCESS_TITLE%" "%__BATCH_FILE%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Start the Kafka service 1>&2
 )
-start "%_KAFKA_PROC_NAME%" "%__BATCH_FILE%"
+start "%_KAFKA_PROCESS_TITLE%" "%__BATCH_FILE%"
 if not %ERRORLEVEL%==0 (
     echo %_ERROR_LABEL% Failed to start the Kafka service 1>&2
     set _EXITCODE=1
@@ -322,12 +356,6 @@ if not %ERRORLEVEL%==0 (
 goto :eof
 
 :create_topic
-call :is_running "%_KAFKA_PROC_NAME%" Kafka
-if %_IS_RUNNING%==0 (
-    echo %_ERROR_LABEL% Kafka service must be started to create topic "%_TOPIC_NAME%" 1>&2
-    set _EXITCODE=1
-    goto :eof
-)
 set __TOPICS_OPTS=--create --if-not-exists --bootstrap-server %_BOOTSTRAP_SERVER% --replication-factor 1 --partitions 1 --topic "%_TOPIC_NAME%"
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_TOPICS_CMD%" %__TOPICS_OPTS% 1>&2
@@ -383,15 +411,26 @@ set "__BATCH_FILE=C:\temp\%_BASENAME%_producer.bat"
     echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_PRODUCER_CMD%" %__PRODUCER_OPTS% "%__PRODUCER_PROPS_FILE%" ^< "%__DATA_FILE%" 1^>^&2
     echo call "%_PRODUCER_CMD%" %__PRODUCER_OPTS% "%__PRODUCER_PROPS_FILE%" ^< "%__DATA_FILE%"
 ) > "%__BATCH_FILE%"
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "kafka.producer" "%__BATCH_FILE%" 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_KAFKA_PRODUCER_TITLE%" "%__BATCH_FILE%" 1>&2
 ) else if %_VERBOSE%==1 ( echo Produce some messages to topic "%_TOPIC_NAME%" 1>&2
 )
 pause
-start "kafka.producer" "%__BATCH_FILE%"
+start "%_KAFKA_PRODUCER_TITLE%" "%__BATCH_FILE%"
 if not %ERRORLEVEL%==0 (
     echo %_ERROR_LABEL% Failed to produce messages to topic "%_TOPIC_NAME%" 1>&2
     set _EXITCODE=1
     goto :eof
+)
+@rem close parent window once process is terminated
+set __PID=
+for /f "tokens=1,2,*" %%f in ('tasklist /fi "WINDOWTITLE eq %_KAFKA_PRODUCER_TITLE%" /nh ^| findstr /v /b INFO') do (
+    set __PID=%%g
+)
+if defined __PID (
+    if %_DEBUG%==1 ( echo %_DEBUG_LABEL% taskkill /pid %__PID% 1>&2
+    ) else if %_VERBOSE%==1 ( echo Kill process with ID=%__PID% 1>&2
+    )
+    taskkill /pid %__PID% %_STDERR_REDIRECT%
 )
 goto :eof
 
@@ -414,41 +453,84 @@ if not %ERRORLEVEL%==0 (
 )
 goto :eof
 
-:stop_servers
+:test
+if %_TEST_DELAYED%==1 (
+    if %_DEBUG%==1 ( echo %_DEBUG_LABEL% timeout /t 10 /nobreak 1>&2
+    ) else if %_VERBOSE%== 1 ( echo Wait 10 seconds for Kafka process to be up and running 1>&2
+    )
+    timeout /t 10 /nobreak 1>NUL
+)
+call :is_running "%_KAFKA_PROCESS_TITLE%" Kafka
+if %_IS_RUNNING%==0 (
+    echo %_ERROR_LABEL% Kafka service must be started to create topic "%_TOPIC_NAME%" 1>&2
+    set _EXITCODE=1
+    goto :eof
+)
+call :create_topic
+if not %_EXITCODE%==0 goto :eof
+
+call :check_topic
+if not !_EXITCODE!==0 goto :eof
+
+rem call :produce_message
+rem if not !_EXITCODE!==0 goto :eof
+
+call :consume_message
+if not !_EXITCODE!==0 goto :eof
+goto :eof
+
+:stop_services
 call :stop_kafka
 if not %_EXITCODE%==0 goto :eof
-call :stop_zookeeper
-if not %_EXITCODE%==0 goto :eof
+@rem call :stop_zookeeper
+@rem if not %_EXITCODE%==0 goto :eof
 goto :eof
 
 :stop_zookeeper
-call :is_running "%_ZOOKEEPER_PROC_NAME%" Zookeeper
+call :is_running "%_ZOOKEEPER_PROCESS_TITLE%" Zookeeper
 if %_IS_RUNNING%==0 goto :eof
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_ZOOKEEPER_STOP_CMD%" 1>&2
-) else if %_VERBOSE%==1 ( echo Stop Zookeeper server process "%_ZOOKEEPER_PROC_NAME%" 1>&2
+) else if %_VERBOSE%==1 ( echo Stop Zookeeper server process "%_ZOOKEEPER_PROCESS_TITLE%" 1>&2
 )
 call "%_ZOOKEEPER_STOP_CMD%" %_STDERR_REDIRECT%
 if not %ERRORLEVEL%==0 (
-    echo %_ERROR_LABEL% Failed to stop Zookeeper server process "%_ZOOKEEPER_PROC_NAME%" 1>&2
+    echo %_ERROR_LABEL% Failed to stop Zookeeper server process "%_ZOOKEEPER_PROCESS_TITLE%" 1>&2
     set _EXITCODE=1
     goto :eof
+)
+goto :eof
+
+:close_kafka_window
+@rem close window with title "kafka.Kafka" after stopping the Kafka process
+set __PID=
+for /f "tokens=1,2,*" %%f in ('tasklist /fi "WINDOWTITLE eq %_KAFKA_PROCESS_TITLE%" /nh ^| findstr /v /b INFO') do (
+    set __PID=%%g
+)
+if defined __PID (
+    if %_DEBUG%==1 ( echo %_DEBUG_LABEL% taskkill /pid %__PID% 1>&2
+    ) else if %_VERBOSE%==1 ( echo Kill process with ID=%__PID% 1>&2
+    )
+    taskkill /pid %__PID% %_STDERR_REDIRECT%
 )
 goto :eof
 
 :stop_kafka
-call :is_running "%_KAFKA_PROC_NAME%" Kafka
-if %_IS_RUNNING%==0 goto :eof
-
+call :is_running "%_KAFKA_PROCESS_TITLE%" Kafka
+if %_IS_RUNNING%==0 (
+    call :close_kafka_window
+    goto :eof
+)
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_STOP_CMD%" 1>&2
-) else if %_VERBOSE%==1 ( echo Stop Kafka server process "%_KAFKA_PROC_NAME%" 1>&2
+) else if %_VERBOSE%==1 ( echo Stop Kafka server process "%_KAFKA_PROCESS_TITLE%" 1>&2
 )
 call "%_KAFKA_STOP_CMD%" %_STDERR_REDIRECT%
 if not %ERRORLEVEL%==0 (
-    echo %_ERROR_LABEL% Failed to stop Kafka server process "%_KAFKA_PROC_NAME%" 1>&2
+    echo %_ERROR_LABEL% Failed to stop Kafka server process "%_KAFKA_PROCESS_TITLE%" 1>&2
     set _EXITCODE=1
     goto :eof
 )
+call :close_kafka_window
 goto :eof
 
 @rem output parameter: _DURATION
@@ -456,7 +538,7 @@ goto :eof
 set __START=%~1
 set __END=%~2
 
-for /f "delims=" %%i in ('powershell -c "$interval = New-TimeSpan -Start '%__START%' -End '%__END%'; Write-Host $interval"') do set _DURATION=%%i
+for /f "delims=" %%i in ('call "%_PWSH_CMD%" -c "$interval = New-TimeSpan -Start '%__START%' -End '%__END%'; Write-Host $interval"') do set _DURATION=%%i
 goto :eof
 
 @rem #########################################################################
@@ -464,7 +546,7 @@ goto :eof
 
 :end
 if %_TIMER%==1 (
-    for /f "delims=" %%i in ('powershell -c "(Get-Date)"') do set __TIMER_END=%%i
+    for /f "delims=" %%i in ('call "%_PWSH_CMD%" -c "(Get-Date)"') do set __TIMER_END=%%i
     call :duration "%_TIMER_START%" "!__TIMER_END!"
     echo Total execution time: !_DURATION! 1>&2
 )

@@ -24,6 +24,7 @@
 
 ## <span id="blogs">Blogs</span> [**&#x25B4;**](#top)
 
+- [Kafka 4.x Fails to Start](https://www.skybert.net/linux/kafka-fails-to-start/), April 2025.
 - [Confluent Technology Blog](https://www.confluent.io/blog/area/technology/) :
   - [Introducing Apache Kafka 4.1.0](https://www.confluent.io/blog/introducing-apache-kafka-4-1/) by Mickael Maison, September 2025.
   - [Introducing Apache Kafka 4.0](https://www.confluent.io/blog/introducing-apache-kafka-4-0/) by David Jacot, March 2025.
@@ -122,7 +123,7 @@
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/October 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/November 2025* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
 <!-- link refs -->
