@@ -108,6 +108,8 @@ Processed a total of 2 messages
 
 The producer is started in a separate windows (using the Windows command [`start`][windows_start]) and reads its input from a text file; this frees the user from typing text in the console (and pressing `Ctrl-C` to stop it).
 
+<!--=======================================================================-->
+
 ## <span id="footnotes">Footnotes</span> [**&#x25B4;**](#top)
 
 <span id="footnote_01">[1]</span> ***Zookeeper startup logging*** [↩](#anchor_01)
