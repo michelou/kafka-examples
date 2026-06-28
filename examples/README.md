@@ -6,10 +6,18 @@
     <a href="https://kafka.apache.org/" rel="external"><img style="border:0;width:120px;" src="../docs/images/apache-kafka.png" alt="Kafka project" /></a>
   </td>
   <td style="border:0;padding:0;vertical-align:text-top;">
-    Directory <strong><code>examples\</code></strong> contains <a href="https://kafka.apache.org/" rel="external">Kafka</a> code examples coming from various websites - mostly from the <a href="https://kafka.apache.org/" rel="external">Kafka project</a>.
+    Directory <strong><code>examples\</code></strong> contains <a href="https://kafka.apache.org/" rel="external">Kafka</a> code examples coming from various websites - mostly from the <a href="https://kafka.apache.org/" rel="external" title="https://kafka.apache.org/">Kafka project</a>.
   </td>
   </tr>
 </table>
+
+> **TODO**: [Apache kafka not running on windows](https://stackoverflow.com/questions/79906644/apache-kafka-not-running-on-windows).
+> <pre style="font-size:80%;">
+> DEPRECATED: A Log4j 1.x configuration file has been detected, which is no longer recommended.
+> To use a Log4j 2.x configuration, please see https://logging.apache.org/log4j/2.x/migrate-from-log4j1.html#Log4j2ConfigurationFormat for details about Log4j configuration file migration.
+> You can also use the C:\opt\kafka_2.13-4.3.1/config/tool-log4j2.yaml file as a starting point. Make sure to remove the Log4j 1.x configuration after completing the migration.
+> 2026-06-28T18:12:38.645024300Z main ERROR Reconfiguration failed: No configuration found for '5e2de80c' at 'null' in 'null'
+> </pre>
 
 ## <span id="quickstart">`quickstart` Example</span>
 
@@ -23,7 +31,7 @@ In this scenario most of the work focuses on the configuration of the [Kafka] co
 
 In resume, the two subcommands `start` and `stop` manage the Zookeeper and Kafka services and subcommand `test` creates a topic and starts both a producer (*which gets its input from a text file*) and a consumer (press `Ctrl-C` to stop it).
 
-Command [**`quickstart.bat`**](./quickstart/quickstart.bat)` start` launches the two services after performing several checks (e.g. don't start service if already up and running) :
+Command [**`quickstart.bat`**](./quickstart/quickstart.bat "./quickstart/quickstart.bat")` start` launches the two services after performing several checks (e.g. don't start service if already up and running) :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./quickstart/quickstart.bat">quickstart</a> start -verbose</b>
@@ -87,7 +95,7 @@ And the [Kafka] server <sup id="anchor_02">[2](#footnote_02)</sup> starts in ano
 [2024-10-25 19:03:47,028] INFO [KafkaServer id=0] started
 </pre>
 
-Command [`quickstart`](./quickstart/quickstart.bat)` test` launches the producer in a separate windows before starting the consumer :
+Command [`quickstart`](./quickstart/quickstart.bat "./quickstart/quickstart.bat")` test` launches the producer in a separate windows before starting the consumer :
 
 <pre style="font-size:80%;">
 <b>&gt; <a href="./quickstart/quickstart.bat">quickstart</a> -verbose test</b>
@@ -258,19 +266,19 @@ Here is a more detailed extract of the Kafka startup <code>INFO</code> logging :
 <span id="footnote_03">[3]</span> ***Java Processes*** [↩](#anchor_03)
 
 <dl><dd>
-We rely on the <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html"><code><b>jps.exe</b></code></a> command to check if the Kafka and <a href="https://zookeeper.apache.org/" rel="external">Zookeeper</a> services are running locally on our machine :
+We rely on the <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html" rel="external" title="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html"><code><b>jps.exe</b></code></a> command to check if the Kafka and <a href="https://zookeeper.apache.org/" rel="external" title="https://zookeeper.apache.org/">Zookeeper</a> services are running locally on our machine :
 </dd>
 <dd>
 <pre style="font-size:80%;">
 <b>&gt; echo %JAVA_HOME%</b>
 C:\opt\jdk-temurin-17.0.17_10
 &nbsp;
-<b>&gt; %JAVA_HOME%\bin\<a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html">jps</a> -l</b>
+<b>&gt; %JAVA_HOME%\bin\<a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html" rel="external" title="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html">jps</a> -l</b>
 12452 kafka.Kafka
 15912 org.apache.zookeeper.server.quorum.QuorumPeerMain
 6584 jdk.jcmd/sun.tools.jps.Jps
 &nbsp;
-<b>&gt; %JAVA_HOME%\bin\<a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html">jps</a> -lm | <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">findstr</a> "kafka.Kafka zookeeper.server"</b>
+<b>&gt; %JAVA_HOME%\bin\<a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html">jps</a> -lm | <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external" title="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">findstr</a> "kafka.Kafka zookeeper.server"</b>
 12452 kafka.Kafka K:\examples\config\server.properties
 15912 org.apache.zookeeper.server.quorum.QuorumPeerMain K:\examples\config\zookeeper.properties
 </pre>
@@ -281,11 +289,11 @@ C:\opt\jdk-temurin-17.0.17_10
 <dl><dd>
 Here is how one can find which running process is listening on the local port <b>8080</b> :
 <pre style="font-size:80%;">
-<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat" rel="external">netstat</a> -aon | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> 8080</b>
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat" rel="external" title="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat">netstat</a> -aon | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external" title="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr">findstr</a> 8080</b>
   TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       3208
   TCP    [::]:8080              [::]:0                 LISTENING       3208
 &nbsp;
-<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tasklist" rel="external">tasklist</a> | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> 3208</b>
+<b>&gt; <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tasklist" rel="external" title="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/tasklist">tasklist</a> | <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/findstr" rel="external">findstr</a> 3208</b>
 java.exe                      3208 Console                    1     98,552 K
 </pre>
 <a href="../docs/images/Oracle_Services.png"><img src="../docs/images/Oracle_Services.png" width="80%" /></a>
@@ -300,16 +308,15 @@ TNSLSNR.EXE                   6000 Services                   0     15,456 K
 </pre>
 </dd>
 <dd>
-For instance, the StackOverflow post <a href="https://stackoverflow.com/questions/56747959/zookepper-unable-to-start-adminserver-exiting-abnormally">"ZooKepper Unable to start AdminServer, exiting abnormally"</a> gives a concrete case of the issue.
+For instance, the StackOverflow post <a href="https://stackoverflow.com/questions/56747959/zookepper-unable-to-start-adminserver-exiting-abnormally" rel="external" title="https://stackoverflow.com/questions/56747959/zookepper-unable-to-start-adminserver-exiting-abnormally">"ZooKepper Unable to start AdminServer, exiting abnormally"</a> gives a concrete case of the issue.
 </dd></dl>
 
 ***
 
-*[mics](https://lampwww.epfl.ch/~michelou/)/November 2025* [**&#9650;**](#top)
+*[mics](https://lampwww.epfl.ch/~michelou/)/June 2026* [**&#9650;**](#top)
 <span id="bottom">&nbsp;</span>
 
-[jpd_cmd]: https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html
-[kafka]: https://kafka.apache.org
-[windows_start]: https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/start
-[zookeeper]: https://zookeeper.apache.org/
-
+[jpd_cmd]: https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html "https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jps.html"
+[kafka]: https://kafka.apache.org "https://kafka.apache.org"
+[windows_start]: https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/start "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/start"
+[zookeeper]: https://zookeeper.apache.org/ "https://zookeeper.apache.org/"

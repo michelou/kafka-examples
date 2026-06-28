@@ -77,7 +77,8 @@ where /q pwsh.exe
 if %ERRORLEVEL%==0 ( set _PWSH_CMD=pwsh.exe
 ) else ( set _PWSH_CMD=powershell.exe
 )
-for /f "delims=" %%f in ("%~dp0.") do set "_CONFIG_DIR=%%~dpf\config"
+for /f "delims=" %%f in ("%~dp0.") do set "_CONFIG_DIR=%%~dpfconfig"
+set "_TEMP_DIR=C:\temp"
 
 set _SERVER_HOST=localhost
 set _SERVER_PORT=9092
@@ -188,9 +189,10 @@ if %_TEST%==1 (
     if %_START%==1 ( set _TEST_DELAYED=1 )
 )
 if %_DEBUG%==1 (
+    echo %_DEBUG_LABEL% Properties : _BOOTSTRAP_SERVER=%_BOOTSTRAP_SERVER% 1>&2
+    echo %_DEBUG_LABEL% Properties : "_CONFIG_DIR=!_CONFIG_DIR:%USERPROFILE%=%%USERPROFILE%%!" 1>&2
     echo %_DEBUG_LABEL% Options    : _TIMER=%_TIMER% _VERBOSE=%_VERBOSE% 1>&2
     echo %_DEBUG_LABEL% Subcommands: _START=%_START% _STOP=%_STOP% _TEST=%_TEST% 1>&2
-    echo %_DEBUG_LABEL% Variables  : _BOOTSTRAP_SERVER=%_BOOTSTRAP_SERVER% 1>&2
     echo %_DEBUG_LABEL% Variables  : "JAVA_HOME=%JAVA_HOME%" 1>&2
     echo %_DEBUG_LABEL% Variables  : "KAFKA_HOME=%KAFKA_HOME%" 1>&2
 )
@@ -238,8 +240,8 @@ set _IS_RUNNING=0
 set __PROC_NAME=%~1
 set __SERVICE_NAME=%~2
 
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l^|findstr "%__PROC_NAME%" 1>&2
-) else if %_VERBOSE%==1 ( echo Check if %__SERVICE_NAME% service is up and running 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l ^| findstr "%__PROC_NAME%" 1>&2
+) else if %_VERBOSE%==1 ( echo Check if service "%__SERVICE_NAME%" is up and running 1>&2
 )
 for /f "usebackq" %%i in (`call "%_JPS_CMD%" -l ^| findstr "%__PROC_NAME%" 2^>NUL`) do set _IS_RUNNING=1
 goto :eof
@@ -252,16 +254,16 @@ if %_IS_RUNNING%==1 (
 )
 set "__ZOOKEEPER_PROPS_FILE=%_CONFIG_DIR%\zookeeper.properties"
 if not exist "%__ZOOKEEPER_PROPS_FILE%" (
-    echo %_WARNING_LABEL% Property file 'zookeeper.properties' not found 1>&2
+    echo %_WARNING_LABEL% Property file "!__ZOOKEEPER_PROPS_FILE:%USERPROFILE%=%%USERPROFILE%%!" not found 1>&2
     set __ZOOKEEPER_PROPS_FILE=
 )
 set "__BATCH_FILE=%TEMP%\%_BASENAME%_zookeeper.bat"
 (
     echo @echo off
-    echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_ZOOKEEPER_START_CMD%" %__ZOOKEEPER_PROPS_FILE% 1^>^&2
-    echo call "%_ZOOKEEPER_START_CMD%" %__ZOOKEEPER_PROPS_FILE%
+    echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_ZOOKEEPER_START_CMD%" "!__ZOOKEEPER_PROPS_FILE:%USERPROFILE%=%%USERPROFILE%%!" 1^>^&2
+    echo call "%_ZOOKEEPER_START_CMD%" "%__ZOOKEEPER_PROPS_FILE%"
 ) > "%__BATCH_FILE%"
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_ZOOKEEPER_PROCESS_TITLE%" "%__BATCH_FILE%" 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_ZOOKEEPER_PROCESS_TITLE%" "!__BATCH_FILE:%LOCALAPPDATA%=%%LOCALAPPDATA%%!" 1>&2
 ) else if %_VERBOSE%==1 ( echo Start the Zookeeper service 1>&2
 )
 start "%_ZOOKEEPER_PROCESS_TITLE%" "%__BATCH_FILE%"
@@ -276,10 +278,7 @@ goto :eof
 @rem adapted from https://www.skybert.net/linux/kafka-fails-to-start/
 :check_storage
 @rem directory defined in config file server.properties
-for %%i in (%__KAFKA_PROPS_FILE%) do (
-   echo 00000000 %%i
-)
-set "__LOGS_DIR=C:\temp\kraft-combined-logs"
+set "__LOGS_DIR=%_TEMP_DIR%\kraft-combined-logs"
 if not exist "%__LOGS_DIR%" mkdir "%__LOGS_DIR%"
 
 if exist "%__LOGS_DIR%\meta.properties" goto :eof
@@ -288,7 +287,7 @@ for /f %%u in ('call "%_KAFKA_STORAGE_CMD%" random-uuid') do set "__UUID=%%u"
 
 set "__KAFKA_PROPS_FILE=%_CONFIG_DIR%\server.properties"
 
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "!_KAFKA_STORAGE_CMD:%KAFKA_HOME%=%%KAFKA_HOME%%!" format -t "%__UUID%" -c "%__KAFKA_PROPS_FILE%" --standalone 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "!_KAFKA_STORAGE_CMD:%KAFKA_HOME%=%%KAFKA_HOME%%!" format -t "%__UUID%" -c "!__KAFKA_PROPS_FILE:%USERPROFILE%=%%USERPROFILE%%!" --standalone 1>&2
 ) else if %_VERBOSE%==1 ( echo Initialize directory "%__LOGS_DIR%" 1>&2
 )
 call "%_KAFKA_STORAGE_CMD%" format -t "%__UUID%" -c "%__KAFKA_PROPS_FILE%" --standalone
@@ -334,17 +333,23 @@ if not exist "%__KAFKA_PROPS_FILE%" (
     echo %_WARNING_LABEL% Property file 'server.properties' not found 1>&2
     set __KAFKA_PROPS_FILE=
 )
+set "__LOG4J2_FILE=%_CONFIG_DIR%\log4j2.yaml"
+if not exist "%__LOG4J2_FILE%" (
+    @rem default configuration: %KAFKA_HOME%\config\log4j2.yaml
+    echo %_WARNING_LABEL% Configuration file "!__LOG4J2_FILE:%USERPROFILE%=%%USERPROFILE%%!" not found 1>&2
+    set "__LOG4J2_FILE=%KAFKA_HOME%\config\log4j2.yaml"
+)
 call :check_storage
 if not %_EXITCODE%==0 goto :eof
 
 set "__BATCH_FILE=%TEMP%\%_BASENAME%_kafka.bat"
 (
     echo @echo off
-    echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_KAFKA_START_CMD%" %__KAFKA_PROPS_FILE% 1^>^&2
-    set "KAFKA_LOG4J_OPTS=-Dlog4j.configurationFile=%_CONFIG_DIR%\tools-log4j2.yaml"
-    echo call "%_KAFKA_START_CMD%" %__KAFKA_PROPS_FILE%
+    echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_KAFKA_START_CMD%" "!__KAFKA_PROPS_FILE:%USERPROFILE%=%%USERPROFILE%%!" 1^>^&2
+    set "KAFKA_LOG4J_OPTS=-Dlog4j2.configurationFile=%__LOG4J2_FILE%"
+    echo call "%_KAFKA_START_CMD%" "%__KAFKA_PROPS_FILE%"
 ) > "%__BATCH_FILE%"
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_KAFKA_PROCESS_TITLE%" "%__BATCH_FILE%" 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% start "%_KAFKA_PROCESS_TITLE%" "!__BATCH_FILE:%LOCALAPPDATA%=%%LOCALAPPDATA%%!" 1>&2
 ) else if %_VERBOSE%==1 ( echo Start the Kafka service 1>&2
 )
 start "%_KAFKA_PROCESS_TITLE%" "%__BATCH_FILE%"
@@ -400,12 +405,12 @@ set "__PRODUCER_PROPS_FILE=%_CONFIG_DIR%\producer.properties"
 set __PRODUCER_OPTS=--bootstrap-server "%_BOOTSTRAP_SERVER%" --topic "%_TOPIC_NAME%"
 
 @rem see https://www.conduktor.io/kafka/kafka-producer-cli-tutorial
-set "__DATA_FILE=C:\temp\%_BASENAME%_data.txt"
+set "__DATA_FILE=%_TEMP_DIR%\%_BASENAME%_data.txt"
 (
     echo Hello world
     echo Apache Kafka
 ) > "%__DATA_FILE%"
-set "__BATCH_FILE=C:\temp\%_BASENAME%_producer.bat"
+set "__BATCH_FILE=%_TEMP_DIR%\%_BASENAME%_producer.bat"
 (
     echo @echo off
     echo if %_DEBUG%==1 echo %_DEBUG_LABEL% "%_PRODUCER_CMD%" %__PRODUCER_OPTS% "%__PRODUCER_PROPS_FILE%" ^< "%__DATA_FILE%" 1^>^&2

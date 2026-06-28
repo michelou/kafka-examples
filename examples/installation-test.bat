@@ -73,6 +73,11 @@ if not exist "%KAFKA_HOME%\bin\windows\kafka-topics.bat" (
     set _EXITCODE=1
     goto :eof
 )
+@rem we use the newer PowerShell version if available
+where /q pwsh.exe
+if %ERRORLEVEL%==0 ( set _PWSH_CMD=pwsh.exe
+) else ( set _PWSH_CMD=powershell.exe
+)
 @rem set "_ZOOKEEPER_START_CMD=%KAFKA_HOME%\bin\windows\zookeeper-server-start.bat"
 @rem set "_ZOOKEEPER_STOP_CMD=%KAFKA_HOME%\bin\windows\zookeeper-server-stop.bat"
 
@@ -186,7 +191,7 @@ if %_DEBUG%==1 (
     echo %_DEBUG_LABEL% Variables  : "JAVA_HOME=%JAVA_HOME%" 1>&2
     echo %_DEBUG_LABEL% Variables  : "KAFKA_HOME=%KAFKA_HOME%" 1>&2
 )
-if %_TIMER%==1 for /f "delims=" %%i in ('powershell -c "(Get-Date)"') do set _TIMER_START=%%i
+if %_TIMER%==1 for /f "delims=" %%i in ('call "%_PWSH_CMD%" -c "(Get-Date)"') do set _TIMER_START=%%i
 goto :eof
 
 :help
@@ -225,10 +230,10 @@ goto :eof
 :start_zookeeper
 set __NAME=zookeeper.server
 set __RUNNING=
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l^|findstr %__NAME% 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l ^| findstr %__NAME% 1>&2
 ) else if %_VERBOSE%==1 ( echo Search for Zookeeper process 1>&2
 )
-for /f "usebackq" %%i in (`"%_JPS_CMD%" -l^|findstr %__NAME%`) do set __RUNNING=1
+for /f "usebackq" %%i in (`"%_JPS_CMD%" -l ^| findstr %__NAME%`) do set __RUNNING=1
 if defined __RUNNING (
     echo %_WARNING_LABEL% Zookeeper server is already running 1>&2
     goto :eof
@@ -248,10 +253,10 @@ goto :eof
 :start_kafka
 set __NAME=kafka.Kafka
 set __RUNNING=
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l^|findstr %__NAME% 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l ^| findstr %__NAME% 1>&2
 ) else if %_VERBOSE%==1 ( echo Search for Kafka process 1>&2
 )
-for /f "usebackq" %%i in (`"%_JPS_CMD%" -l^|findstr %__NAME%`) do set __RUNNING=1
+for /f "usebackq" %%i in (`"%_JPS_CMD%" -l ^| findstr %__NAME%`) do set __RUNNING=1
 if defined __RUNNING (
     echo %_WARNING_LABEL% Kafka server is already running 1>&2
     goto :eof
@@ -333,10 +338,10 @@ goto :eof
 :stop_zookeeper
 set __NAME=zookeeper.server
 set __RUNNING=
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l^|findstr %__NAME% 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l ^| findstr %__NAME% 1>&2
 ) else if %_VERBOSE%==1 ( echo Check if Zookeeper process is active 1>&2
 )
-for /f "usebackq" %%i in (`"%_JPS_CMD%" -l^|findstr %__NAME%`) do set __RUNNING=1
+for /f "usebackq" %%i in (`"%_JPS_CMD%" -l ^| findstr %__NAME%`) do set __RUNNING=1
 if not defined __RUNNING goto :eof
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_ZOOKEEPER_STOP_CMD%" 1>&2
@@ -352,10 +357,10 @@ goto :eof
 :stop_kafka
 set __NAME=kafka.Kafka
 set __RUNNING=
-if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l^|findstr %__NAME% 1>&2
+if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_JPS_CMD%" -l ^| findstr %__NAME% 1>&2
 ) else if %_VERBOSE%==1 ( echo Check if Kafka process is active 1>&2
 )
-for /f "usebackq" %%i in (`"%_JPS_CMD%" -l^|findstr %__NAME%`) do set __RUNNING=1
+for /f "usebackq" %%i in (`"%_JPS_CMD%" -l ^| findstr %__NAME%`) do set __RUNNING=1
 if not defined __RUNNING goto :eof
 
 if %_DEBUG%==1 ( echo %_DEBUG_LABEL% "%_KAFKA_STOP_CMD%" 1>&2
@@ -373,7 +378,7 @@ goto :eof
 set __START=%~1
 set __END=%~2
 
-for /f "delims=" %%i in ('powershell -c "$interval = New-TimeSpan -Start '%__START%' -End '%__END%'; Write-Host $interval"') do set _DURATION=%%i
+for /f "delims=" %%i in ('call "%_PWSH_CMD%" -c "$interval = New-TimeSpan -Start '%__START%' -End '%__END%'; Write-Host $interval"') do set _DURATION=%%i
 goto :eof
 
 @rem #########################################################################
@@ -381,7 +386,7 @@ goto :eof
 
 :end
 if %_TIMER%==1 (
-    for /f "delims=" %%i in ('powershell -c "(Get-Date)"') do set __TIMER_END=%%i
+    for /f "delims=" %%i in ('call "%_PWSH_CMD%" -c "(Get-Date)"') do set __TIMER_END=%%i
     call :duration "%_TIMER_START%" "!__TIMER_END!"
     echo Total execution time: !_DURATION! 1>&2
 )
